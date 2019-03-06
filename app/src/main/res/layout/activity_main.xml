@@ -22,8 +22,8 @@
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="49dp"
+        android:layout_height="76dp"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="20dp"
         app:layout_constraintGuide_percent=" 0.0">
@@ -57,7 +57,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="59dp"
         android:layout_marginLeft="59dp"
-        android:layout_marginBottom="226dp"
+        android:layout_marginBottom="275dp"
         android:ems="10"
         android:inputType="textEmailAddress" />
 
