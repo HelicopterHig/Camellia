@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+
     /*final Animation Animalpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
     Button button = (Button)findViewById(R.id.alpha);
         button.setOnClickListener(new Button.OnClickListener(){

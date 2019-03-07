@@ -7,8 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:theme="@android:style/Theme.Holo.NoActionBar"
-    tools:context=".MainActivity"
-    >
+    tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/formBack"
@@ -32,11 +31,12 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:layout_weight="1"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintBottom_toTopOf="@+id/guideline16"
         app:layout_constraintEnd_toEndOf="@+id/barrier7"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.792"
+        app:layout_constraintVertical_bias="0.731"
         app:srcCompat="@drawable/logo" />
 
 
@@ -52,8 +52,10 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toStartOf="@+id/editText"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintVertical_bias="0.2"
         app:srcCompat="@drawable/pro" />
 
     <EditText
@@ -70,9 +72,10 @@
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/formBack"
-        app:layout_constraintHorizontal_bias="0.747"
+        app:layout_constraintHorizontal_bias="0.758"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.645" />
 
 
     <ImageView
@@ -84,11 +87,12 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toStartOf="@+id/editText2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/lock" />
 
     <EditText
@@ -105,16 +109,16 @@
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.747"
+        app:layout_constraintHorizontal_bias="0.739"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.597" />
+        app:layout_constraintVertical_bias="0.73" />
 
     <Button
         android:id="@+id/button"
 
         style="@style/button_style"
-        android:layout_width="322dp"
+        android:layout_width="335dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -127,15 +131,15 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/barrier7"
-        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline6"
-        app:layout_constraintVertical_bias="0.194" />
+        app:layout_constraintVertical_bias="0.12" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="21dp"
+        android:layout_width="225dp"
+        android:layout_height="23dp"
 
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -146,8 +150,7 @@
         android:text="Все ёще не зарегистрированы?"
         android:textColor="#ababab"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline19"
-        app:layout_constraintHorizontal_bias="0.388"
+        app:layout_constraintEnd_toStartOf="@+id/guideline13"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline9"
         app:layout_constraintVertical_bias="0.0" />
@@ -155,15 +158,15 @@
     <Button
         android:id="@+id/button1"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="149dp"
+        android:layout_width="146dp"
         android:layout_height="37dp"
         android:layout_marginEnd="12dp"
         android:layout_marginRight="12dp"
         android:clickable="true"
+
         android:text="Создать аккаунт"
         android:textColor="#ffffff"
-
-        android:textSize="10sp"
+        android:textSize="13sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
         app:layout_constraintEnd_toStartOf="@+id/guideline18" />
 
@@ -179,28 +182,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4610123" />
+        app:layout_constraintGuide_percent="0.58" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.55540353" />
+        app:layout_constraintGuide_percent="0.67" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.6429549" />
+        app:layout_constraintGuide_percent="0.77" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.66484267" />
+        app:layout_constraintGuide_percent="0.76" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline7"
@@ -226,9 +229,9 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
 
-        app:layout_constraintGuide_begin="635dp" />
+        app:layout_constraintGuide_percent="0.98" />
 
-        app:layout_constraintGuide_percent="0.875513" />
+    app:layout_constraintGuide_percent="0.875513" />
 
 
     <android.support.constraint.Guideline
@@ -237,9 +240,9 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
 
-        app:layout_constraintGuide_end="78dp" />
+        app:layout_constraintGuide_percent="0.9" />
 
-        app:layout_constraintGuide_percent="0.8248974" />
+    app:layout_constraintGuide_percent="0.8248974" />
 
 
     <android.support.constraint.Guideline
@@ -254,7 +257,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="429dp" />
+        app:layout_constraintGuide_percent="0.715" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline15"
@@ -268,7 +271,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.38987687" />
+        app:layout_constraintGuide_percent="0.5" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline17"
@@ -290,16 +293,34 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
 
-        app:layout_constraintGuide_begin="238dp" />
+        app:layout_constraintGuide_percent="0.39666668" />
 
-        app:layout_constraintGuide_percent="0.6374696" />
+    app:layout_constraintGuide_percent="0.6374696" />
 
 
     <android.support.constraint.Barrier
         android:id="@+id/barrier7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:barrierDirection="left" /><![CDATA[
+        app:barrierDirection="left" />
+
+    <android.support.constraint.Barrier
+        android:id="@+id/barrier2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="right"
+        tools:layout_editor_absoluteX="411dp"
+        tools:layout_editor_absoluteY="658dp" />
+
+    <android.support.constraint.Barrier
+        android:id="@+id/barrier3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="658dp"
+        app:barrierDirection="top"
+        app:layout_constraintTop_toTopOf="parent" /><![CDATA[
+
+
 
 
 
@@ -314,6 +335,7 @@
 
     "
     />
+
 
 
 
