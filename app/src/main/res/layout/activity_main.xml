@@ -52,15 +52,13 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toStartOf="@+id/editText"
-        app:layout_constraintHorizontal_bias="0.513"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/barrier2"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.2"
         app:srcCompat="@drawable/pro" />
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="304dp"
+        android:layout_width="328dp"
         android:layout_height="43dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -70,6 +68,10 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:inputType="textEmailAddress"
+        android:hint="Имя пользователя"
+        android:textSize="15sp"
+
+        android:textColorHint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/formBack"
         app:layout_constraintHorizontal_bias="0.758"
@@ -97,8 +99,8 @@
 
     <EditText
         android:id="@+id/editText2"
-        android:layout_width="303dp"
-        android:layout_height="38dp"
+        android:layout_width="326dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -107,6 +109,10 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:inputType="textPassword"
+        android:hint="Пароль"
+        android:textSize="15sp"
+
+        android:textColorHint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.739"
@@ -118,7 +124,7 @@
         android:id="@+id/button"
 
         style="@style/button_style"
-        android:layout_width="335dp"
+        android:layout_width="350dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -151,9 +157,10 @@
         android:textColor="#ababab"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline13"
+        app:layout_constraintHorizontal_bias="0.622"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline9"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.703" />
 
     <Button
         android:id="@+id/button1"
