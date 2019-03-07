@@ -11,14 +11,14 @@
 
     <ImageView
         android:id="@+id/formBack"
-        android:layout_width="413dp"
-        android:layout_height="667dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
 
         android:contentDescription="TODO"
         android:scaleType="centerCrop"
         android:src="@drawable/background"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="-8dp" />
+         />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline5"

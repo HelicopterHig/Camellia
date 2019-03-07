@@ -7,19 +7,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:theme="@android:style/Theme.Holo.NoActionBar"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    >
 
     <ImageView
         android:id="@+id/formBack"
         android:layout_width="match_parent"
-        android:layout_height="735dp"
+        android:layout_height="match_parent"
 
 
         android:contentDescription="TODO"
         android:scaleType="centerCrop"
         android:src="@drawable/background"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="-4dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -33,8 +33,7 @@
         android:layout_marginBottom="8dp"
         android:layout_weight="1"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline13"
-        app:layout_constraintHorizontal_bias="0.352"
+        app:layout_constraintEnd_toEndOf="@+id/barrier7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.792"
@@ -52,10 +51,9 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@+id/editText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.162"
         app:srcCompat="@drawable/pro" />
 
     <EditText
@@ -70,11 +68,11 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/formBack"
         app:layout_constraintHorizontal_bias="0.747"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageView
@@ -88,10 +86,9 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@+id/editText2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/lock" />
 
     <EditText
@@ -106,10 +103,12 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+        app:layout_constraintHorizontal_bias="0.747"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.597" />
 
     <Button
         android:id="@+id/button"
@@ -125,6 +124,7 @@
         android:layout_marginBottom="8dp"
         android:clickable="true"
         android:text="Войти"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/barrier7"
         app:layout_constraintHorizontal_bias="0.52"
@@ -147,24 +147,25 @@
         android:textColor="#ababab"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline19"
+        app:layout_constraintHorizontal_bias="0.388"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline9" />
+        app:layout_constraintTop_toTopOf="@+id/guideline9"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="19dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+    <Button
+        android:id="@+id/button1"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="149dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
         android:clickable="true"
         android:text="Создать аккаунт"
         android:textColor="#ffffff"
+
+        android:textSize="10sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline18"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline19" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline18" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -224,14 +225,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+
+        app:layout_constraintGuide_begin="635dp" />
+
         app:layout_constraintGuide_percent="0.875513" />
+
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+
+        app:layout_constraintGuide_end="78dp" />
+
         app:layout_constraintGuide_percent="0.8248974" />
+
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline10"
@@ -280,7 +289,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+
+        app:layout_constraintGuide_begin="238dp" />
+
         app:layout_constraintGuide_percent="0.6374696" />
+
 
     <android.support.constraint.Barrier
         android:id="@+id/barrier7"
