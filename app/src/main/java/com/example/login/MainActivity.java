@@ -1,22 +1,52 @@
 package com.example.login;
-
-
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Button;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+
 public class MainActivity extends AppCompatActivity {
-
-
+    private Button button1;
 
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-   protected void onCreate(Bundle savedInstanceState) {
+
+
+
+        final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
+        Button button = (Button)findViewById(R.id.button);
+        button.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                view.startAnimation(animAlpha);
+            }
+        });
+
+        button1 = (Button) findViewById(R.id.button1);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivity2();
+
+
+            }
+
+        });
+
+    }
+    public void openActivity2(){
+       Intent intent  = new Intent(this , Activity2.class);
+       startActivity(intent);
+    }
+}
+  /* protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -30,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
        // int i=0;
-       Button create_accaunt = (Button)findViewById(R.id.button1);
+       Button create_account = (Button)findViewById(R.id.button1);
       //  int i = 1;
       // while ( i == 1 ){
-         create_accaunt.setOnClickListener(new View.OnClickListener()
+         create_account.setOnClickListener(new View.OnClickListener()
         {
 
             public void onClick(View v) {
@@ -50,9 +80,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
        //}
-    }
+    }*/
 
-}
+//}
 
     /*final Animation Animalpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
     Button button = (Button)findViewById(R.id.alpha);

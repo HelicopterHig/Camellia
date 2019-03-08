@@ -19,31 +19,21 @@
         android:src="@drawable/back"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2336874" />
-
     <Button
         android:id="@+id/back_icon"
         android:layout_width="31dp"
         android:layout_height="27dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         android:layout_weight="1"
         android:background="@drawable/back_icon"
-        app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintHorizontal_bias="0.956"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.146" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/imageView"
@@ -77,10 +67,10 @@
         android:text="Создать аккаунт"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintBottom_toTopOf="@+id/guideline11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/barrier5"
-        app:layout_constraintTop_toTopOf="@+id/guideline15" />
+        app:layout_constraintTop_toTopOf="@+id/guideline5" />
 
 
     <ImageView
@@ -129,9 +119,9 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="Имя"
-        android:textSize="15sp"
         android:inputType="textEmailAddress"
         android:textColorHint="#FFFFFF"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -150,9 +140,9 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="Фамилия"
-        android:textSize="15sp"
         android:inputType="text"
         android:textColorHint="#FFFFFF"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -172,9 +162,9 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="Email"
-        android:textSize="15sp"
         android:inputType="textEmailAddress"
         android:textColorHint="#FFFFFF"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/barrier4"
         app:layout_constraintStart_toStartOf="parent"
@@ -228,9 +218,9 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="Пароль"
-        android:textSize="15sp"
         android:inputType="textPassword"
         android:textColorHint="#FFFFFF"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/barrier4"
         app:layout_constraintStart_toStartOf="parent"
@@ -319,13 +309,6 @@
         app:layout_constraintGuide_percent="0.715" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.09559939" />
-
-    <android.support.constraint.Guideline
         android:id="@+id/guideline16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -379,22 +362,19 @@
         android:layout_height="wrap_content"
         app:barrierDirection="left" />
 
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.18512899" />
 
 
 </android.support.constraint.ConstraintLayout>
