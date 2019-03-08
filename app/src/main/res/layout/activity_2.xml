@@ -85,9 +85,10 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toStartOf="@+id/editText1"
+        app:layout_constraintHorizontal_bias="0.842"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.746"
+        app:layout_constraintVertical_bias="0.768"
         app:srcCompat="@drawable/pro" />
 
     <ImageView
@@ -102,9 +103,10 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toStartOf="@+id/editText"
+        app:layout_constraintHorizontal_bias="0.842"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.08"
         app:srcCompat="@drawable/pro" />
 
     <EditText
@@ -184,9 +186,10 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline16"
         app:layout_constraintEnd_toStartOf="@+id/editText3"
+        app:layout_constraintHorizontal_bias="0.84"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintVertical_bias="0.476"
+        app:layout_constraintVertical_bias="0.357"
         app:srcCompat="@drawable/icon_mail" />
 
     <ImageView
@@ -201,9 +204,10 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintEnd_toStartOf="@+id/editText2"
+        app:layout_constraintHorizontal_bias="0.834"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline16"
-        app:layout_constraintVertical_bias="0.473"
+        app:layout_constraintVertical_bias="0.425"
         app:srcCompat="@drawable/lock" />
 
     <EditText

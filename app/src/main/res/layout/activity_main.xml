@@ -67,11 +67,11 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
-        android:inputType="textEmailAddress"
         android:hint="Имя пользователя"
-        android:textSize="15sp"
-
+        android:inputType="textEmailAddress"
         android:textColorHint="#FFFFFF"
+
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/formBack"
         app:layout_constraintHorizontal_bias="0.758"
@@ -108,11 +108,11 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
-        android:inputType="textPassword"
         android:hint="Пароль"
-        android:textSize="15sp"
-
+        android:inputType="textPassword"
         android:textColorHint="#FFFFFF"
+
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.739"
@@ -144,38 +144,42 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="225dp"
-        android:layout_height="23dp"
+        android:layout_width="215dp"
+        android:layout_height="20dp"
 
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
         android:text="Все ёще не зарегистрированы?"
         android:textColor="#ababab"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline13"
-        app:layout_constraintHorizontal_bias="0.622"
+        app:layout_constraintEnd_toStartOf="@+id/button1"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline9"
-        app:layout_constraintVertical_bias="0.703" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/button1"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="146dp"
         android:layout_height="37dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
-        android:clickable="true"
+        android:layout_marginStart="8dp"
 
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:clickable="true"
         android:text="Создать аккаунт"
         android:textColor="#ffffff"
         android:textSize="13sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline18" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.91"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
