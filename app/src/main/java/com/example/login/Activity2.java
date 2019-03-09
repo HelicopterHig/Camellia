@@ -16,23 +16,20 @@ public class Activity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 
         final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
-        Button button = (Button)findViewById(R.id.button);
-        button.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                view.startAnimation(animAlpha);
-            }
-        });
+
+
 
 
         button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+                view.startAnimation(animAlpha);
                 openLeft();
 
 
@@ -50,4 +47,5 @@ public class Activity2 extends AppCompatActivity {
         Intent intent  = new Intent(this , Left.class);
         startActivity(intent);
     }
+
 }
