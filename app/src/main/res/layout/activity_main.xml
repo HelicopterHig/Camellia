@@ -5,6 +5,7 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:screenOrientation="locked"
     android:orientation="vertical"
     android:theme="@android:style/Theme.Holo.NoActionBar"
     tools:context=".MainActivity">
@@ -13,8 +14,6 @@
         android:id="@+id/formBack"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-
 
 
         android:contentDescription="TODO"
@@ -153,37 +152,32 @@
 
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="Все ёще не зарегистрированы?"
         android:textColor="#ababab"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button1"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline9"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
     <Button
         android:id="@+id/button1"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="146dp"
+        android:layout_width="163dp"
         android:layout_height="37dp"
-        android:layout_marginStart="8dp"
 
-        android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:clickable="true"
-        android:text="Создать аккаунт"
+        android:text=" Создать аккаунт"
+
         android:textColor="#ffffff"
         android:textSize="13sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.91"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -255,7 +249,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
 
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_percent="0.87" />
 
     app:layout_constraintGuide_percent="0.8248974" />
 
