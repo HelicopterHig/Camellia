@@ -70,7 +70,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
-        android:hint="Имя пользователя"
+        android:hint="Логин"
         android:inputType="textEmailAddress"
         android:textColorHint="#FFFFFF"
 
@@ -294,7 +294,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.96107054" />
+        app:layout_constraintGuide_percent="1.0" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline19"
