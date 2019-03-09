@@ -86,10 +86,10 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toStartOf="@+id/editText1"
-        app:layout_constraintHorizontal_bias="0.842"
+        app:layout_constraintHorizontal_bias="0.785"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.768"
+        app:layout_constraintVertical_bias="0.831"
         app:srcCompat="@drawable/pro" />
 
     <ImageView
@@ -104,10 +104,10 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toStartOf="@+id/editText"
-        app:layout_constraintHorizontal_bias="0.842"
+        app:layout_constraintHorizontal_bias="0.785"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.08"
+        app:layout_constraintVertical_bias="0.12"
         app:srcCompat="@drawable/pro" />
 
     <EditText
