@@ -119,7 +119,7 @@
         android:id="@+id/button"
 
         style="@style/button_style"
-        android:layout_width="0dp"
+        android:layout_width="354dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -131,68 +131,47 @@
         android:clickable="true"
         android:text="Войти"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline13"
+        app:layout_constraintEnd_toEndOf="@+id/barrier7"
         app:layout_constraintStart_toStartOf="@+id/guideline17"
         app:layout_constraintTop_toTopOf="@+id/guideline6"
         app:layout_constraintVertical_bias="0.12" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="0dp"
+        android:layout_width="253dp"
+        android:layout_height="30dp"
 
-        android:layout_height="62dp"
         android:layout_marginStart="8dp"
-
         android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="Все ёще не зарегистрированы?"
         android:textColor="#ababab"
-        app:layout_constraintBottom_toTopOf="@+id/guideline8"
-        app:layout_constraintEnd_toStartOf="@+id/guideline19"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/guideline9"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.6" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline17"
+        app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
     <Button
         android:id="@+id/button1"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="39dp"
+        android:layout_width="163dp"
+        android:layout_height="37dp"
 
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:clickable="true"
         android:text=" Создать аккаунт"
+
         android:textColor="#ffffff"
         android:textSize="13sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
-        app:layout_constraintBottom_toTopOf="@+id/guideline15"
-        app:layout_constraintEnd_toStartOf="@+id/guideline13"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline12"
-        app:layout_constraintTop_toTopOf="@+id/guideline9"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.07" />
+        app:layout_constraintGuide_percent="0.16788322" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline2"
@@ -281,7 +260,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.93" />
+        app:layout_constraintGuide_percent="0.047879618" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline16"
@@ -310,7 +289,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
 
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_percent="0.39666668" />
 
     app:layout_constraintGuide_percent="0.6374696" />
 
