@@ -131,7 +131,7 @@
         android:clickable="true"
         android:text="Войти"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/barrier7"
+        app:layout_constraintEnd_toStartOf="@+id/guideline13"
         app:layout_constraintStart_toStartOf="@+id/guideline17"
         app:layout_constraintTop_toTopOf="@+id/guideline6"
         app:layout_constraintVertical_bias="0.12" />
@@ -253,7 +253,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.98" />
+        app:layout_constraintGuide_percent="0.93" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline15"
@@ -274,7 +274,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.04" />
+        app:layout_constraintGuide_percent="0.07" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline18"
