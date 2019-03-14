@@ -16,8 +16,12 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".MainActivity"></activity>
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/message" />
 
+        <activity android:name=".activity_chat" />
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".Left"
             android:label="@string/title_activity_left"
