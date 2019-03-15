@@ -1,3 +1,2 @@
 # 1Project
-New!
-This project is protected by License
+This project is protecting by License
