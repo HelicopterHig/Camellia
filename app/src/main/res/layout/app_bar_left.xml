@@ -33,5 +33,5 @@
 
         app:backgroundTint="#ff3366"
         app:srcCompat="@drawable/add1" />
-   
+
 </android.support.design.widget.CoordinatorLayout>

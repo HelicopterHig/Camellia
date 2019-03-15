@@ -16,6 +16,8 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".Maintab"></activity>
+
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/message" />
