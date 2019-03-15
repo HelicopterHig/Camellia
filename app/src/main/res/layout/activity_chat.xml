@@ -5,17 +5,20 @@
     android:id="@+id/activity_chat"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".activity_chat"
     android:theme="@android:style/Theme.Holo.NoActionBar"
-    android:background="@drawable/background">
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="16dp" />
 
     <EditText
         android:id="@+id/input"
-        android:layout_width="313dp"
+        android:layout_width="345dp"
         android:layout_height="59dp"
         android:layout_marginTop="8dp"
         android:hint="Input"
@@ -26,8 +29,8 @@
 
     <ListView
         android:id="@+id/list_of_messages"
-        android:layout_width="333dp"
-        android:layout_height="467dp"
+        android:layout_width="413dp"
+        android:layout_height="546dp"
         android:layout_above="@id/fab"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
@@ -47,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.84" />
+        app:layout_constraintGuide_percent="0.86" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline20"
@@ -68,6 +71,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1047041" />
+        app:layout_constraintGuide_percent="0.06" />
 
 </android.support.constraint.ConstraintLayout>

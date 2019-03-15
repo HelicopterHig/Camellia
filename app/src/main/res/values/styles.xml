@@ -26,4 +26,7 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
+    <style name="colorToolBar">
+        <item name="color">#FFFFFF</item>
+    </style>
 </resources>
