@@ -86,7 +86,7 @@ public class Activity2 extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
             try{
-                String myURL = "http://"+server_name+"/chat31.php?action=insert&id=2&name="+name+"&second_name="+second_name+"&password="+password+"&email="+email+"&user_note_id="+user_note_id+"&icon_id="+icon_id;
+                String myURL = "http://"+server_name+"/chat31.php?action=insert&id=null&name="+name+"&second_name="+second_name+"&password="+password+"&email="+email+"&user_note_id="+user_note_id+"&icon_id="+icon_id;
                 String parammetrs = "?action=insert&id=4&name="+name+"&second_name="+second_name+"&password="+password+"&email="+email+"&user_note_id="+user_note_id+"&icon_id="+icon_id;
                 byte[] data = null;
                 InputStream is = null;
