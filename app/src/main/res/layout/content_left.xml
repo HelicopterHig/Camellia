@@ -9,18 +9,26 @@
     tools:showIn="@layout/app_bar_left">
 
 
-    <ImageView
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+        <ImageView
         android:id="@+id/formBack"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-
-
-
-        android:contentDescription="TODO"
+        android:contentDescription="@string/todo"
         android:scaleType="centerCrop"
         android:src="@drawable/menu_back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
+
+</android.support.v4.widget.SwipeRefreshLayout>
+
+
+
 </android.support.constraint.ConstraintLayout>

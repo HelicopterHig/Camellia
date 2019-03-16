@@ -16,7 +16,11 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Maintab"></activity>
+        <activity
+            android:name=".Tabbed"
+            android:label="@string/title_activity_tabbed"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar"></activity>
+        <activity android:name=".Maintab" />
 
         <meta-data
             android:name="com.google.android.actions"
