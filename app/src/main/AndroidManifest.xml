@@ -29,6 +29,8 @@
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/message" />
+        
+        
 
         <activity android:name=".activity_chat" />
         <activity android:name=".MainActivity" />
