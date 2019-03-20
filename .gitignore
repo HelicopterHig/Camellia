@@ -11,3 +11,13 @@
 /build
 /captures
 .externalNativeBuild
+vcs.xml
+path.macros.xml
+laf.xml
+git.xml
+/codestyles
+/_windows
+androidStudioFirstRun.xml
+colors.scheme.xml
+debugger.xml
+github_settings.xml
