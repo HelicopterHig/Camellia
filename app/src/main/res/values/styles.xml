@@ -38,4 +38,25 @@
     <style name="AppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+
+        <style name="FoTool" parent="Theme.AppCompat.Light.NoActionBar">
+
+            <item name="searchViewStyle">@style/AppSearchViewStyle</item>
+        </style>
+
+        <style name="AppSearchViewStyle">
+
+            <item name="closeIcon">@drawable/baseline_developer_board_24</item>
+
+            <item name="android:imeActionId">1</item>
+        </style>
+
+    <style name="AppTheme.SlidrActivityTheme">
+        <item name="android:windowIsTranslucent">false</item>
+
+    </style>
+
+
 </resources>

@@ -135,6 +135,10 @@ public class MainActivity extends AppCompatActivity {
         return s.hasNext() ? s.next() : "";
     }
 
+
+
+
+
     public void openLeft(){
         Intent intent  = new Intent(this , Left.class);
         startActivity(intent);

@@ -23,9 +23,10 @@
         <activity
             android:name=".Tabbed"
             android:label="@string/title_activity_tabbed"
-            android:theme="@style/AppTheme.NoActionBar.NoActionBar"></activity>
-        <activity android:name=".Maintab" />
 
+            android:theme="@style/AppTheme.SlidrActivityTheme"></activity>
+        <activity android:name=".Maintab" />
+    <!--android:theme="@style/AppTheme.NoActionBar.NoActionBar"-->
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/message" />

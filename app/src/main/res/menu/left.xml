@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+
+
+
     <gradient
         android:angle="135"
         android:centerColor="#FFFFFF"
         android:endColor="#FFFFFF"
         android:startColor="#FFFFFF"
         android:type="linear" />
+    <item
+        android:title=""
+        android:id="@+id/next"
+        android:icon="@drawable/baseline_developer_board_white_48"
+        app:showAsAction="always"/>
+
 </menu>

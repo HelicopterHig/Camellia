@@ -5,6 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".Tab1">
 
+    <ImageView
+        android:id="@+id/foBack"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:contentDescription="TODO"
+        android:scaleType="centerCrop"
+        android:src="@drawable/back_two"/>
+
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="wrap_content"
