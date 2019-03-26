@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity_chat_2"></activity>
+
 
         <activity android:name=".activity_chat" />
         <activity android:name=".MainActivity" />
