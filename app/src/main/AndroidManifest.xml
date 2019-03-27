@@ -30,6 +30,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SettingsActivity" />
+        <activity android:name=".CalendarActivity" />
         <activity
             android:name=".Activity2"
             android:theme="@style/AppTheme.NoActionBar" />

@@ -136,6 +136,9 @@ public class Left extends AppCompatActivity
         } else if (id == R.id.pro) {
 
         } else if (id == R.id.cal) {
+            Intent intent = new Intent(this, CalendarActivity.class);
+            startActivity(intent);
+            return false;
 
         } else if (id == R.id.them) {
 
