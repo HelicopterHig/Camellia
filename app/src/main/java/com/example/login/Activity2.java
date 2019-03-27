@@ -46,7 +46,7 @@ public class Activity2 extends AppCompatActivity {
                 view.startAnimation(animAlpha);
                 //openLeft();
 
-                EditText editText = (EditText)findViewById(R.id.editText);
+              EditText editText = (EditText)findViewById(R.id.editText);
                 name = String.valueOf(editText.getText().toString());
 
                 EditText editText1 = (EditText)findViewById(R.id.editText1);

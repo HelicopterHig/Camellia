@@ -23,7 +23,9 @@ public class Splash extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_splash);
+
         progressBar=(ProgressBar)findViewById(R.id.progressBar);
         progressBar.setProgress(0);
         textView=(TextView)findViewById(R.id.textView);
