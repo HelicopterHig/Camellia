@@ -22,6 +22,7 @@
         app:srcCompat="@mipmap/ic_launcher_round" />
 
     <TextView
+        android:id="@+id/textView_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
@@ -30,7 +31,7 @@
         android:textColor="#1d1d26" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView_email"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
