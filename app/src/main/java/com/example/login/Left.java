@@ -34,6 +34,11 @@ public class Left extends AppCompatActivity
 
     int number = 0;
 
+    protected String name, second_name, email, password;
+
+    TextView textView_name;
+    TextView textView_email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +88,18 @@ public class Left extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headerView = navigationView.getHeaderView(0);
+
+        name = getIntent().getStringExtra("name");
+        second_name = getIntent().getStringExtra("second_name");
+        email = getIntent().getStringExtra("email");
+
+        textView_name = (TextView) headerView.findViewById(R.id.textView_name);
+        textView_email = (TextView) headerView.findViewById(R.id.textView_email);
+
+        textView_name.setText(name+" "+second_name);
+        textView_email.setText(email);
     }
 
 

@@ -58,11 +58,13 @@ public class Activity2 extends AppCompatActivity {
                 EditText editText3 = (EditText)findViewById(R.id.editText3);
                 email = String.valueOf(editText3.getText().toString());
 
+
                 try {
                     new SendData().execute();
                 }catch (Exception e){
                     e.printStackTrace();
                 }
+
             }
 
         });
@@ -73,20 +75,19 @@ public class Activity2 extends AppCompatActivity {
 
 
     }
-    public void openLeft(){
-        Intent intent  = new Intent(this , Left.class);
+
+    public void openLogin(){
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
     class SendData extends AsyncTask<Void, Void, Void>{
         String resultString = null;
 
-
-
         @Override
         protected Void doInBackground(Void... params) {
             try{
-                String myURL = "http://"+server_name+"/chat31.php?action=insert&id=null&name="+name+"&second_name="+second_name+"&password="+password+"&email="+email+"&user_note_id="+user_note_id+"&icon_id="+icon_id;
+                String myURL = "http://"+server_name+"/chat31.php?action=insert&id=null&name="+name+"&second_name="+second_name+"&password="+password+"&email="+email+"&user_note_id="+user_note_id+"&icon_id="+icon_id+"&birthday_date=11.11.11";
                 String parammetrs = "?action=insert&id=4&name="+name+"&second_name="+second_name+"&password="+password+"&email="+email+"&user_note_id="+user_note_id+"&icon_id="+icon_id;
                 byte[] data = null;
                 InputStream is = null;
@@ -134,6 +135,8 @@ public class Activity2 extends AppCompatActivity {
                     }else{
                         conn.disconnect();
                     }
+
+                    openLogin();
 
                 } catch (MalformedURLException e) {
                     e.printStackTrace();

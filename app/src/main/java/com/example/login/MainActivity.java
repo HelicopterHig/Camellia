@@ -25,11 +25,17 @@ public class MainActivity extends AppCompatActivity {
     private Button button1;
 
     public static String server_name = "message.dlinkddns.com:8008";
-    protected String email, password;
+
+    protected String name, second_name, email, password;
 
     private static String TAG_USER = "user";
+    private static String TAG_NAME = "name";
+    private static String TAG_SECOND_NAME = "second_name";
     private static String TAG_EMAIL = "email";
     private static String TAG_PASSWORD = "password";
+
+    EditText editText;
+    EditText editText2;
 
 
     @Override
@@ -50,10 +56,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view){
                 view.startAnimation(animAlpha);
 
-                EditText editText = (EditText) findViewById(R.id.editText);
+                editText = (EditText) findViewById(R.id.editText);
                 email = String.valueOf(editText.getText().toString());
 
-                EditText editText2 = (EditText) findViewById(R.id.editText2);
+                editText2 = (EditText) findViewById(R.id.editText2);
                 password = String.valueOf(editText2.getText().toString());
 
                 try{
@@ -61,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
                 }catch (Exception e){
                     e.printStackTrace();
                 }
-                //openActivity2();
 
             }
         });
@@ -112,8 +117,10 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 0; i < 1; i++){
                         JSONObject schedule = user.getJSONObject(i);
 
-                        String password = schedule.getString(TAG_PASSWORD);
-                        String email = schedule.getString(TAG_EMAIL);
+                        name = schedule.getString(TAG_NAME);
+                        second_name = schedule.getString(TAG_SECOND_NAME);
+                        password = schedule.getString(TAG_PASSWORD);
+                        email = schedule.getString(TAG_EMAIL);
 
                     }
 
@@ -141,6 +148,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openLeft(){
         Intent intent  = new Intent(this , Left.class);
+
+        intent.putExtra("name", name);
+        intent.putExtra("second_name", second_name);
+        intent.putExtra("email", email);
+
         startActivity(intent);
     }
 }
