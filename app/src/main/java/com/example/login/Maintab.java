@@ -1,4 +1,4 @@
-package com.example.login;
+/*package com.example.login;
 
 import android.net.Uri;
 import android.support.design.widget.TabLayout;
@@ -51,4 +51,4 @@ public class Maintab extends AppCompatActivity  implements  Tab1.OnFragmentInter
     public void onFragmentInteraction(Uri uri) {
 
     }
-}
+}*/

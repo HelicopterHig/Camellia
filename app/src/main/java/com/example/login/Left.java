@@ -132,11 +132,12 @@ public class Left extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-       // if (id == R.id.action_settings) {
-         //   return true;
-        //}
+       if (id == R.id.action_settings) {
+            return true;
+        }
+        // переход по кнопке (в правом углу ) на  замекти
         if (id == R.id.next){
-            Intent intent = new Intent(this, Tabbed.class);
+            Intent intent = new Intent(this, TskActivity.class);
             startActivity(intent);
         }
 

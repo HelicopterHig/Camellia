@@ -30,14 +30,11 @@ public class Activity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
-
+        // блокируем ориентацию на вертикальную
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-
+        // инициализируем анимацию
         final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
-
-
-
 
         button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +43,7 @@ public class Activity2 extends AppCompatActivity {
                 view.startAnimation(animAlpha);
                 //openLeft();
 
-              EditText editText = (EditText)findViewById(R.id.editText);
+                EditText editText = (EditText)findViewById(R.id.editText);
                 name = String.valueOf(editText.getText().toString());
 
                 EditText editText1 = (EditText)findViewById(R.id.editText1);
@@ -64,25 +61,25 @@ public class Activity2 extends AppCompatActivity {
                 }catch (Exception e){
                     e.printStackTrace();
                 }
-
             }
-
         });
-
-
-
-
-
-
     }
 
     public void openLogin(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+   /* public void openLeft() {
+        Intent intent = new Intent(this, Left.class);
+        startActivity(intent);
+    }*/
 
     class SendData extends AsyncTask<Void, Void, Void>{
         String resultString = null;
+
+
+
+
 
         @Override
         protected Void doInBackground(Void... params) {
