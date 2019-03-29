@@ -13,7 +13,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import java.util.Timer;
 import java.util.TimerTask;
-
+/*
+здесь экаран загрузки
+ */
 public class Splash extends AppCompatActivity{
     private Timer timer;
     private ProgressBar progressBar;

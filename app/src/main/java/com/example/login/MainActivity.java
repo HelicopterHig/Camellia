@@ -42,13 +42,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        // блокируем ориантацию на вертикальную
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 
 
 
-
+        //инициалицируем анимацию
         final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
         button = (Button)findViewById(R.id.button);
         button.setOnClickListener(new Button.OnClickListener(){
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
+        // переход по кнопке на активити регистрации
         button1 = (Button) findViewById(R.id.button1);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+    // метод перехода на меню
     public void openLeft(){
         Intent intent  = new Intent(this , Left.class);
 

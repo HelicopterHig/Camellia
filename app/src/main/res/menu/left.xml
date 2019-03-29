@@ -4,12 +4,12 @@
 
 
 
-    <gradient
+    <!--gradient
         android:angle="135"
         android:centerColor="#FFFFFF"
         android:endColor="#FFFFFF"
         android:startColor="#FFFFFF"
-        android:type="linear" />
+        android:type="linear" /-->
     <item
         android:title=""
         android:id="@+id/next"
