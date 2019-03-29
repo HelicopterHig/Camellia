@@ -11,6 +11,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.r0adkll.slidr.Slidr;
+import com.r0adkll.slidr.model.SlidrInterface;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,6 +26,7 @@ import java.net.URL;
 public class SettingsActivity extends AppCompatActivity {
     private Button button;
 
+    private SlidrInterface slidr;
     public static String server_name = "message.dlinkddns.com:8008";
 
     protected String name, second_name, password, email;
@@ -39,6 +43,8 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        slidr = Slidr.attach(this);
 
         final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
 
