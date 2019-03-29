@@ -3,19 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background= "@color/background_material_light">
 
 
     <ImageView
         android:id="@+id/seBack"
         android:layout_width="match_parent"
-        android:layout_height="270dp"
+        android:layout_height="0dp"
 
         android:layout_marginBottom="8dp"
         android:contentDescription="TODO"
         android:scaleType="centerCrop"
         android:src="@drawable/sebak"
         app:layout_constraintBottom_toTopOf="@+id/guideline36"
+        app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
 
     <ImageView
