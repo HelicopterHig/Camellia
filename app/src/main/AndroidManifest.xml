@@ -20,20 +20,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-
-
-        <activity android:name=".activity_chat" />
-        <activity android:name=".MainActivity" />
         <activity
-            android:name=".Left"
-            android:label="@string/title_activity_left"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".CalendarActivity" />
-        <activity
-            android:name=".Activity2"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".TskActivity"
+            android:label="@string/title_activity_tsk"
+            android:theme="@style/AppTheme.SlidrActivityTheme"></activity>
+
         <activity
             android:name=".Splash"
             android:theme="@style/AppTheme.NoActionBar">
@@ -43,6 +34,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".Activity2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Left"
+            android:label="@string/title_activity_left"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SettingsActivity"
+            android:theme="@style/AppTheme.SlidrActivityTheme" />
+        <activity
+            android:name=".CalendarActivity"
+            android:theme="@style/AppTheme.SlidrActivityTheme" />
+        <activity android:name=".activity_chat" />
+
+
     </application>
 
 </manifest>
