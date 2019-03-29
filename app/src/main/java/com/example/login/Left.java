@@ -94,6 +94,7 @@ public class Left extends AppCompatActivity
         name = getIntent().getStringExtra("name");
         second_name = getIntent().getStringExtra("second_name");
         email = getIntent().getStringExtra("email");
+        password = getIntent().getStringExtra("password");
 
         textView_name = (TextView) headerView.findViewById(R.id.textView_name);
         textView_email = (TextView) headerView.findViewById(R.id.textView_email);
@@ -163,6 +164,12 @@ public class Left extends AppCompatActivity
         } else if (id == R.id.sett) {
 
                 Intent intent = new Intent(this, SettingsActivity.class);
+
+                intent.putExtra("name", name);
+                intent.putExtra("second_name", second_name);
+                intent.putExtra("email", email);
+                intent.putExtra("password", password);
+
                 startActivity(intent);
                 return false;
 

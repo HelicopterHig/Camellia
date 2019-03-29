@@ -152,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("name", name);
         intent.putExtra("second_name", second_name);
         intent.putExtra("email", email);
+        intent.putExtra("password", password);
 
         startActivity(intent);
     }
