@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Camellia</string>
+    <string name="title_activity_menu">menu</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_left">Мои проекты</string>
+    <string name="title_tsk">Доски</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="todo">TODO</string>
+    <string name="title_activity_tabbed">Tabbed</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_tsk">TskActivity</string>
+    <string name="tab_text_1">Заметки</string>
+    <string name="tab_text_2">Пользователи</string>
+    <string name="tab_text_3">Выполнение</string>
 </resources>
