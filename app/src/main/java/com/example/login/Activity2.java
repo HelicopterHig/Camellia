@@ -24,7 +24,7 @@ public class Activity2 extends AppCompatActivity {
 
     public  static String server_name = "message.dlinkddns.com:8008";
     protected String name, second_name, password, email, bithday_date;
-    protected int user_note_id = 2, icon_id = 2;
+    protected int icon_id = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +55,8 @@ public class Activity2 extends AppCompatActivity {
                 EditText editText3 = (EditText)findViewById(R.id.editText3);
                 email = String.valueOf(editText3.getText().toString());
 
+                EditText editText4 = (EditText)findViewById(R.id.editText4);
+                bithday_date = String.valueOf(editText4.getText().toString());
 
                 try {
                     new SendData().execute();
@@ -84,8 +86,8 @@ public class Activity2 extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
             try{
-                String myURL = "http://"+server_name+"/chat31.php?action=insert&id=null&name="+name+"&second_name="+second_name+"&password="+password+"&email="+email+"&user_note_id="+user_note_id+"&icon_id="+icon_id+"&birthday_date=11.11.11";
-                String parammetrs = "?action=insert&id=4&name="+name+"&second_name="+second_name+"&password="+password+"&email="+email+"&user_note_id="+user_note_id+"&icon_id="+icon_id;
+                String myURL = "http://"+server_name+"/chat31.php?action=insert&id=null&name="+name+"&second_name="+second_name+"&password="+password+"&email="+email+"&icon_id="+icon_id+"&birthday_date="+bithday_date;
+                String parammetrs = "?action=insert&id=4&name="+name+"&second_name="+second_name+"&password="+password+"&email="+email+"&icon_id="+icon_id;
                 byte[] data = null;
                 InputStream is = null;
 

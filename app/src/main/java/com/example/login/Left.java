@@ -34,7 +34,7 @@ public class Left extends AppCompatActivity
 
     int number = 0;
 
-    protected String name, second_name, email, password;
+    protected String name, second_name, email, password, birthday_date;
 
     TextView textView_name;
     TextView textView_email;
@@ -95,6 +95,7 @@ public class Left extends AppCompatActivity
         second_name = getIntent().getStringExtra("second_name");
         email = getIntent().getStringExtra("email");
         password = getIntent().getStringExtra("password");
+        birthday_date = getIntent().getStringExtra("birthday_date");
 
         textView_name = (TextView) headerView.findViewById(R.id.textView_name);
         textView_email = (TextView) headerView.findViewById(R.id.textView_email);
@@ -169,6 +170,7 @@ public class Left extends AppCompatActivity
                 intent.putExtra("second_name", second_name);
                 intent.putExtra("email", email);
                 intent.putExtra("password", password);
+                intent.putExtra("birthday_date", birthday_date);
 
                 startActivity(intent);
                 return false;

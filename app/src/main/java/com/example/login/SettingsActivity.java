@@ -29,7 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
     private SlidrInterface slidr;
     public static String server_name = "message.dlinkddns.com:8008";
 
-    protected String name, second_name, password, email;
+    protected String name, second_name, password, email, birthday_date;
     protected int user_note_id = 0, icon_id = 0;
 
     EditText editText_name;
@@ -51,17 +51,21 @@ public class SettingsActivity extends AppCompatActivity {
         name = getIntent().getStringExtra("name");
         second_name = getIntent().getStringExtra("second_name");
         email = getIntent().getStringExtra("email");
+        birthday_date = getIntent().getStringExtra("birthday_date");
         password = getIntent().getStringExtra("password");
+
 
         editText_name = (EditText)findViewById(R.id.editText9);
         editText_second_name = (EditText)findViewById(R.id.editText4);
         editText_email = (EditText)findViewById(R.id.editText5);
         editText_password = (EditText)findViewById(R.id.editText6);
+        editText_date = (EditText)findViewById(R.id.editText7);
 
         editText_name.setText(name);
         editText_second_name.setText(second_name);
         editText_email.setText(email);
         editText_password.setText(password);
+        editText_date.setText(birthday_date);
 
         button = (Button)findViewById(R.id.button2);
         button.setOnClickListener(new View.OnClickListener() {
@@ -71,12 +75,18 @@ public class SettingsActivity extends AppCompatActivity {
 
                 editText_name = (EditText)findViewById(R.id.editText9);
                 name = String.valueOf(editText_name.getText().toString());
+
                 editText_second_name = (EditText)findViewById(R.id.editText4);
                 second_name = String.valueOf(editText_second_name.getText().toString());
+
                 editText_email = (EditText)findViewById(R.id.editText5);
                 email = String.valueOf(editText_email.getText().toString());
+
                 editText_password = (EditText)findViewById(R.id.editText6);
                 password = String.valueOf(editText_password.getText().toString());
+
+                editText_date = (EditText)findViewById(R.id.editText7);
+                birthday_date = String.valueOf(editText_date.getText().toString());
 
                 try {
                     new ChangeData().execute();
@@ -99,7 +109,7 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             try{
-                String myURL = "http://"+server_name+"/update.php?id=1&name="+name+"&second_name="+second_name+"&password="+password+"&email="+email+"&user_note_id="+user_note_id+"&icon_id="+icon_id;
+                String myURL = "http://"+server_name+"/update.php?id=1&name="+name+"&second_name="+second_name+"&password="+password+"&email="+email+"&icon_id="+icon_id+"&birthday_date="+birthday_date;
                 String parammetrs = "?id=1&name="+name+"&second_name="+second_name+"&password="+password+"&email="+email+"&user_note_id="+user_note_id+"&icon_id="+icon_id;
                 byte[] data = null;
                 InputStream is = null;

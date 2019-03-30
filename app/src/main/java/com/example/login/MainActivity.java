@@ -17,6 +17,7 @@ import org.json.JSONObject;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Date;
 import java.util.HashMap;
 
 
@@ -26,13 +27,15 @@ public class MainActivity extends AppCompatActivity {
 
     public static String server_name = "message.dlinkddns.com:8008";
 
-    protected String name, second_name, email, password;
+    protected String name, second_name, email, password, birthday_date;
+    Date date;
 
     private static String TAG_USER = "user";
     private static String TAG_NAME = "name";
     private static String TAG_SECOND_NAME = "second_name";
     private static String TAG_EMAIL = "email";
     private static String TAG_PASSWORD = "password";
+    private static String TAG_BIRTHDAY_DATE = "birthday_date";
 
     EditText editText;
     EditText editText2;
@@ -120,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
                         name = schedule.getString(TAG_NAME);
                         second_name = schedule.getString(TAG_SECOND_NAME);
                         password = schedule.getString(TAG_PASSWORD);
+                        birthday_date = schedule.getString(TAG_BIRTHDAY_DATE);
                         email = schedule.getString(TAG_EMAIL);
 
                     }
@@ -152,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("name", name);
         intent.putExtra("second_name", second_name);
         intent.putExtra("email", email);
+        intent.putExtra("birthday_date", birthday_date);
         intent.putExtra("password", password);
 
         startActivity(intent);
