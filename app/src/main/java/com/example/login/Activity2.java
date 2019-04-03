@@ -10,7 +10,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -19,16 +18,6 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-
-
-
-/*
-#
-#
-# Version 0.3.3
-#
-#
-*/
 
 public class Activity2 extends AppCompatActivity {
     private Button button;
@@ -52,8 +41,7 @@ public class Activity2 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 view.startAnimation(animAlpha);
-
-               // openLeft();
+                //openLeft();
 
                 EditText editText = (EditText)findViewById(R.id.editText);
                 name = String.valueOf(editText.getText().toString());
@@ -70,28 +58,11 @@ public class Activity2 extends AppCompatActivity {
                 EditText editText4 = (EditText)findViewById(R.id.editText4);
                 bithday_date = String.valueOf(editText4.getText().toString());
 
-                if(!editText.getText().toString().isEmpty() && !editText1.getText().toString().isEmpty()
-                        && !editText2.getText().toString().isEmpty()&& !editText3.getText().toString().isEmpty()
-                        && !editText4.getText().toString().isEmpty()){
-                    Toast.makeText(Activity2.this,
-                            R.string.success_reg_msg,
-                            Toast.LENGTH_SHORT).show();
-                    try {
+                try {
                     new SendData().execute();
                 }catch (Exception e){
                     e.printStackTrace();
                 }
-                }else{
-                    Toast.makeText(Activity2.this,
-                            R.string.error_reg_msg,
-                            Toast.LENGTH_SHORT).show();
-                }
-
-               /* try {
-                    new SendData().execute();
-                }catch (Exception e){
-                    e.printStackTrace();
-                }*/
             }
         });
     }
@@ -100,7 +71,7 @@ public class Activity2 extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-    /*public void openLeft() {
+   /* public void openLeft() {
         Intent intent = new Intent(this, Left.class);
         startActivity(intent);
     }*/
