@@ -22,7 +22,7 @@ import java.net.URL;
 /*
 #
 #
-# Version 0.3.1.
+# Version 0.3.2
 #
 #
 */
@@ -52,6 +52,8 @@ public class Activity2 extends AppCompatActivity {
                 view.startAnimation(animAlpha);
                 //openLeft();
 
+                // Записываем в переменные введенные данные
+
                 EditText editText = (EditText)findViewById(R.id.editText);
                 name = String.valueOf(editText.getText().toString());
 
@@ -67,10 +69,13 @@ public class Activity2 extends AppCompatActivity {
                 EditText editText4 = (EditText)findViewById(R.id.editText4);
                 bithday_date = String.valueOf(editText4.getText().toString());
 
-                try {
-                    new SendData().execute();
-                }catch (Exception e){
-                    e.printStackTrace();
+                EmailValidator eVal = new EmailValidator();
+                if (eVal.validate(email) == true){ // Вызов метода проверки валиднрсти email
+                    try {
+                        new SendData().execute();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
             }
         });
