@@ -24,15 +24,20 @@
 
     <include layout="@layout/content_left" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="67dp"
+        android:layout_height="67dp"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
 
 
+        android:layout_marginBottom="65dp"
+        android:background="@drawable/oval"
+        android:padding="19dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/add1"
         app:backgroundTint="#ff3366"
-        app:srcCompat="@drawable/add1" />
+        android:contentDescription="TODO" />
 
 </android.support.design.widget.CoordinatorLayout>

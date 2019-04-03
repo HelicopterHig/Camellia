@@ -5,12 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".BlankFragmentTab2">
 
-    <!--ImageView
+    <ImageView
         android:id="@+id/foyBack"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
 
-
-        android:background="@drawable/menu_back"/-->
+        android:background="@drawable/menu_back"
+        android:contentDescription="TODO" />
 </FrameLayout>

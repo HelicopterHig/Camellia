@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -23,13 +24,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ImageButton;
+import android.widget.Button;
 import android.content.Intent;
 
 public class Left extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-
+    // объявляем fab
+    ImageButton floatButton;
+    // объявляем обновление списка диалогов (вращающийся прогресс бар )
     SwipeRefreshLayout swipeRefreshLayout;
 
     int number = 0;
@@ -44,6 +52,7 @@ public class Left extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_left);
 
+        final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -63,18 +72,47 @@ public class Left extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // реализация нажатия кнопки fab
+        floatButton = (ImageButton) findViewById(R.id.imageButton);
+        floatButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+              //  Toast.makeText(getApplicationContext(),
+                     //   "Button is clicked", Toast.LENGTH_LONG).show();
+            //    v.startAnimation(animAlpha);
+              //  AlertDialog.Builder mBuilder = new AlertDialog.Builder(Left.this);
+             //   View mView = getLayoutInflater().inflate(R.layout.create_new_group, null);
+             //   final EditText crName = (EditText) mView.findViewById(R.id.editText8);
+               // Button mLogin = (Button) mView.findViewById(R.id.btn_create);
+
+               /* mLogin.setOnClickListener(new View.OnClickListener()){
+                    @Override
+                   /* public void onClick(View view) {
+
+                    }
+
+                }*/
+           // });
+             //   mBuilder.setView(mView);
+            //    AlertDialog dialog  = mBuilder.create();
+             //   dialog.show();
+            }
+        });
 
 
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
 
 
@@ -133,7 +171,7 @@ public class Left extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-       if (id == R.id.action_settings) {
+        if (id == R.id.action_settings) {
             return true;
         }
         // переход по кнопке (в правом углу ) на  замекти
@@ -164,16 +202,16 @@ public class Left extends AppCompatActivity
 
         } else if (id == R.id.sett) {
 
-                Intent intent = new Intent(this, SettingsActivity.class);
+            Intent intent = new Intent(this, SettingsActivity.class);
 
-                intent.putExtra("name", name);
-                intent.putExtra("second_name", second_name);
-                intent.putExtra("email", email);
-                intent.putExtra("password", password);
-                intent.putExtra("birthday_date", birthday_date);
+            intent.putExtra("name", name);
+            intent.putExtra("second_name", second_name);
+            intent.putExtra("email", email);
+            intent.putExtra("password", password);
+            intent.putExtra("birthday_date", birthday_date);
 
-                startActivity(intent);
-                return false;
+            startActivity(intent);
+            return false;
 
 
 
@@ -194,5 +232,3 @@ public class Left extends AppCompatActivity
 
 
 }
-
-

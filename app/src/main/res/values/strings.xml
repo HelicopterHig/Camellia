@@ -20,6 +20,12 @@
     <string name="tab_text_1">Заметки</string>
     <string name="tab_text_2">Пользователи</string>
     <string name="tab_text_3">Выполнение</string>
+    <string name="crt_prjct">Создание проекта</string>
+    <string name="error_login_msg">Пожалуйста введите логин и пароль</string>
+    <string name="error_reg_msg">Пожалуйста заполните данные</string>
+    <string name="success_reg_msg">Успешно</string>
+    <string name="success_login_msg">Добро пожаловать</string>
+
 </resources>
 
 

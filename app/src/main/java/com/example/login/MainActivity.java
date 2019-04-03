@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -65,11 +66,28 @@ public class MainActivity extends AppCompatActivity {
                 editText2 = (EditText) findViewById(R.id.editText2);
                 password = String.valueOf(editText2.getText().toString());
 
-                try{
+                if(!editText.getText().toString().isEmpty() && !editText2.getText().toString().isEmpty()){
+                    Toast.makeText(MainActivity.this,
+                            R.string.success_login_msg,
+                            Toast.LENGTH_SHORT).show();
+                    try{
+                        new SendLogin().execute();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+                }else{
+                    Toast.makeText(MainActivity.this,
+                            R.string.error_login_msg,
+                            Toast.LENGTH_SHORT).show();
+                }
+
+
+              /*  try{
                     new SendLogin().execute();
                 }catch (Exception e){
                     e.printStackTrace();
-                }
+                }*/
 
             }
         });
@@ -78,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openActivity2();
+               openActivity2();
 
 
             }
@@ -87,8 +105,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void openActivity2(){
-       Intent intent  = new Intent(this , Activity2.class);
-       startActivity(intent);
+        Intent intent  = new Intent(this , Activity2.class);
+        startActivity(intent);
     }
 
     class SendLogin extends AsyncTask<Void, Void, Void>{

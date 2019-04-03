@@ -10,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -19,12 +20,22 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+
+
+/*
+#
+#
+# Version 0.3.3
+#
+#
+*/
+
 public class Activity2 extends AppCompatActivity {
     private Button button;
 
     public  static String server_name = "message.dlinkddns.com:8008";
     protected String name, second_name, password, email, bithday_date;
-    protected int user_note_id = 2, icon_id = 2;
+    protected int icon_id = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +52,8 @@ public class Activity2 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 view.startAnimation(animAlpha);
-                //openLeft();
+
+               // openLeft();
 
                 EditText editText = (EditText)findViewById(R.id.editText);
                 name = String.valueOf(editText.getText().toString());
@@ -55,37 +67,40 @@ public class Activity2 extends AppCompatActivity {
                 EditText editText3 = (EditText)findViewById(R.id.editText3);
                 email = String.valueOf(editText3.getText().toString());
 
+                EditText editText4 = (EditText)findViewById(R.id.editText4);
+                bithday_date = String.valueOf(editText4.getText().toString());
 
-                try {
+                if(!editText.getText().toString().isEmpty() && !editText1.getText().toString().isEmpty()
+                        && !editText2.getText().toString().isEmpty()&& !editText3.getText().toString().isEmpty()
+                        && !editText4.getText().toString().isEmpty()){
+                    Toast.makeText(Activity2.this,
+                            R.string.success_reg_msg,
+                            Toast.LENGTH_SHORT).show();
+                    try {
                     new SendData().execute();
                 }catch (Exception e){
                     e.printStackTrace();
                 }
+                }else{
+                    Toast.makeText(Activity2.this,
+                            R.string.error_reg_msg,
+                            Toast.LENGTH_SHORT).show();
+                }
+
+               /* try {
+                    new SendData().execute();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }*/
             }
         });
-
-        button = (Button) findViewById(R.id.button1);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openMainActivity();
-
-
-            }
-
-        });
-    }
-
-    public void openMainActivity(){
-        Intent intent  = new Intent(this , MainActivity.class);
-        startActivity(intent);
     }
 
     public void openLogin(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-   /* public void openLeft() {
+    /*public void openLeft() {
         Intent intent = new Intent(this, Left.class);
         startActivity(intent);
     }*/
@@ -100,8 +115,8 @@ public class Activity2 extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
             try{
-                String myURL = "http://"+server_name+"/chat1.php?action=insert&id=null&name="+name+"&second_name="+second_name+"&password="+password+"&email="+email+"&user_note_id="+user_note_id+"&icon_id="+icon_id+"&birthday_date=11.11.11";
-                String parammetrs = "?action=insert&id=4&name="+name+"&second_name="+second_name+"&password="+password+"&email="+email+"&user_note_id="+user_note_id+"&icon_id="+icon_id;
+                String myURL = "http://"+server_name+"/chat31.php?action=insert&id=null&name="+name+"&second_name="+second_name+"&password="+password+"&email="+email+"&icon_id="+icon_id+"&birthday_date="+bithday_date;
+                String parammetrs = "?action=insert&id=4&name="+name+"&second_name="+second_name+"&password="+password+"&email="+email+"&icon_id="+icon_id;
                 byte[] data = null;
                 InputStream is = null;
 
