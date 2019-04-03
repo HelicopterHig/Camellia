@@ -19,6 +19,15 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/*
+#
+#
+# Version 0.3.1.
+#
+#
+*/
+
+
 public class Activity2 extends AppCompatActivity {
     private Button button;
 
