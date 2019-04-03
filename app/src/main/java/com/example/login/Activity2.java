@@ -10,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -58,11 +59,30 @@ public class Activity2 extends AppCompatActivity {
                 EditText editText4 = (EditText)findViewById(R.id.editText4);
                 bithday_date = String.valueOf(editText4.getText().toString());
 
-                try {
+                if(!editText.getText().toString().isEmpty() && !editText1.getText().toString().isEmpty()
+                        && !editText2.getText().toString().isEmpty()&& !editText3.getText().toString().isEmpty()
+                        && !editText4.getText().toString().isEmpty()){
+                    Toast.makeText(Activity2.this,
+                            R.string.success_reg_msg,
+                            Toast.LENGTH_SHORT).show();
+                    try {
+                        new SendData().execute();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+                }else{
+                    Toast.makeText(Activity2.this,
+                            R.string.error_reg_msg,
+                            Toast.LENGTH_SHORT).show();
+                }
+
+
+               /* try {
                     new SendData().execute();
                 }catch (Exception e){
                     e.printStackTrace();
-                }
+                }*/
             }
         });
     }

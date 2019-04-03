@@ -11,6 +11,5 @@
         android:layout_height="match_parent"
 
 
-        android:background="@drawable/menu_back"
-        android:contentDescription="TODO" />
+        android:src="@drawable/menu_back"/>
 </FrameLayout>
