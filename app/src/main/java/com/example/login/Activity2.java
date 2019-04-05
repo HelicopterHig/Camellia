@@ -59,7 +59,8 @@ public class Activity2 extends AppCompatActivity {
                 EditText editText4 = (EditText)findViewById(R.id.editText4);
                 bithday_date = String.valueOf(editText4.getText().toString());
 
-                if(!editText.getText().toString().isEmpty() && !editText1.getText().toString().isEmpty()
+                EmailValidator eVal = new EmailValidator();
+                if(eVal.validate(email) == true && !editText.getText().toString().isEmpty() && !editText1.getText().toString().isEmpty()
                         && !editText2.getText().toString().isEmpty()&& !editText3.getText().toString().isEmpty()
                         && !editText4.getText().toString().isEmpty()){
                     Toast.makeText(Activity2.this,
@@ -76,13 +77,6 @@ public class Activity2 extends AppCompatActivity {
                             R.string.error_reg_msg,
                             Toast.LENGTH_SHORT).show();
                 }
-
-
-               /* try {
-                    new SendData().execute();
-                }catch (Exception e){
-                    e.printStackTrace();
-                }*/
             }
         });
     }
