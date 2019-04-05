@@ -79,25 +79,15 @@ public class Left extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-              //  Toast.makeText(getApplicationContext(),
-                     //   "Button is clicked", Toast.LENGTH_LONG).show();
-            //    v.startAnimation(animAlpha);
-              //  AlertDialog.Builder mBuilder = new AlertDialog.Builder(Left.this);
-             //   View mView = getLayoutInflater().inflate(R.layout.create_new_group, null);
-             //   final EditText crName = (EditText) mView.findViewById(R.id.editText8);
-               // Button mLogin = (Button) mView.findViewById(R.id.btn_create);
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(Left.this);
+                View mView = getLayoutInflater().inflate(R.layout.create_project, null);
+                final EditText mEmail = (EditText) mView.findViewById(R.id.etEmail);
+                Button mLogin = (Button) mView.findViewById(R.id.btnLogin);
 
-               /* mLogin.setOnClickListener(new View.OnClickListener()){
-                    @Override
-                   /* public void onClick(View view) {
+                mBuilder.setView(mView);
+                final AlertDialog dialog = mBuilder.create();
+                dialog.show();
 
-                    }
-
-                }*/
-           // });
-             //   mBuilder.setView(mView);
-            //    AlertDialog dialog  = mBuilder.create();
-             //   dialog.show();
             }
         });
 

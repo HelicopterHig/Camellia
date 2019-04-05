@@ -4,4 +4,6 @@
     <color name="colorToolBar">#FFFFFF</color>
     <color name="colorPrimaryDark">#3f3b57</color>
     <color name="colorAccent">#646675</color>
+    <color name="colorPink">#ff3366</color>
+    <color name="colorPurpLight">#9965f4</color>
 </resources>

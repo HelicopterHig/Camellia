@@ -26,6 +26,12 @@
     <string name="success_reg_msg">Успешно</string>
     <string name="success_login_msg">Добро пожаловать</string>
 
+    <string name="create_project">Создать проект</string>
+    <string name="title">Название проекта</string>
+    <string name="password">Password</string>
+    <string name="create">Создать</string>
+    <string name="cancel">Отмена</string>
+
 </resources>
 
 
