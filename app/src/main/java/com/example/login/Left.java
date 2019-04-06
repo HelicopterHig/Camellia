@@ -1,5 +1,6 @@
 package com.example.login;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -33,6 +34,14 @@ import android.widget.ImageButton;
 import android.widget.Button;
 import android.content.Intent;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class Left extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     // объявляем fab
@@ -42,10 +51,13 @@ public class Left extends AppCompatActivity
 
     int number = 0;
 
-    protected String name, second_name, email, password, birthday_date;
+    protected String user_id, name, second_name, email, password, birthday_date;
+    protected String name_group;
 
     TextView textView_name;
     TextView textView_email;
+
+    EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +84,13 @@ public class Left extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        user_id = getIntent().getStringExtra("user_id");
+        name = getIntent().getStringExtra("name");
+        second_name = getIntent().getStringExtra("second_name");
+        email = getIntent().getStringExtra("email");
+        password = getIntent().getStringExtra("password");
+        birthday_date = getIntent().getStringExtra("birthday_date");
+
         // реализация нажатия кнопки fab
         floatButton = (ImageButton) findViewById(R.id.imageButton);
         floatButton.setOnClickListener(new View.OnClickListener(){
@@ -79,15 +98,29 @@ public class Left extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder mBuilder = new AlertDialog.Builder(Left.this);
-                View mView = getLayoutInflater().inflate(R.layout.create_project, null);
-                final EditText mEmail = (EditText) mView.findViewById(R.id.etEmail);
+                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(Left.this);
+                final View mView = getLayoutInflater().inflate(R.layout.create_project, null);
+                editText = (EditText) mView.findViewById(R.id.etEmail);
                 Button mLogin = (Button) mView.findViewById(R.id.btnLogin);
-
                 mBuilder.setView(mView);
                 final AlertDialog dialog = mBuilder.create();
                 dialog.show();
 
+                mLogin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        name_group = String.valueOf(editText.getText().toString());
+
+                        try{
+                            new CreateGroup().execute();
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+
+                        dialog.dismiss();
+                    }
+                });
             }
         });
 
@@ -118,12 +151,6 @@ public class Left extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         View headerView = navigationView.getHeaderView(0);
-
-        name = getIntent().getStringExtra("name");
-        second_name = getIntent().getStringExtra("second_name");
-        email = getIntent().getStringExtra("email");
-        password = getIntent().getStringExtra("password");
-        birthday_date = getIntent().getStringExtra("birthday_date");
 
         textView_name = (TextView) headerView.findViewById(R.id.textView_name);
         textView_email = (TextView) headerView.findViewById(R.id.textView_email);
@@ -217,7 +244,77 @@ public class Left extends AppCompatActivity
 
 
 
+    class CreateGroup extends AsyncTask<Void, Void, Void> {
+        String resultString = null;
 
+        public String server_name = "message.dlinkddns.com:8008";
+
+        //protected String name_group, user_id;
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                String myURL = "http://" + server_name + "/group.php?id=null&name_group=" + name_group + "&admin_user_id=" + user_id + "&group_icon_id=1";
+                String parammetrs = "?id=null&name_group=" + name_group + "&admin_user_id=" + user_id + "&group_icon_id=1";
+                byte[] data = null;
+                InputStream is = null;
+
+
+                try {
+                    URL url = new URL(myURL);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setReadTimeout(10000);
+                    conn.setConnectTimeout(15000);
+                    conn.setRequestMethod("GET");
+
+                    conn.setRequestProperty("Connection", "Keep-Alive");
+                    conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                    conn.setRequestProperty("Content-Length", "" + Integer.toString(parammetrs.getBytes().length));
+                    conn.setDoOutput(true);
+                    conn.setDoInput(true);
+
+                    data = parammetrs.getBytes("UTF-8");
+
+                    OutputStream os = conn.getOutputStream();
+
+                    os.write(data);
+                    os.flush();
+                    os.close();
+                    data = null;
+                    conn.connect();
+                    int responseCode = conn.getResponseCode();
+
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+                    if (responseCode == 200) {
+                        is = conn.getInputStream();
+
+                        byte[] buffer = new byte[8192];
+                        int bytesRead;
+
+                        while ((bytesRead = is.read(buffer)) != -1) {
+                            baos.write(buffer, 0, bytesRead);
+                        }
+
+                        data = baos.toByteArray();
+                        resultString = new String(data, "UTF-8");
+
+                    } else {
+                        conn.disconnect();
+                    }
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+    }
 
 
 

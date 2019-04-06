@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static String server_name = "message.dlinkddns.com:8008";
 
-    protected String name, second_name, email, password, birthday_date;
+    protected String user_id, name, second_name, email, password, birthday_date;
     Date date;
 
     private static String TAG_USER = "user";
@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private static String TAG_EMAIL = "email";
     private static String TAG_PASSWORD = "password";
     private static String TAG_BIRTHDAY_DATE = "birthday_date";
+    private static String TAG_USER_ID = "id";
 
     EditText editText;
     EditText editText2;
@@ -138,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 0; i < 1; i++){
                         JSONObject schedule = user.getJSONObject(i);
 
+                        user_id = schedule.getString(TAG_USER_ID);
                         name = schedule.getString(TAG_NAME);
                         second_name = schedule.getString(TAG_SECOND_NAME);
                         password = schedule.getString(TAG_PASSWORD);
@@ -171,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
     public void openLeft(){
         Intent intent  = new Intent(this , Left.class);
 
+        intent.putExtra("user_id", user_id);
         intent.putExtra("name", name);
         intent.putExtra("second_name", second_name);
         intent.putExtra("email", email);
