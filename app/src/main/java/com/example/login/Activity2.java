@@ -11,6 +11,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -20,15 +22,25 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/*
+
+
+Version 0.3.7
+
+
+ */
+
 public class Activity2 extends AppCompatActivity {
     private Button button;
-
     public  static String server_name = "message.dlinkddns.com:8008";
     protected String name, second_name, password, email, bithday_date;
     protected int icon_id = 2;
+    private AppDB appDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        appDB = new AppDB(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
         // блокируем ориентацию на вертикальную
@@ -60,9 +72,26 @@ public class Activity2 extends AppCompatActivity {
                 bithday_date = String.valueOf(editText4.getText().toString());
 
                 EmailValidator eVal = new EmailValidator();
-                if(eVal.validate(email) == true && !editText.getText().toString().isEmpty() && !editText1.getText().toString().isEmpty()
-                        && !editText2.getText().toString().isEmpty()&& !editText3.getText().toString().isEmpty()
-                        && !editText4.getText().toString().isEmpty()){
+                if(eVal.validate(email) == true && !editText.getText().toString().isEmpty()
+                        && !editText1.getText().toString().isEmpty() && !editText2.getText().toString().isEmpty()
+                        && !editText3.getText().toString().isEmpty() && !editText4.getText().toString().isEmpty()){
+
+                    final SQLiteDatabase database = appDB.getWritableDatabase();
+                    final ContentValues contentValues = new ContentValues();
+
+                    // Заносим в contentValues данные
+                    contentValues.put(AppDB.KEY_NAME, name);
+                    contentValues.put(AppDB.KEY_SECOND_NAME, second_name);
+                    contentValues.put(AppDB.KEY_PASSWORD, password);
+                    contentValues.put(AppDB.KEY_MAIL, email);
+                    contentValues.put(AppDB.KEY_ICON_ID, icon_id);
+                    contentValues.put(AppDB.KEY_BIRTHDAY_DATE, bithday_date);
+                    contentValues.put(AppDB.KEY_ACCESS_TOKEN, 0);
+                    contentValues.put(AppDB.KEY_REFRESH_TOKEN, 0);
+                    contentValues.put(AppDB.KEY_AUTHORISED, 1);
+
+                    database.insert(AppDB.TABLE_CONTACTS, null, contentValues); // Вносим данные в локальную бд
+
                     Toast.makeText(Activity2.this,
                             R.string.success_reg_msg,
                             Toast.LENGTH_SHORT).show();
@@ -92,9 +121,6 @@ public class Activity2 extends AppCompatActivity {
 
     class SendData extends AsyncTask<Void, Void, Void>{
         String resultString = null;
-
-
-
 
 
         @Override
