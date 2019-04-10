@@ -74,23 +74,6 @@ public class MainActivity extends AppCompatActivity {
 
                 if(!editText.getText().toString().isEmpty() && !editText2.getText().toString().isEmpty()){
 
-                    System.out.println("Inserting ..");
-                    // добавляем строку в бд
-                    db.addContact(new Contact("name", "secname", "password",
-                            "email", 2, "1999/05/14", "access token",
-                            "refresh token", 1));
-
-                    // вывод таблицы для проверки
-                    System.out.println("Reading all contacts..");
-                    List<Contact> user = db.getAllContacts();
-                    for (Contact cn : user) {
-                        String log = "Id: "+cn.getID()+" ,Name: " + cn.getName() + " ,Second name: " + cn.getSecName()
-                                + ",Password: " + cn.getPassword() + ",Email: " + cn.getMail() + ",Icon id: "
-                                + cn.getIcon() + ",Birthday date: " + cn.getBdate() + ",Access: "
-                                + cn.getAcToken() + ",Refresh: " + cn.getReToken() + ",Authorised: " + cn.getAcToken();
-                        System.out.print("Name: ");
-                        System.out.println(log);
-                    }
 
                     Toast.makeText(MainActivity.this,
                             R.string.success_login_msg,
@@ -101,11 +84,14 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
+
+
                 }else{
                     Toast.makeText(MainActivity.this,
                             R.string.error_login_msg,
                             Toast.LENGTH_SHORT).show();
                 }
+
 
 
               /*  try{
@@ -171,6 +157,27 @@ public class MainActivity extends AppCompatActivity {
                         email = schedule.getString(TAG_EMAIL);
 
                     }
+
+                    System.out.println("Inserting ..");
+                    // добавляем строку в бд
+                    db.addContact(new Contact(name, second_name, password,
+                            email, 2, birthday_date, "access token",
+                            "refresh token", 1));
+
+                    System.out.println("Reading all contacts..");
+                    List<Contact> user_local = db.getAllContacts();
+
+                    // вывод таблицы для проверки
+                    for (Contact cn : user_local) {
+                        String log = "Id: "+cn.getID()+" ,Name: " + cn.getName() + " ,Second name: " + cn.getSecName()
+                                + ",Password: " + cn.getPassword() + ",Email: " + cn.getMail() + ",Icon id: "
+                                + cn.getIcon() + ",Birthday date: " + cn.getBdate() + ",Access: "
+                                + cn.getAcToken() + ",Refresh: " + cn.getReToken() + ",Authorised: " + cn.getAcToken();
+
+                        System.out.print("Name: ");
+                        System.out.println(log);
+                    }
+
 
                     openLeft();
 
