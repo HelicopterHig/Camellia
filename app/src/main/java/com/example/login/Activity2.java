@@ -25,7 +25,7 @@ import java.net.URL;
 /*
 
 
-Version 0.4.1
+Version 0.4.2
 
 
  */
@@ -108,7 +108,7 @@ public class Activity2 extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
             try{
-                String myURL = "http://"+server_name+"/chat31.php?action=insert&id=null&name="+name+"&second_name="+second_name+"&password="+password+"&email="+email+"&icon_id="+icon_id+"&birthday_date="+bithday_date;
+                String myURL = "http://"+server_name+"/registration.php?id=null&name="+name+"&second_name="+second_name+"&password="+password+"&email="+email+"&icon_id="+icon_id+"&birthday_date="+bithday_date;
                 String parammetrs = "?action=insert&id=4&name="+name+"&second_name="+second_name+"&password="+password+"&email="+email+"&icon_id="+icon_id;
                 byte[] data = null;
                 InputStream is = null;
