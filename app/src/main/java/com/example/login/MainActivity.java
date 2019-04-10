@@ -21,6 +21,8 @@ import java.net.URL;
 import java.util.Date;
 import java.util.HashMap;
 
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
     private Button button;
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     EditText editText;
     EditText editText2;
 
+    DatabaseHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 
+        // инициализируем бд
+        db = new DatabaseHandler(this);
 
 
         //инициалицируем анимацию
@@ -68,6 +73,25 @@ public class MainActivity extends AppCompatActivity {
                 password = String.valueOf(editText2.getText().toString());
 
                 if(!editText.getText().toString().isEmpty() && !editText2.getText().toString().isEmpty()){
+
+                    System.out.println("Inserting ..");
+                    // добавляем строку в бд
+                    db.addContact(new Contact("name", "secname", "password",
+                            "email", 2, "1999/05/14", "access token",
+                            "refresh token", 1));
+
+                    // вывод таблицы для проверки
+                    System.out.println("Reading all contacts..");
+                    List<Contact> user = db.getAllContacts();
+                    for (Contact cn : user) {
+                        String log = "Id: "+cn.getID()+" ,Name: " + cn.getName() + " ,Second name: " + cn.getSecName()
+                                + ",Password: " + cn.getPassword() + ",Email: " + cn.getMail() + ",Icon id: "
+                                + cn.getIcon() + ",Birthday date: " + cn.getBdate() + ",Access: "
+                                + cn.getAcToken() + ",Refresh: " + cn.getReToken() + ",Authorised: " + cn.getAcToken();
+                        System.out.print("Name: ");
+                        System.out.println(log);
+                    }
+
                     Toast.makeText(MainActivity.this,
                             R.string.success_login_msg,
                             Toast.LENGTH_SHORT).show();
