@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -33,6 +34,9 @@ import android.widget.Toast;
 import android.widget.ImageButton;
 import android.widget.Button;
 import android.content.Intent;
+
+import com.example.login.features.demo.styled.StyledDialogsActivity;
+import com.example.login.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -62,7 +66,10 @@ public class Left extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       // setContentView(R.layout.activity_left);
+       // StyledDialogsActivity.open(this);
         setContentView(R.layout.activity_left);
+        //StyledDialogsActivity.open(this);
 
         final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh);
@@ -138,7 +145,7 @@ public class Left extends AppCompatActivity
         });*/
 
 
-
+        //ChatActivity chatActivity = (ChatActivity) findViewById(R.id.);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -157,6 +164,9 @@ public class Left extends AppCompatActivity
 
         textView_name.setText(name+" "+second_name);
         textView_email.setText(email);
+
+        //setContentView(R.layout.content_left);
+        //StyledDialogsActivity.open(this);
     }
 
 
@@ -316,6 +326,20 @@ public class Left extends AppCompatActivity
         }
     }
 
+/*public class ChatActivity extends AppCompatActivity {
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.content_left);
+        StyledDialogsActivity.open(this);
+
+
+
+    }
+
+
+}*/
 
 }

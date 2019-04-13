@@ -3,15 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BlankFragmentTab1">
+    tools:context=".BlankFragmentTab1"
+    android:background="@drawable/back_two">
 
 
 
 
-    <ImageView
+    <!--ImageView
         android:id="@+id/foBack"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/back_two"/>
+        android:src="@drawable/back_two"
+        android:contentDescription="@string/todo" /-->
 
 </FrameLayout>
