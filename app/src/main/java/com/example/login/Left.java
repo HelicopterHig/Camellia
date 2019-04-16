@@ -1,13 +1,12 @@
 package com.example.login;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
-import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,25 +17,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import android.content.Context;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ImageButton;
 import android.widget.Button;
 import android.content.Intent;
-
-import com.example.login.features.demo.styled.StyledDialogsActivity;
-import com.example.login.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -48,9 +35,12 @@ import java.net.URL;
 
 public class Left extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    // объявляем fab
+    private Fragment fragment = null;
+    private FragmentManager fragmentManager;
+
+    //объявляем fab
     ImageButton floatButton;
-    // объявляем обновление списка диалогов (вращающийся прогресс бар )
+    //объявляем обновление списка диалогов
     SwipeRefreshLayout swipeRefreshLayout;
 
     int number = 0;
@@ -66,10 +56,7 @@ public class Left extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.activity_left);
-       // StyledDialogsActivity.open(this);
         setContentView(R.layout.activity_left);
-        //StyledDialogsActivity.open(this);
 
         final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh);
@@ -131,23 +118,6 @@ public class Left extends AppCompatActivity
             }
         });
 
-
-
-
-
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
-
-        //ChatActivity chatActivity = (ChatActivity) findViewById(R.id.);
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -156,6 +126,7 @@ public class Left extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        displayView(0, getResources().getString(R.string.app_name));
 
         View headerView = navigationView.getHeaderView(0);
 
@@ -164,14 +135,7 @@ public class Left extends AppCompatActivity
 
         textView_name.setText(name+" "+second_name);
         textView_email.setText(email);
-
-        //setContentView(R.layout.content_left);
-        //StyledDialogsActivity.open(this);
     }
-
-
-
-
 
     @Override
     public void onBackPressed() {
@@ -201,6 +165,7 @@ public class Left extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
+
         // переход по кнопке (в правом углу ) на  замекти
         if (id == R.id.next){
             Intent intent = new Intent(this, TskActivity.class);
@@ -246,13 +211,32 @@ public class Left extends AppCompatActivity
 
         }
 
+        displayView(0,getResources().getString(R.string.app_name));
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
+    private void displayView(int position, String title) {
+        // update the main content by replacing fragments
+        fragment = null;
+        String fragmentTags = "";
+        switch (position) {
+            case 0:
+                fragment = new RecyclerViewFragment();
+                break;
 
 
+            default:
+                break;
+        }
+
+        if (fragment != null) {
+            fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment, fragmentTags).commit();
+            getSupportActionBar().setTitle(title);
+        }
+    }
 
     class CreateGroup extends AsyncTask<Void, Void, Void> {
         String resultString = null;
@@ -325,21 +309,5 @@ public class Left extends AppCompatActivity
             return null;
         }
     }
-
-/*public class ChatActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.content_left);
-        StyledDialogsActivity.open(this);
-
-
-
-    }
-
-
-}*/
-
 }
+

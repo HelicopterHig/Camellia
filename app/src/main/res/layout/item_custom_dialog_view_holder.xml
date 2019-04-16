@@ -29,6 +29,7 @@
             android:layout_toStartOf="@id/dialogDate"
             android:ellipsize="end"
             android:fontFamily="@string/font_fontFamily_medium"
+            android:hint="sddasdsds"
             android:includeFontPadding="false"
             android:maxLines="1"/>
 
