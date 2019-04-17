@@ -1,12 +1,12 @@
 package com.example.login;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -32,11 +32,10 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class Left extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private Fragment fragment = null;
-    private FragmentManager fragmentManager;
 
     //объявляем fab
     ImageButton floatButton;
@@ -53,10 +52,19 @@ public class Left extends AppCompatActivity
 
     EditText editText;
 
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private ArrayList<Item> mItemArrayList;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_left);
+
+        createList();
+        buildRecyclerView();
 
         final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh);
@@ -104,6 +112,8 @@ public class Left extends AppCompatActivity
                     @Override
                     public void onClick(View view) {
 
+                        int position = 0;
+
                         name_group = String.valueOf(editText.getText().toString());
 
                         try{
@@ -113,6 +123,8 @@ public class Left extends AppCompatActivity
                         }
 
                         dialog.dismiss();
+
+                        insertItem(position, name_group);
                     }
                 });
             }
@@ -126,7 +138,6 @@ public class Left extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        displayView(0, getResources().getString(R.string.app_name));
 
         View headerView = navigationView.getHeaderView(0);
 
@@ -211,31 +222,9 @@ public class Left extends AppCompatActivity
 
         }
 
-        displayView(0,getResources().getString(R.string.app_name));
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    private void displayView(int position, String title) {
-        // update the main content by replacing fragments
-        fragment = null;
-        String fragmentTags = "";
-        switch (position) {
-            case 0:
-                fragment = new RecyclerViewFragment();
-                break;
-
-
-            default:
-                break;
-        }
-
-        if (fragment != null) {
-            fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment, fragmentTags).commit();
-            getSupportActionBar().setTitle(title);
-        }
     }
 
     class CreateGroup extends AsyncTask<Void, Void, Void> {
@@ -309,5 +298,36 @@ public class Left extends AppCompatActivity
             return null;
         }
     }
+
+
+    public void insertItem(int position, String name_group){
+        mItemArrayList.add(position, new Item(R.drawable.ic_android, name_group));
+        mAdapter.notifyDataSetChanged();
+    }
+
+    public void removeItem(int position){
+
+    }
+
+    public void createList(){
+        mItemArrayList = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            mItemArrayList.add(new Item(R.drawable.ic_android, "Line 1"));
+        }
+        /*mItemArrayList.add(new Item(R.drawable.ic_android, "Line 2"));
+        mItemArrayList.add(new Item(R.drawable.ic_android, "Line 3"));*/
+    }
+
+    public void buildRecyclerView(){
+        mRecyclerView = findViewById(R.id.recyclerView_row);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mAdapter = new DialogAdapter( mItemArrayList);
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+
 }
 

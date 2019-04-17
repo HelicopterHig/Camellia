@@ -102,11 +102,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-              /*  try{
+                try{
                     new SendLogin().execute();
                 }catch (Exception e){
                     e.printStackTrace();
-                }*/
+                }
 
             }
         });
