@@ -17,10 +17,6 @@
             android:icon="@drawable/calen"
             android:title="Календарь" />
         <item
-            android:id="@+id/them"
-            android:icon="@drawable/them"
-            android:title="Темы" />
-        <item
             android:id="@+id/sett"
             android:icon="@drawable/sett"
             android:title="Настройки" />

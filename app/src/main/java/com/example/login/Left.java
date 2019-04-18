@@ -201,8 +201,6 @@ public class Left extends AppCompatActivity
             startActivity(intent);
             return false;
 
-        } else if (id == R.id.them) {
-
         } else if (id == R.id.sett) {
 
             Intent intent = new Intent(this, SettingsActivity.class);
