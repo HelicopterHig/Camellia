@@ -100,14 +100,6 @@ public class MainActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 }
 
-
-
-                try{
-                    new SendLogin().execute();
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-
             }
         });
         // переход по кнопке на активити регистрации
@@ -192,8 +184,7 @@ public class MainActivity extends AppCompatActivity {
                     }catch (Exception e){
                         e.printStackTrace();
                     }
-
-                    openLeft();
+                    // openLeft(); НЕ ТРОЖЬ!
 
                 }catch (Exception e){
                     e.printStackTrace();
