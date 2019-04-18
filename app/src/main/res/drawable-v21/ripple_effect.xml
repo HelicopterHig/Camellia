@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/colorRipple">     <!-- ripple color -->
+
+    <!-- for Button -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="3dp" />
+            <solid android:color="@color/colorPrimary"/>
+            <corners
+                android:bottomLeftRadius="30dp"
+                android:bottomRightRadius="30dp"
+                android:radius="60dp"
+                android:topLeftRadius="30dp"
+                android:topRightRadius="30dp" />
+
+            <solid android:color="@color/colorPink" />
+
+            <padding
+                android:bottom="0dp"
+                android:left="0dp"
+                android:right="0dp"
+                android:top="0dp" />
+
+            <size
+                android:height="60dp"
+                android:width="270dp" />
+        </shape>
+    </item>
+
+</ripple>
+
+

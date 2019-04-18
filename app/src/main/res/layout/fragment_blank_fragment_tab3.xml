@@ -3,14 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BlankFragmentTab3">
+    tools:context=".BlankFragmentTab3"
+    android:background="@drawable/back_two">
 
 
-    <ImageView
-        android:id="@+id/fokBack"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/back_tab"
-        android:contentDescription="TODO" />
 
 </FrameLayout>
