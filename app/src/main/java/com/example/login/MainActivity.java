@@ -67,6 +67,18 @@ public class MainActivity extends AppCompatActivity {
 
         db.deleteAllContacts();
         db.deleteAllGroups();
+
+        List<User> user_local = db.getAllContacts();
+
+        // вывод таблицы для проверки
+        for (User cn : user_local) {
+            if (cn.getAuthorised() == 1){
+                openLeft();
+            }else{
+                //db.deleteAll();
+            }
+        }
+
         //инициалицируем анимацию
         final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
         button = (Button)findViewById(R.id.button);
