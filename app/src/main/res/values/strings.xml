@@ -20,17 +20,22 @@
     <string name="tab_text_2">Пользователи</string>
     <string name="tab_text_3">Выполнение</string>
     <string name="crt_prjct">Создание проекта</string>
+    <string name="crt_note">Создание заметки</string>
     <string name="error_login_msg">Пожалуйста введите логин и пароль</string>
     <string name="error_reg_msg">Пожалуйста заполните данные</string>
     <string name="success_reg_msg">Успешно</string>
     <string name="success_login_msg">Добро пожаловать</string>
 
+
     <string name="create_project">Создать проект</string>
+    <string name="create_note">Создать заметку</string>
     <string name="title">Название проекта</string>
+    <string name="title_note">Название заметки</string>
     <string name="password">Password</string>
     <string name="create">Создать</string>
     <string name="cancel">Отмена</string>
     <string name="todo">TODO</string>
+    <string name="want_to_write">Что вы хотите написать?</string>
     <string name="sample_title">ChatKit for Android</string>
 
     <string name="view">View</string>
