@@ -1,6 +1,6 @@
 package com.example.login;
 
-public class Contact {
+public class User {
 
     int _id;
     String _name;
@@ -13,12 +13,12 @@ public class Contact {
     String _refresh_token;
     int _authorised;
 
-    public Contact(){
+    public User(){
     }
 
-    public Contact(int _id, String _name, String _second_name, String _password, String _email,
-                   int _icon_id, String _birthday_date, String _access_token, String _refresh_token,
-                   int _authorised){
+    public User(int _id, String _name, String _second_name, String _password, String _email,
+                int _icon_id, String _birthday_date, String _access_token, String _refresh_token,
+                int _authorised){
         this._id = _id;
         this._name = _name;
         this._second_name = _second_name;
@@ -31,8 +31,8 @@ public class Contact {
         this._authorised = _authorised;
     }
 
-    public Contact(String _name, String _second_name, String _password, String _email, int _icon_id,
-                   String _birthday_date, String _access_token, String _refresh_token, int _authorised){
+    public User(String _name, String _second_name, String _password, String _email, int _icon_id,
+                String _birthday_date, String _access_token, String _refresh_token, int _authorised){
         this._name = _name;
         this._second_name = _second_name;
         this._password = _password;

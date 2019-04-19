@@ -1,3 +1,16 @@
-<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval" >
-    <solid android:color="#21B684"></solid>
-</shape>
+<?xml version="1.0" encoding="utf-8"?>
+<ripple
+xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:color="@color/colorRipple"
+    tools:targetApi="lollipop">     <!-- ripple color -->
+
+<!-- for Button -->
+<item>
+    <shape android:shape="oval">
+        <corners android:radius="3dp" />
+        <solid android:color="@color/colorPink"/>
+    </shape>
+</item>
+
+</ripple>

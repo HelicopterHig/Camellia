@@ -298,7 +298,7 @@
 
     <Button
         android:id="@+id/button2"
-        style="@style/button_style"
+
         android:layout_width="351dp"
         android:layout_height="59dp"
         android:layout_marginStart="8dp"
@@ -308,11 +308,14 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:clickable="true"
+        android:textColor="@color/white"
+        android:background="@drawable/ripple_effect"
         android:text="Cохранить"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline25" />
+        app:layout_constraintTop_toTopOf="@+id/guideline25"
+        android:focusable="true" />
 
 
     <android.support.constraint.Guideline

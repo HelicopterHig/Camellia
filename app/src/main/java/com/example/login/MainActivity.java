@@ -18,8 +18,6 @@ import org.json.JSONObject;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Date;
-import java.util.HashMap;
 
 import java.util.List;
 
@@ -67,7 +65,20 @@ public class MainActivity extends AppCompatActivity {
         db = new DatabaseHandler(this);
 
 
-        db.deleteAll();
+        db.deleteAllContacts();
+        db.deleteAllGroups();
+
+        List<User> user_local = db.getAllContacts();
+
+        // вывод таблицы для проверки
+        for (User cn : user_local) {
+            if (cn.getAuthorised() == 1){
+                openLeft();
+            }else{
+                //db.deleteAll();
+            }
+        }
+
         //инициалицируем анимацию
         final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
         button = (Button)findViewById(R.id.button);
@@ -163,13 +174,13 @@ public class MainActivity extends AppCompatActivity {
 
                     /*System.out.println("Inserting ..");
                     // добавляем строку в бд
-                    db.addContact(new Contact(name, second_name, password, email, 2, birthday_date, access, "refresh", 1));
+                    db.addContact(new User(name, second_name, password, email, 2, birthday_date, access, "refresh", 1));
 
                     System.out.println("Reading all contacts..");
-                    List<Contact> user_local = db.getAllContacts();
+                    List<User> user_local = db.getAllContacts();
 
                     // вывод таблицы для проверки
-                    for (Contact cn : user_local) {
+                    for (User cn : user_local) {
                         String log = "Id: "+cn.getID()+" ,Name: " + cn.getName() + " ,Second name: " + cn.getSecName()
                                 + ",Password: " + cn.getPassword() + ",Email: " + cn.getMail() + ",Icon id: "
                                 + cn.getIcon() + ",Birthday date: " + cn.getBdate() + ",Access: "
@@ -238,24 +249,37 @@ public class MainActivity extends AppCompatActivity {
 
                     }
 
-                    System.out.println("Inserting ..");
+                    System.out.println("Inserting contacts ..");
                     // добавляем строку в бд
-                    db.addContact(new Contact(name, second_name, password, email, 2, birthday_date, access, refreshTokensMap, 1));
+                    db.addContact(new User(name, second_name, password, email, 2, birthday_date, access, refreshTokensMap, 1));
+
+                    System.out.println("Inserting groups ..");
+                    db.addGroup(new Groups(1, 1, "Camellia",1, 2));
 
                     System.out.println("Reading all contacts..");
-                    List<Contact> user_local = db.getAllContacts();
+                    List<User> user_local = db.getAllContacts();
 
                     // вывод таблицы для проверки
-                    for (Contact cn : user_local) {
-                        String log = "Id: "+cn.getID()+" ,Name: " + cn.getName() + " ,Second name: " + cn.getSecName()
-                                + ",Password: " + cn.getPassword() + ",Email: " + cn.getMail() + ",Icon id: "
-                                + cn.getIcon() + ",Birthday date: " + cn.getBdate() + ",Access: "
-                                + cn.getAcToken() + ",Refresh: " + cn.getReToken() + ",Authorised: " + cn.getAuthorised();
+                    for (User cn : user_local) {
+                        String log = "Id: "+cn.getID()+" , Name: " + cn.getName() + " , Second name: " + cn.getSecName()
+                                + ", Password: " + cn.getPassword() + ", Email: " + cn.getMail() + ", Icon id: "
+                                + cn.getIcon() + ", Birthday date: " + cn.getBdate() + ", Access: "
+                                + cn.getAcToken() + ", Refresh: " + cn.getReToken() + ", Authorised: " + cn.getAuthorised();
 
                         System.out.print("Name: ");
                         System.out.println(log);
                     }
 
+                    System.out.println("Reading all groups..");
+                    List<Groups> groups_local = db.getAllGroups();
+
+                    for (Groups cn : groups_local) {
+                        String log = "Id: " + cn.get_id() + " , GroupID: " + cn.get_groupID() + " , Secret: " + cn.get_secret() + " , Name: "
+                                + cn.get_nameGroup() + " , AdminID: " + cn.get_adminID() + ", IconID: " + cn.get_groupIconID();
+
+                        System.out.print("Name: ");
+                        System.out.println(log);
+                    }
 
                     openLeft();
 

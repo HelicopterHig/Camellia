@@ -33,11 +33,11 @@
 
 
         android:layout_marginBottom="65dp"
+
         android:background="@drawable/oval"
         android:contentDescription="TODO"
         android:padding="19dp"
         android:scaleType="centerInside"
-        android:src="@drawable/add1"
-        app:backgroundTint="#ff3366" />
+        android:src="@drawable/add1" />
 
 </android.support.design.widget.CoordinatorLayout>

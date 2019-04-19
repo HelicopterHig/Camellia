@@ -24,4 +24,11 @@
     <color name="red">#e94f4f</color>
     <color name="brown">#4e342e</color>
 
+        <color name="colorPrimary1">#3F51B5</color>
+        <color name="colorPrimaryDark1">#303F9F</color>
+        <color name="colorAccent1">#FF4081</color>
+
+        <color name="white">#FFFFFF</color>
+        <color name="colorRipple">#B0A6F5</color>
+
 </resources>
