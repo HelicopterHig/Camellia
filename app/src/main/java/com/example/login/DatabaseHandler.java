@@ -12,7 +12,7 @@ import java.util.List;
 public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandler {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "messenger22";
+    private static final String DATABASE_NAME = "messenger228";
 
 
     //User
@@ -31,9 +31,19 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
     //Groups
     private static final String TABLE_GROUPS = "groups";
     private static final String KEY_GROUP_ID = "id";
+    private static final String KEY_GROUP_GROUP_ID = "groupID";
+    private static final String KEY_GROUP_SECRET = "secret";
     private static final String KEY_GROUP_NAME = "group_name";
     private static final String KEY_GROUP_ICON_ID = "group_icon_id";
     private static final String KEY_GROUP_ADMIN_ID = "admin_id";
+
+    //Messages
+    private static final String TABLE_MESSAGE = "messages";
+    private static final String KEY_MESSAGE_ID = "id";
+    private static final String KEY_MESSAGE_TEXT = "text";
+    private static final String KEY_MESSAGE_DATETIME = "datetime";
+    private static final String KEY_MESSAGE_USER_ID = "userID";
+    private static final String KEY_MESSAGE_GROUP_ID = "groupID";
 
     private static final String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
             + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " text," + KEY_SECOND_NAME
@@ -43,7 +53,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
             + KEY_AUTHORISED + " numeric" + ")";
 
     private static final String CREATE_GROUPS_TABLE = "CREATE TABLE " + TABLE_GROUPS + " ("
-            + KEY_GROUP_ID + " INTEGER PRIMARY KEY, " + KEY_GROUP_NAME
+            + KEY_GROUP_ID + " INTEGER PRIMARY KEY, " + KEY_GROUP_GROUP_ID + " INTEGER, " + KEY_GROUP_SECRET + " INTEGER, " + KEY_GROUP_NAME
             + " TEXT, " + KEY_GROUP_ADMIN_ID + " INTEGER, " + KEY_GROUP_ICON_ID
             + " INTEGER)";
 
@@ -88,6 +98,8 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
+        values.put(KEY_GROUP_GROUP_ID, groups.get_groupID());
+        values.put(KEY_GROUP_SECRET, groups.get_secret());
         values.put(KEY_GROUP_NAME, groups.get_nameGroup());
         values.put(KEY_GROUP_ADMIN_ID, groups.get_adminID());
         values.put(KEY_GROUP_ICON_ID, groups.get_groupIconID());
@@ -121,7 +133,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
     public Groups getGroup(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_GROUPS, new String[] { KEY_GROUP_ID,
+        Cursor cursor = db.query(TABLE_GROUPS, new String[] { KEY_GROUP_ID, KEY_GROUP_GROUP_ID, KEY_GROUP_SECRET,
                         KEY_GROUP_NAME, KEY_GROUP_ICON_ID, KEY_GROUP_ADMIN_ID }, KEY_GROUP_ID + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
 
@@ -129,9 +141,9 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
             cursor.moveToFirst();
         }
 
-        Groups groups = new Groups(Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1), Integer.parseInt(cursor.getString(2)),
-                Integer.parseInt(cursor.getString(3)));
+        Groups groups = new Groups(Integer.parseInt(cursor.getString(0)), Integer.parseInt(cursor.getString(1)),
+                Integer.parseInt(cursor.getString(2)), cursor.getString(3),
+                Integer.parseInt(cursor.getString(4)), Integer.parseInt(cursor.getString(5)));
 
         return groups;
     }
@@ -176,9 +188,11 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
             do {
                 Groups groups = new Groups();
                 groups.set_id(Integer.parseInt(cursor.getString(0)));
-                groups.set_nameGroup(cursor.getString(1));
-                groups.set_adminID(Integer.parseInt(cursor.getString(2)));
-                groups.set_groupIconID(Integer.parseInt(cursor.getString(3)));
+                groups.set_groupID(Integer.parseInt(cursor.getString(1)));
+                groups.set_secret(Integer.parseInt(cursor.getString(2)));
+                groups.set_nameGroup(cursor.getString(3));
+                groups.set_adminID(Integer.parseInt(cursor.getString(4)));
+                groups.set_groupIconID(Integer.parseInt(cursor.getString(5)));
 
                 groupsList.add(groups);
             } while (cursor.moveToNext());
@@ -211,6 +225,8 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(KEY_GROUP_GROUP_ID, groups.get_groupID());
+        values.put(KEY_GROUP_SECRET, groups.get_secret());
         values.put(KEY_GROUP_NAME, groups.get_nameGroup());
         values.put(KEY_GROUP_ADMIN_ID, groups.get_adminID());
         values.put(KEY_GROUP_ICON_ID, groups.get_groupIconID());

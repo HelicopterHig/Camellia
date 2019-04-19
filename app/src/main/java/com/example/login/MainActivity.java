@@ -254,17 +254,17 @@ public class MainActivity extends AppCompatActivity {
                     db.addContact(new User(name, second_name, password, email, 2, birthday_date, access, refreshTokensMap, 1));
 
                     System.out.println("Inserting groups ..");
-                    db.addGroup(new Groups("Camellia", 1, 2));
+                    db.addGroup(new Groups(1, 1, "Camellia",1, 2));
 
                     System.out.println("Reading all contacts..");
                     List<User> user_local = db.getAllContacts();
 
                     // вывод таблицы для проверки
                     for (User cn : user_local) {
-                        String log = "Id: "+cn.getID()+" ,Name: " + cn.getName() + " ,Second name: " + cn.getSecName()
-                                + ",Password: " + cn.getPassword() + ",Email: " + cn.getMail() + ",Icon id: "
-                                + cn.getIcon() + ",Birthday date: " + cn.getBdate() + ",Access: "
-                                + cn.getAcToken() + ",Refresh: " + cn.getReToken() + ",Authorised: " + cn.getAuthorised();
+                        String log = "Id: "+cn.getID()+" , Name: " + cn.getName() + " , Second name: " + cn.getSecName()
+                                + ", Password: " + cn.getPassword() + ", Email: " + cn.getMail() + ", Icon id: "
+                                + cn.getIcon() + ", Birthday date: " + cn.getBdate() + ", Access: "
+                                + cn.getAcToken() + ", Refresh: " + cn.getReToken() + ", Authorised: " + cn.getAuthorised();
 
                         System.out.print("Name: ");
                         System.out.println(log);
@@ -274,8 +274,8 @@ public class MainActivity extends AppCompatActivity {
                     List<Groups> groups_local = db.getAllGroups();
 
                     for (Groups cn : groups_local) {
-                        String log = "Id: " + cn.get_id() + " , Name: " + cn.get_nameGroup() + " , AdminID: " + cn.get_adminID()
-                                + ", IconID: " + cn.get_groupIconID();
+                        String log = "Id: " + cn.get_id() + " , GroupID: " + cn.get_groupID() + " , Secret: " + cn.get_secret() + " , Name: "
+                                + cn.get_nameGroup() + " , AdminID: " + cn.get_adminID() + ", IconID: " + cn.get_groupIconID();
 
                         System.out.print("Name: ");
                         System.out.println(log);

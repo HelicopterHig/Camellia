@@ -3,20 +3,26 @@ package com.example.login;
 public class Groups {
 
     int _id;
+    int _groupID;
+    int _secret;
     String _name;
     int _adminID;
     int _groupIconID;
 
     public Groups(){}
 
-    public Groups(int _id, String _name, int _adminID, int _groupIconID){
+    public Groups(int _id, int _groupID, int _secret, String _name, int _adminID, int _groupIconID){
         this._id = _id;
+        this._groupID = _groupIconID;
+        this._secret = _secret;
         this._name = _name;
         this._groupIconID = _groupIconID;
         this._adminID = _adminID;
     }
 
-    public Groups(String _name, int _adminID, int _groupIconID){
+    public Groups(int _secret, int _groupID, String _name, int _adminID, int _groupIconID){
+        this._secret = _secret;
+        this._groupID = _groupID;
         this._name = _name;
         this._groupIconID = _groupIconID;
         this._adminID = _adminID;
@@ -27,6 +33,20 @@ public class Groups {
     }
     public void set_id(int _id) {
         this._id = _id;
+    }
+
+    public int get_groupID() {
+        return _groupID;
+    }
+    public void set_groupID(int _groupID) {
+        this._groupID = _groupID;
+    }
+
+    public int get_secret() {
+        return _secret;
+    }
+    public void set_secret(int _secret) {
+        this._secret = _secret;
     }
 
     public String get_nameGroup() {
