@@ -3,6 +3,7 @@ package com.example.login;
 public class Message {
 
     int _id;
+    int _messageID;
     String _text;
     String _datetime;
     int _userID;
@@ -10,15 +11,17 @@ public class Message {
 
     public Message(){}
 
-    public Message(int _id, String _text, String _datetime, int _userID, int _groupID){
+    public Message(int _id, int _messageID, String _text, String _datetime, int _userID, int _groupID){
         this._id = _id;
+        this._messageID = _messageID;
         this._text = _text;
         this._datetime = _datetime;
         this._userID = _userID;
         this._groupID = _groupID;
     }
 
-    public Message(String _text, String _datetime, int _userID, int _groupID){
+    public Message(int _messageID, String _text, String _datetime, int _userID, int _groupID){
+        this._messageID = _messageID;
         this._text = _text;
         this._datetime = _datetime;
         this._userID = _userID;
@@ -30,6 +33,13 @@ public class Message {
     }
     public void set_id(int _id) {
         this._id = _id;
+    }
+
+    public int get_messageID() {
+        return _messageID;
+    }
+    public void set_messageID(int _messageID) {
+        this._messageID = _messageID;
     }
 
     public int get_groupID() {
