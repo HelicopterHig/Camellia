@@ -14,17 +14,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="5dp"
-        android:text="@string/create_project"
+        android:text="@string/create_note"
         android:textSize="25sp"
         android:textStyle="bold"
         android:textColor="#FFFFFF"/>
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:background="@drawable/enter_photo"
-        android:layout_gravity="center"/>
+
 
     <EditText
         android:id="@+id/etEmail"
@@ -33,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="@string/title"
+        android:hint="@string/title_note"
         android:inputType="textEmailAddress"
         android:textColorHint="#FFFFFF"
         android:textColor="#FFFFFF"/>
@@ -76,23 +71,5 @@
             android:textColor="#FFFFFF"/>
 
     </RelativeLayout>
-    <!--Button
-        android:id="@+id/btnLogin"
-        style="@style/Base.Widget.AppCompat.Button.Borderless"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginTop="10dp"
-        android:text="@string/create"
-        android:textColor="@color/colorPink" />
 
-    <Button
-        android:id="@+id/button3"
-        style="@style/Base.Widget.AppCompat.Button.Borderless"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginTop="10dp"
-        android:text="@string/cancel"
-        android:textStyle="bold" /-->
 </LinearLayout>
