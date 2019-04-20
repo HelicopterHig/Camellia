@@ -1,0 +1,9 @@
+<application>
+  <component name="ParameterNameHintsSettings">
+    <blacklists>
+      <blacklist language="Java">
+        <added pattern="android.support.v7.app.AlertDialog.Builder.Builder(context)" />
+      </blacklist>
+    </blacklists>
+  </component>
+</application>
