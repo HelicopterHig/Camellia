@@ -123,6 +123,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
     public void addContact(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+        values.put(KEY_ID, user.getID());
         values.put(KEY_NAME, user.getName());
         values.put(KEY_SECOND_NAME, user.getSecName());
         values.put(KEY_PASSWORD, user.getPassword());

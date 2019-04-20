@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
     public static String server_name = "message.dlinkddns.com:8008";
 
     //для таблицы user
-    protected String user_id, name, second_name, email, password, birthday_date, access;
+    protected String name, second_name, email, password, birthday_date, access;
+    public int user_id;
 
     private static String TAG_USER = "user";
     private static String TAG_NAME = "name";
@@ -53,6 +54,16 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseHandler db;
 
+    private static String TAG_GROUP = "groups";
+    private static String TAG_ID = "id";
+    private static String TAG_NAME_GROUP = "name_group";
+    private static String TAG_ADMIN_USER_ID = "admin_user_id";
+    private static String TAG_GROUP_ICON_ID = "group_icon_id";
+
+    public String name_group_user;
+    public int id, admin_user_id, group_icon_id;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,11 +76,11 @@ public class MainActivity extends AppCompatActivity {
         db = new DatabaseHandler(this);
 
 
-        db.deleteAllContacts();
+        /*db.deleteAllContacts();
         db.deleteAllGroups();
         db.deleteAllMessages();
         db.deleteAllNotes();
-        db.deleteAllUNotes();
+        db.deleteAllUNotes();*/
 
         List<User> user_local = db.getAllContacts();
 
@@ -78,7 +89,11 @@ public class MainActivity extends AppCompatActivity {
             if (cn.getAuthorised() == 1){
                 openLeft();
             }else{
-                //db.deleteAll();
+                db.deleteAllContacts();
+                db.deleteAllGroups();
+                db.deleteAllMessages();
+                db.deleteAllNotes();
+                db.deleteAllUNotes();
             }
         }
 
@@ -104,6 +119,12 @@ public class MainActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                     try{
                         new SendLogin().execute();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+                    try{
+                        new LoadGroup().execute();
                     }catch (Exception e){
                         e.printStackTrace();
                     }
@@ -163,35 +184,14 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 0; i < 1; i++){
                         JSONObject schedule = user.getJSONObject(i);
 
-                        user_id = schedule.getString(TAG_USER_ID);
+                        user_id = Integer.parseInt(schedule.getString(TAG_USER_ID));
                         name = schedule.getString(TAG_NAME);
                         second_name = schedule.getString(TAG_SECOND_NAME);
                         password = schedule.getString(TAG_PASSWORD);
                         birthday_date = schedule.getString(TAG_BIRTHDAY_DATE);
                         email = schedule.getString(TAG_EMAIL);
                         access = schedule.getString(TAG_ACCESS);
-                        //refresh = schedule.getString(TAG_REFRESH);
-
-
                     }
-
-                    /*System.out.println("Inserting ..");
-                    // добавляем строку в бд
-                    db.addContact(new User(name, second_name, password, email, 2, birthday_date, access, "refresh", 1));
-
-                    System.out.println("Reading all contacts..");
-                    List<User> user_local = db.getAllContacts();
-
-                    // вывод таблицы для проверки
-                    for (User cn : user_local) {
-                        String log = "Id: "+cn.getID()+" ,Name: " + cn.getName() + " ,Second name: " + cn.getSecName()
-                                + ",Password: " + cn.getPassword() + ",Email: " + cn.getMail() + ",Icon id: "
-                                + cn.getIcon() + ",Birthday date: " + cn.getBdate() + ",Access: "
-                                + cn.getAcToken() + ",Refresh: " + cn.getReToken() + ",Authorised: " + cn.getAuthorised();
-
-                        System.out.print("Name: ");
-                        System.out.println(log);
-                    }*/
 
                     try {
                         new SendRefresh().execute();
@@ -254,10 +254,10 @@ public class MainActivity extends AppCompatActivity {
 
                     System.out.println("Inserting contacts ..");
                     // добавляем строку в бд
-                    db.addContact(new User(name, second_name, password, email, 2, birthday_date, access, refreshTokensMap, 1));
+                    db.addContact(new User(user_id, name, second_name, password, email, 2, birthday_date, access, refreshTokensMap, 1));
 
-                    System.out.println("Inserting groups ..");
-                    db.addGroup(new Groups(1, 1, "Camellia",1, 2));
+                    /*System.out.println("Inserting groups ..");
+                    db.addGroup(new Groups(1, 1, "Camellia",1, 2));*/
 
                     System.out.println("Inserting messages ..");
                     db.addMessage(new Message(1, "Hello.", "10.04.2019 14:00", 1, 1));
@@ -282,7 +282,7 @@ public class MainActivity extends AppCompatActivity {
                         System.out.println(log);
                     }
 
-                    System.out.println("Reading all groups..");
+                    /*System.out.println("Reading all groups..");
                     List<Groups> groups_local = db.getAllGroups();
 
                     for (Groups cn : groups_local) {
@@ -291,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
 
                         System.out.print("Group: ");
                         System.out.println(log);
-                    }
+                    }*/
 
                     System.out.println("Reading all messages..");
                     List<Message> message_local = db.getAllMessages();
@@ -340,6 +340,65 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
     }
+
+    class LoadGroup extends AsyncTask<Void, Void, Void>{
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try{
+                String myURL = "http://"+server_name+"/group_load.php?id="+user_id;
+
+                try{
+                    URL url = new URL(myURL);
+
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setReadTimeout(10000);
+                    conn.setConnectTimeout(15000);
+                    conn.setRequestMethod("GET");
+                    conn.setDoInput(true);
+
+                    conn.connect();
+
+                    InputStream stream = conn.getInputStream();
+
+                    String data = convertStreamToString(stream);
+
+                    JSONObject jsonObject = new JSONObject(data);
+
+                    JSONArray group = jsonObject.getJSONArray(TAG_GROUP);
+
+                    for (int i = group.length()-1; i > 0; i--){
+                        JSONObject schedule = group.getJSONObject(i);
+
+                        id = Integer.parseInt(schedule.getString(TAG_ID));
+                        name_group_user = schedule.getString(TAG_NAME_GROUP);
+                        admin_user_id = Integer.parseInt(schedule.getString(TAG_ADMIN_USER_ID));
+                        group_icon_id = Integer.parseInt(schedule.getString(TAG_GROUP_ICON_ID));
+
+                        db.addGroup(new Groups(2, id, name_group_user, admin_user_id, group_icon_id));
+                    }
+
+                    System.out.println("Reading all groups..");
+                    List<Groups> groups_local = db.getAllGroups();
+
+                    for (Groups cn : groups_local) {
+                        String log = "Id: " + cn.get_id() + " , GroupID: " + cn.get_groupID() + " , Secret: " + cn.get_secret() + " , Name: "
+                                + cn.get_nameGroup() + " , AdminID: " + cn.get_adminID() + ", IconID: " + cn.get_groupIconID();
+
+                        System.out.print("Group: ");
+                        System.out.println(log);
+                    }
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+    }
+
 
 
 

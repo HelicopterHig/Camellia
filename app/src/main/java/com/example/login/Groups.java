@@ -13,7 +13,7 @@ public class Groups {
 
     public Groups(int _id, int _groupID, int _secret, String _name, int _adminID, int _groupIconID){
         this._id = _id;
-        this._groupID = _groupIconID;
+        this._groupID = _groupID;
         this._secret = _secret;
         this._name = _name;
         this._groupIconID = _groupIconID;

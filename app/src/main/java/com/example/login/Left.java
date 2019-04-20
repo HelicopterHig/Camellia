@@ -66,14 +66,6 @@ public class Left extends AppCompatActivity
 
     public static String server_name = "message.dlinkddns.com:8008";
 
-    private static String TAG_GROUP = "groups";
-    private static String TAG_ID = "id";
-    private static String TAG_NAME_GROUP = "name_group";
-    private static String TAG_ADMIN_USER_ID = "admin_user_id";
-    private static String TAG_GROUP_ICON_ID = "group_icon_id";
-
-    public String id, name_group_user, admin_user_id, group_icon_id;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -250,6 +242,9 @@ public class Left extends AppCompatActivity
             Intent intent = new Intent(this, MainActivity.class);
             db.deleteAllContacts();
             db.deleteAllGroups();
+            db.deleteAllMessages();
+            db.deleteAllNotes();
+            db.deleteAllUNotes();
             mItemArrayList.clear();
             startActivity(intent);
             return false;
@@ -262,10 +257,6 @@ public class Left extends AppCompatActivity
 
     class CreateGroup extends AsyncTask<Void, Void, Void> {
         String resultString = null;
-
-        //public String server_name = "message.dlinkddns.com:8008";
-
-        //protected String name_group, user_id;
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -345,17 +336,12 @@ public class Left extends AppCompatActivity
 
     public void createList(){
         mItemArrayList = new ArrayList<>();
-        for (int i = 0; i < 1; i++) {
-            mItemArrayList.add(new Item(R.drawable.ic_android, "Line 1"));
-            //mItemArrayList.remove(1);
-            try {
-                new LoadGroup().execute();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
+
+        List<Groups> groups_local = db.getAllGroups();
+
+        for (Groups gr : groups_local){
+            mItemArrayList.add(new Item(R.drawable.ic_android, gr.get_nameGroup()));
         }
-        /*mItemArrayList.add(new Item(R.drawable.ic_android, "Line 2"));
-        mItemArrayList.add(new Item(R.drawable.ic_android, "Line 3"));*/
     }
 
     public void buildRecyclerView(){
@@ -367,81 +353,5 @@ public class Left extends AppCompatActivity
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
     }
-
-    class LoadGroup extends AsyncTask<Void, Void, Void>{
-        int sizeArray;
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            try{
-                String myURL = "http://"+server_name+"/group_load.php?id="+user_id_id;
-
-                try{
-                    URL url = new URL(myURL);
-
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setReadTimeout(10000);
-                    conn.setConnectTimeout(15000);
-                    conn.setRequestMethod("GET");
-                    conn.setDoInput(true);
-
-                    conn.connect();
-
-                    InputStream stream = conn.getInputStream();
-
-                    String data = convertStreamToString(stream);
-
-                    JSONObject jsonObject = new JSONObject(data);
-
-                    JSONArray group = jsonObject.getJSONArray(TAG_GROUP);
-
-                    for (int i = 0; i < group.length(); i++){
-                        JSONObject schedule = group.getJSONObject(i);
-
-                        id = schedule.getString(TAG_ID);
-                        name_group_user = schedule.getString(TAG_NAME_GROUP);
-                        admin_user_id = schedule.getString(TAG_ADMIN_USER_ID);
-                        group_icon_id = schedule.getString(TAG_GROUP_ICON_ID);
-
-                        insertItem(1, name_group_user);
-
-                    }
-
-                    /*System.out.println("Inserting ..");
-                    // добавляем строку в бд
-                    db.addContact(new Contact(name, second_name, password, email, 2, birthday_date, access, "refresh", 1));
-
-                    System.out.println("Reading all contacts..");
-                    List<Contact> user_local = db.getAllContacts();
-
-                    // вывод таблицы для проверки
-                    for (Contact cn : user_local) {
-                        String log = "Id: "+cn.getID()+" ,Name: " + cn.getName() + " ,Second name: " + cn.getSecName()
-                                + ",Password: " + cn.getPassword() + ",Email: " + cn.getMail() + ",Icon id: "
-                                + cn.getIcon() + ",Birthday date: " + cn.getBdate() + ",Access: "
-                                + cn.getAcToken() + ",Refresh: " + cn.getReToken() + ",Authorised: " + cn.getAuthorised();
-
-                        System.out.print("Name: ");
-                        System.out.println(log);
-                    }*/
-
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-    }
-
-    private String convertStreamToString(InputStream stream) {
-        java.util.Scanner s = new java.util.Scanner(stream).useDelimiter("\\A");
-        return s.hasNext() ? s.next() : "";
-    }
-
-
-
 }
 
