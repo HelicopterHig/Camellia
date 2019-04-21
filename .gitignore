@@ -21,3 +21,12 @@ androidStudioFirstRun.xml
 colors.scheme.xml
 debugger.xml
 github_settings.xml
+ui.lnf.xml
+androidEditors.xml
+find.xml
+gradle.experimental.xml
+gradle.settings.xml
+plugin_ui.xml
+studioFlags.xml
+baseRefactoring.xml
+path.macros.xml
