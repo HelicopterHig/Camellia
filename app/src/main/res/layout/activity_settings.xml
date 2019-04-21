@@ -310,7 +310,7 @@
         android:clickable="true"
         android:textColor="@color/white"
         android:background="@drawable/ripple_effect"
-        android:text="Cохранить"
+        android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

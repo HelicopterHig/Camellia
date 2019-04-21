@@ -50,6 +50,7 @@
             android:name=".CalendarActivity"
             android:theme="@style/AppTheme.SlidrActivityTheme" />
         <activity android:name=".activity_chat" />
+        <activity android:name=".NoteEditActivity"></activity>
 
 
     </application>

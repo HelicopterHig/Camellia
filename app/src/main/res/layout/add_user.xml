@@ -9,12 +9,12 @@
     android:background="#3f3b56">
 
     <TextView
-        android:id="@+id/textViewNote"
+        android:id="@+id/textViewAddUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="5dp"
-        android:text="@string/create_note"
+        android:text="@string/add_user"
         android:textSize="25sp"
         android:textStyle="bold"
         android:textColor="#FFFFFF"
@@ -22,13 +22,13 @@
 
 
     <EditText
-        android:id="@+id/NameNote"
+        android:id="@+id/AddIdUser"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="@string/title_note"
+        android:hint="@string/add_id_user"
         android:inputType="textEmailAddress"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF" />
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/NoteCreate"
+            android:id="@+id/AddUser"
             style="@style/Base.Widget.AppCompat.Button.Borderless"
             android:layout_width="228dp"
             android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
             android:textColor="@color/colorPink" />
 
         <Button
-            android:id="@+id/CancelNote"
+            android:id="@+id/CancelAddUser"
             style="@style/Base.Widget.AppCompat.Button.Borderless"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
