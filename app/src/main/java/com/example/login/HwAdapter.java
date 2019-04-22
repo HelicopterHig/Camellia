@@ -3,6 +3,7 @@ package com.example.login;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,7 +53,13 @@ class HwAdapter extends BaseAdapter {
     public HwAdapter(Activity context, GregorianCalendar monthCalendar,ArrayList<HomeCollection> date_collection_arr) {
         this.date_collection_arr=date_collection_arr;
         HwAdapter.day_string = new ArrayList<String>();
-        Locale.setDefault(Locale.US);
+       //Locale.setDefault(Locale.US);
+        Locale locale = new Locale("ru");
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        context.getBaseContext().getResources().updateConfiguration(config,
+                context.getBaseContext().getResources().getDisplayMetrics());
         month = monthCalendar;
         selectedDate = (GregorianCalendar) monthCalendar.clone();
         this.context = context;
@@ -62,6 +69,14 @@ class HwAdapter extends BaseAdapter {
         df = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         curentDateString = df.format(selectedDate.getTime());
         refreshDays();
+
+       /* Locale locale = new Locale("ru");
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        context.getBaseContext().getResources().updateConfiguration(config, null);
+        context.setTitle(R.string.app_name);*/
+
 
     }
 
@@ -138,7 +153,13 @@ class HwAdapter extends BaseAdapter {
         // clear items
         items.clear();
         day_string.clear();
-        Locale.setDefault(Locale.US);
+        //Locale.setDefault(Locale.US);
+        Locale locale = new Locale("ru");
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        context.getBaseContext().getResources().updateConfiguration(config,
+                context.getBaseContext().getResources().getDisplayMetrics());
         pmonth = (GregorianCalendar) month.clone();
         // month start day. ie; sun, mon, etc
         firstDay = month.get(GregorianCalendar.DAY_OF_WEEK);

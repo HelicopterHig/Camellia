@@ -10,6 +10,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import com.r0adkll.slidr.Slidr;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -31,17 +32,21 @@ import com.r0adkll.slidr.model.SlidrInterface;
 
 public class TskActivity extends AppCompatActivity {
 
+    private SlidrInterface slidr;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tsk);
+
+        slidr = Slidr.attach(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarTsk);
         setSupportActionBar(toolbar);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs_tsk);
-        tabLayout.addTab(tabLayout.newTab().setText("Заметки"));
-        tabLayout.addTab(tabLayout.newTab().setText("Пользователи"));
-        tabLayout.addTab(tabLayout.newTab().setText("Выполнение"));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.notttttes));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.Users));
+        tabLayout.addTab(tabLayout.newTab().setText(R.string.Achievementts));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.containerTsk);

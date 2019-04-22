@@ -1,32 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="@drawable/back_tab_min">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:background="#343434"
         android:id="@+id/ll_calendar"
-        android:orientation="vertical" >
+        android:layout_width="409dp"
+        android:layout_height="439dp"
+
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="8dp"
+
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/guideline41"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:id="@+id/header"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="10dp" >
+            android:padding="10dp">
 
             <FrameLayout
                 android:layout_width="45dp"
-                android:layout_height="45dp" >
+                android:layout_height="45dp">
 
                 <ImageButton
                     android:id="@+id/ib_prev"
@@ -41,14 +52,14 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" >
+                android:layout_weight="1">
 
                 <TextView
                     android:id="@+id/tv_month"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:text="January"
+                    android:text="@string/cal_month"
                     android:textColor="#FFFFFF"
                     android:textSize="20dip"
                     android:textStyle="bold" />
@@ -57,7 +68,7 @@
 
             <FrameLayout
                 android:layout_width="45dp"
-                android:layout_height="45dp" >
+                android:layout_height="45dp">
 
                 <ImageButton
                     android:id="@+id/Ib_next"
@@ -73,11 +84,11 @@
             android:id="@+id/tableRow1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="5dp"
             android:background="#ffffff"
             android:paddingLeft="2dp"
+            android:paddingTop="6dp"
             android:paddingRight="2dp"
-            android:paddingTop="6dp" >
+            android:paddingBottom="5dp">
 
             <TextView
                 android:id="@+id/TextView06"
@@ -85,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="S"
+                android:text="@string/wek_day7"
                 android:textColor="#4b4a4a" />
 
             <TextView
@@ -94,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="M"
+                android:text="@string/wek_day1"
                 android:textColor="#4b4a4a" />
 
             <TextView
@@ -103,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="T"
+                android:text="@string/wek_day2"
                 android:textColor="#4b4a4a" />
 
             <TextView
@@ -112,7 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="W"
+                android:text="@string/wek_day3"
                 android:textColor="#4b4a4a" />
 
             <TextView
@@ -121,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="T"
+                android:text="@string/wek_day4"
                 android:textColor="#4b4a4a" />
 
             <TextView
@@ -130,7 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="F"
+                android:text="@string/wek_day5"
                 android:textColor="#4b4a4a" />
 
             <TextView
@@ -139,7 +150,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="S"
+                android:text="@string/wek_day6"
                 android:textColor="#4b4a4a" />
 
         </TableRow>
@@ -162,32 +173,34 @@
             android:numColumns="7"
             android:padding="2dp"
             android:stretchMode="columnWidth"
-            android:textAlignment="gravity" >
+            android:textAlignment="gravity">
 
         </GridView>
 
+
     </LinearLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_below="@+id/ll_calendar"
-        android:layout_height="match_parent">
 
 
-        <Button
-            android:id="@+id/button_node_c"
-            android:layout_width="333dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="29dp"
-            android:layout_marginEnd="45dp"
-            android:layout_marginRight="45dp"
-            android:background="#F22890"
-            android:gravity="center"
-            android:text="Создать заметку" />
+    <Button
+        android:id="@+id/button_node_c"
+        android:layout_width="245dp"
+        android:layout_height="52dp"
 
-    </RelativeLayout>
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/ripple_effect1"
+        android:text="@string/cr_note"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline41" />
 
-</RelativeLayout>
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.69" />
+
+
+</android.support.constraint.ConstraintLayout>

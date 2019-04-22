@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Camellia</string>
+    <string name="title_activity_menu">menu</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_left">Мои проекты</string>
+    <string name="title_tsk">Доски</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_tabbed">Tabbed</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_tsk">TskActivity</string>
+    <string name="tab_text_1">Заметки</string>
+    <string name="tab_text_2">Пользователи</string>
+    <string name="tab_text_3">Выполнение</string>
+    <string name="crt_prjct">Создание проекта</string>
+    <string name="crt_note">Создание заметки</string>
+    <string name="error_login_msg">Пожалуйста введите логин и пароль</string>
+    <string name="error_reg_msg">Пожалуйста заполните данные</string>
+    <string name="success_reg_msg">Успешно</string>
+    <string name="success_login_msg">Добро пожаловать</string>
+
+    <string name="save">Сохранить</string>
+    <string name="create_project">Создать проект</string>
+    <string name="create_note">Создать заметку</string>
+    <string name="save_note">Ваша заметка сохранена!</string>
+    <string name="title">Название проекта</string>
+    <string name="add_user">Введите id пользователя</string>
+    <string name="add_id_user">id пользователя</string>
+    <string name="add_user_greetings">Вы добавили нового пользователя!</string>
+    <string name="title_note">Название заметки</string>
+    <string name="password">Password</string>
+    <string name="create">Создать</string>
+    <string name="cancel">Отмена</string>
+    <string name="todo">TODO</string>
+    <string name="want_to_write">Что вы хотите написать?</string>
+    <string name="sample_title">ChatKit for Android</string>
+
+    <string name="view">View</string>
+
+    <string name="sample_title_default">Default view</string>
+    <string name="sample_subtitle_default">Dialogs and messages with default style</string>
+    <string name="sample_title_attrs">Styled view</string>
+    <string name="sample_subtitle_attrs">Styled components using embedded attributes</string>
+    <string name="sample_title_layout">Custom layout</string>
+    <string name="sample_subtitle_layout">Custom layouts to change default views position</string>
+    <string name="sample_title_holder">Custom view holder</string>
+    <string name="sample_subtitle_holder">Custom view holder to extend default behaviour for a new features</string>
+    <string name="sample_title_custom_content">Custom content type</string>
+    <string name="sample_subtitle_custom_content">Custom message content on the example of voice message</string>
+
+    <string name="hint_enter_a_message">Type a message…</string>
+    <string name="on_log_click_message">Your custom long click handler</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_copy">Copy</string>
+    <string name="copied_message">Message copied!</string>
+
+    <string name="date_header_today">Today</string>
+    <string name="date_header_yesterday">Yesterday</string>
+
+    <string-array name="view_types_dialog">
+        <item name="image">Image (default)</item>
+        <item name="voice">Voice message (custom)</item>
+    </string-array>
+
+    <string name="start_typing_status">Start typing</string>
+    <string name="stop_typing_status">Stop typing</string>
+    <string name="cal_month">Январь</string>
+    <string name="wek_day7">Вс</string>
+    <string name="wek_day1">Пн</string>
+    <string name="wek_day2">Вт</string>
+    <string name="wek_day3">Ср</string>
+    <string name="wek_day4">Чт</string>
+    <string name="wek_day5">Пт</string>
+    <string name="wek_day6">Сб</string>
+    <string name="cr_note">Создать заметку</string>
+    <string name="add_note">Добавить заметку</string>
+    <string name="date_event">Дата события</string>
+    <string name="descript_event">Описание события</string>
+    <string name="event_type">Тип события</string>
+    <string name="nwme_event">Название события</string>
+
+    <string name="date_birth">Дата рождения</string>
+    <string name="sign_up">Зарегистрироваться</string>
+    <string name="psswrd">Пароль</string>
+    <string name="e_mail">Email</string>
+    <string name="surn_name">Фамилия</string>
+    <string name="name">Имя</string>
+    <string name="create_account">Создать аккаунт</string>
+    <string name="notific">Уведомления</string>
+    <string name="night_mode">Тёмная тема</string>
+    <string name="date_br">Дата рождения</string>
+    <string name="profile">Профиль</string>
+    <string name="settings">Настройки</string>
+    <string name="private_note">Личные заметки</string>
+    <string name="my_projects">Мои проекты</string>
+    <string name="calendar">Календарь</string>
+    <string name="log_out">Выйти</string>
+    <string name="your_note">Ваша заметка</string>
+    <string name="notes">Заметки</string>
+    <string name="log_in">Войти</string>
+    <string name="no_reg">Все ёще не зарегистрированы?</string>
+    <string name="create_acc">Создать аккаунт</string>
+    <string name="loginn">Логин</string>
+    <string name="notttttes">Заметки</string>
+    <string name="Users">Пользователи</string>
+    <string name="Achievementts">Выполнение</string>
+
+</resources>
+
+
+

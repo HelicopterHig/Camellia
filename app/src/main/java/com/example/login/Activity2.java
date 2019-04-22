@@ -45,13 +45,13 @@ public class Activity2 extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         // инициализируем анимацию
-        final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
+       // final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
 
         button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                view.startAnimation(animAlpha);
+                //view.startAnimation(animAlpha);
                 //openLeft();
 
                 EditText editText = (EditText)findViewById(R.id.editText);

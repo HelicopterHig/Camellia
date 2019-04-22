@@ -24,10 +24,8 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay"
-            app:title="Ваша заметка"
-            app:titleTextColor="#ffffff"
-
-            ></android.support.v7.widget.Toolbar>
+            app:title="@string/your_note"
+            app:titleTextColor="#ffffff"/>
 
 
         <EditText
