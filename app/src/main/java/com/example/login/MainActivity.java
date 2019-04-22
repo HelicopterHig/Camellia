@@ -98,12 +98,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //инициалицируем анимацию
-        final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
+      //  final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
         button = (Button)findViewById(R.id.button);
         button.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View view){
-                view.startAnimation(animAlpha);
+               // view.startAnimation(animAlpha);
 
                 editText = (EditText) findViewById(R.id.editText);
                 email = String.valueOf(editText.getText().toString());

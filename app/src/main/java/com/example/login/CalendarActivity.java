@@ -34,16 +34,18 @@ public class CalendarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
-/*
-        String languageToLoad  = "RUSSIAN"; // your language
-        Locale locale = new Locale(languageToLoad);
+
+       // String languageToLoad  = "RUSSIAN"; // your language
+        Locale locale = new Locale("ru");
         Locale.setDefault(locale);
         Configuration config = new Configuration();
-        config.locale = locale.GERMAN;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
-        setContentView(R.layout.activity_calendar);
-*/
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, null);
+        //getBaseContext().getResources().updateConfiguration(config,
+         //       getBaseContext().getResources().getDisplayMetrics());
+        //setContentView(R.layout.activity_calendar);
+        setTitle(R.string.app_name);
+
 
 
         HomeCollection.date_collection_arr=new ArrayList<HomeCollection>();

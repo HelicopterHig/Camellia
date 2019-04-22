@@ -65,7 +65,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
-        android:hint="Логин"
+        android:hint="@string/loginn"
 
         android:inputType="textEmailAddress"
         android:textColorHint="#FFFFFF"
@@ -102,7 +102,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
-        android:hint="Пароль"
+        android:hint="@string/psswrd"
 
         android:inputType="textPassword"
         android:textColorHint="#FFFFFF"
@@ -127,7 +127,7 @@
         android:layout_marginBottom="8dp"
         android:clickable="true"
         android:background="@drawable/ripple_effect"
-        android:text="Войти"
+        android:text="@string/log_in"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline13"
@@ -144,7 +144,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Все ёще не зарегистрированы?"
+        android:text="@string/no_reg"
         android:textColor="#ababab"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline17"
@@ -159,7 +159,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:clickable="true"
-        android:text=" Создать аккаунт"
+        android:text="@string/create_acc"
 
         android:textColor="#ffffff"
         android:textSize="13sp"
@@ -314,30 +314,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="658dp"
         app:barrierDirection="top"
-        app:layout_constraintTop_toTopOf="parent" /><![CDATA[
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    "
-    />
-
-
-
-
-
-
-
-
-]]>
+    <![CDATA[" />]]>
 </android.support.constraint.ConstraintLayout>

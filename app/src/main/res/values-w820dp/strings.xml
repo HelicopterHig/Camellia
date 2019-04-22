@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Camellia</string>
+    <string name="title_activity_menu">menu</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_left">My projects</string>
+    <string name="title_tsk">Boards</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_tabbed">Tabbed</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_tsk">TskActivity</string>
+    <string name="tab_text_1">Notes</string>
+    <string name="tab_text_2">Users</string>
+    <string name="tab_text_3">Achievement</string>
+    <string name="crt_prjct">Create project</string>
+    <string name="crt_note">Create note</string>
+    <string name="error_login_msg">Please enter your login and password</string>
+    <string name="error_reg_msg">Please enter the data</string>
+    <string name="success_reg_msg">Successfully</string>
+    <string name="success_login_msg">Welcome!</string>
+
+    <string name="save">Save</string>
+    <string name="create_project">Create project</string>
+    <string name="create_note">Create note</string>
+    <string name="save_note">Your note is saved!</string>
+    <string name="title">Project name</string>
+    <string name="add_user">Enter user id </string>
+    <string name="add_id_user">user id</string>
+    <string name="add_user_greetings">Your have added a new user!</string>
+    <string name="title_note">Note title</string>
+    <string name="password">Password</string>
+    <string name="create">Create</string>
+    <string name="cancel">Cancel</string>
+    <string name="todo">TODO</string>
+    <string name="want_to_write">Enter your note?</string>
+    <string name="sample_title">ChatKit for Android</string>
+
+    <string name="view">View</string>
+
+    <string name="sample_title_default">Default view</string>
+    <string name="sample_subtitle_default">Dialogs and messages with default style</string>
+    <string name="sample_title_attrs">Styled view</string>
+    <string name="sample_subtitle_attrs">Styled components using embedded attributes</string>
+    <string name="sample_title_layout">Custom layout</string>
+    <string name="sample_subtitle_layout">Custom layouts to change default views position</string>
+    <string name="sample_title_holder">Custom view holder</string>
+    <string name="sample_subtitle_holder">Custom view holder to extend default behaviour for a new features</string>
+    <string name="sample_title_custom_content">Custom content type</string>
+    <string name="sample_subtitle_custom_content">Custom message content on the example of voice message</string>
+
+    <string name="hint_enter_a_message">Type a message…</string>
+    <string name="on_log_click_message">Your custom long click handler</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_copy">Copy</string>
+    <string name="copied_message">Message copied!</string>
+
+    <string name="date_header_today">Today</string>
+    <string name="date_header_yesterday">Yesterday</string>
+
+    <string-array name="view_types_dialog">
+        <item name="image">Image (default)</item>
+        <item name="voice">Voice message (custom)</item>
+    </string-array>
+
+    <string name="start_typing_status">Start typing</string>
+    <string name="stop_typing_status">Stop typing</string>
+    <string name="cal_month">January</string>
+    <string name="wek_day7">Su</string>
+    <string name="wek_day1">Mo</string>
+    <string name="wek_day2">Tu</string>
+    <string name="wek_day3">We</string>
+    <string name="wek_day4">Th</string>
+    <string name="wek_day5">Fr</string>
+    <string name="wek_day6">Sa</string>
+    <string name="cr_note">Create note</string>
+    <string name="add_note">Add note</string>
+    <string name="date_event">Event date</string>
+    <string name="descript_event">Event description</string>
+    <string name="event_type">Event type</string>
+    <string name="nwme_event">Event name</string>
+
+    <string name="date_birth">Date of Birth</string>
+    <string name="sign_up">Sign up</string>
+    <string name="psswrd">Password</string>
+    <string name="e_mail">Email</string>
+    <string name="surn_name">Surname</string>
+    <string name="name">Name</string>
+    <string name="create_account">create account</string>
+    <string name="notific">Notifications</string>
+    <string name="night_mode">Night mode</string>
+    <string name="date_br">Date of Birth</string>
+    <string name="profile">Profile</string>
+    <string name="settings">Settings</string>
+    <string name="private_note">Private notes</string>
+    <string name="my_projects">My projects</string>
+    <string name="calendar">Calendar</string>
+    <string name="log_out">Log out</string>
+    <string name="your_note">Yout note</string>
+    <string name="notes">Notes</string>
+    <string name="log_in">Sign in</string>
+    <string name="no_reg">Are you unregistered?</string>
+    <string name="create_acc">Create account</string>
+    <string name="loginn">Log in</string>
+    <string name="notttttes">Notes</string>
+    <string name="Users">Users</string>
+    <string name="Achievementts">Achievement</string>
+
+</resources>
+
+
+

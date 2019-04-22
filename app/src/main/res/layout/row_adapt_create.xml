@@ -15,7 +15,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
-        android:hint="Название события"
+        android:hint="@string/nwme_event"
         android:paddingLeft="10dp"
         android:textColorHint="#FFFFFF"
         android:textColor="#FFFFFF"
@@ -30,7 +30,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
-        android:hint="Тип события"
+        android:hint="@string/event_type"
         android:paddingLeft="10dp"
         android:textColorHint="#FFFFFF"
         android:textColor="#FFFFFF"
@@ -47,7 +47,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
-        android:hint="Описание события"
+        android:hint="@string/descript_event"
         android:paddingLeft="10dp"
         android:textColorHint="#FFFFFF"
         android:textColor="#FFFFFF"
@@ -62,7 +62,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
-        android:hint="Дата события"
+        android:hint="@string/date_event"
         android:paddingLeft="10dp"
         android:textColorHint="#FFFFFF"
         android:textColor="#FFFFFF"
@@ -71,19 +71,24 @@
 
     <Button
         android:id="@+id/button_node_c_1"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_data_c"
         android:layout_marginTop="20dp"
-        android:background="@color/colorPink"
-        android:text="Добавить заметку" />
+        android:background="@drawable/ripple_effect1"
+
+        android:text="@string/add_note" />
 
     <Button
         android:id="@+id/button_exit_c"
+        android:background="@drawable/ripple_effect2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/button_node_c_1"
-        android:text="Отмена" />
+
+        android:text="@string/cancel" />
 
 
 </RelativeLayout>
