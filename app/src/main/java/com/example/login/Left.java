@@ -25,6 +25,8 @@ import android.widget.ImageButton;
 import android.widget.Button;
 import android.content.Intent;
 
+import com.example.login.features.demo.styled.StyledMessagesActivity;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -49,7 +51,7 @@ public class Left extends AppCompatActivity
     int number = 0;
 
     protected String user_id_id, name, second_name, email, password, birthday_date;
-    protected String name_group;
+    protected String name_group, secreteKey;
     int user_id;
 
     TextView textView_name;
@@ -58,7 +60,8 @@ public class Left extends AppCompatActivity
     EditText editText;
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    //private RecyclerView.Adapter mAdapter;
+    private DialogAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<Item> mItemArrayList;
 
@@ -133,20 +136,20 @@ public class Left extends AppCompatActivity
                 mLogin.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
-                        int position = 0;
-
                         name_group = String.valueOf(editText.getText().toString());
+
+                        secreteKey = GenerateKey.generateKey();
 
                         try{
                             new CreateGroup().execute();
+                            db.addGroup(new Groups(2, 1, name_group, user_id, 1));
                         }catch (Exception e){
                             e.printStackTrace();
                         }
 
                         dialog.dismiss();
 
-                        insertItem(position, name_group);
+                        insertItem(0, name_group);
                     }
                 });
             }
@@ -261,7 +264,7 @@ public class Left extends AppCompatActivity
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                String myURL = "http://" + server_name + "/group.php?id=null&name_group=" + name_group + "&admin_user_id=" + user_id + "&group_icon_id=1";
+                String myURL = "http://" + server_name + "/group.php?id=null&name_group=" + name_group + "&admin_user_id=" + user_id + "&group_icon_id=1" + "&secrete_key=" + secreteKey;
                 String parammetrs = "?id=null&name_group=" + name_group + "&admin_user_id=" + user_id + "&group_icon_id=1";
                 byte[] data = null;
                 InputStream is = null;
@@ -331,7 +334,12 @@ public class Left extends AppCompatActivity
 
     public void removeItem(int position){
         mItemArrayList.remove(position);
-        mAdapter.notifyItemRemoved(1);
+        mAdapter.notifyItemRemoved(position);
+    }
+
+    public void changeItem(int position, String text){
+        mItemArrayList.get(position).changeText1(text);
+        mAdapter.notifyItemChanged(position);
     }
 
     public void createList(){
@@ -352,6 +360,15 @@ public class Left extends AppCompatActivity
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickListener(new DialogAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                //changeItem(position, "Clicked");
+                Intent intent = new Intent(Left.this, activity_chat.class);
+                intent.putExtra("group_id", position);
+                startActivity(intent);
+            }
+        });
     }
 }
-
