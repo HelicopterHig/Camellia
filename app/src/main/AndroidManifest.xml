@@ -23,7 +23,7 @@
         <activity
             android:name=".TskActivity"
             android:label="@string/title_activity_tsk"
-            android:theme="@style/AppTheme.SlidrActivityTheme"></activity>
+            android:theme="@style/AppTheme"></activity>
 
         <activity
             android:name=".Splash"
@@ -45,10 +45,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SettingsActivity"
-            android:theme="@style/AppTheme.SlidrActivityTheme" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".CalendarActivity"
-            android:theme="@style/AppTheme.SlidrActivityTheme" />
+            android:theme="@style/AppTheme" />
         <activity android:name=".activity_chat" />
         <activity android:name=".NoteEditActivity"></activity>
 

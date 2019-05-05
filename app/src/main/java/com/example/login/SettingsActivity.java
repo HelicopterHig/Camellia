@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 
 import com.r0adkll.slidr.Slidr;
 import com.r0adkll.slidr.model.SlidrInterface;
@@ -28,6 +30,9 @@ import java.util.List;
 
 public class SettingsActivity extends AppCompatActivity {
     private Button button;
+
+    private Switch myswitch;
+    SharedPref sharedpref;
 
     private SlidrInterface slidr;
     public static String server_name = "message.dlinkddns.com:8008";
@@ -55,13 +60,36 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedpref = new SharedPref(this);
+        if(sharedpref.loadNightModeState()==true) {
+            setTheme(R.style.darktheme);
+        }
+        else  setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+     //   getSupportActionBar().hide();
         slidr = Slidr.attach(this);
 
-        final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
+        myswitch=(Switch)findViewById(R.id.myswitch);
+        if (sharedpref.loadNightModeState()==true) {
+            myswitch.setChecked(true);
+        }
+        myswitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    sharedpref.setNightModeState(true);
+                    restartApp();
+                }
+                else {
+                    sharedpref.setNightModeState(false);
+                    restartApp();
+                }
+            }
+        });
+       // final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
 
         db = new DatabaseHandler(this);
 
@@ -94,7 +122,7 @@ public class SettingsActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                view.startAnimation(animAlpha);
+                //view.startAnimation(animAlpha);
 
                 editText_name = (EditText)findViewById(R.id.editText9);
                 name = String.valueOf(editText_name.getText().toString());
@@ -264,6 +292,12 @@ public class SettingsActivity extends AppCompatActivity {
     private String convertStreamToString(InputStream stream) {
         java.util.Scanner s = new java.util.Scanner(stream).useDelimiter("\\A");
         return s.hasNext() ? s.next() : "";
+    }
+
+    public void restartApp () {
+        Intent i = new Intent(getApplicationContext(),SettingsActivity.class);
+        startActivity(i);
+        finish();
     }
 
 }

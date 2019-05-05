@@ -23,7 +23,7 @@
             android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay"
+            app:popupTheme="@style/AppTheme"
             app:title="@string/your_note"
             app:titleTextColor="#ffffff"/>
 

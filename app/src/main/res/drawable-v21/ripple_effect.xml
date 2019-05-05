@@ -7,7 +7,7 @@
     <item>
         <shape android:shape="rectangle">
             <corners android:radius="3dp" />
-            <solid android:color="@color/colorPrimary"/>
+
             <corners
                 android:bottomLeftRadius="30dp"
                 android:bottomRightRadius="30dp"
@@ -15,7 +15,7 @@
                 android:topLeftRadius="30dp"
                 android:topRightRadius="30dp" />
 
-            <solid android:color="@color/colorPink" />
+            <solid android:color="?attr/buttoncolor"  />
 
             <padding
                 android:bottom="0dp"

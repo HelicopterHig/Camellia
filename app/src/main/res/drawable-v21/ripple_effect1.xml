@@ -12,7 +12,7 @@
                 android:bottomRightRadius="10dp"/>
 
 
-            <solid android:color="@color/colorPink" />
+            <solid android:color="?attr/buttoncolor"/>
 
             <!--padding
                 android:bottom="0dp"

@@ -21,12 +21,20 @@ public class Splash extends AppCompatActivity{
     private ProgressBar progressBar;
     private int i=0;
     TextView textView;
+    SharedPref sharedpref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedpref = new SharedPref(this);
+        if(sharedpref.loadNightModeState()==true) {
+            setTheme(R.style.darktheme);
+        }
+        else  setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_splash);
+
+//        getSupportActionBar().hide();
 
         progressBar=(ProgressBar)findViewById(R.id.progressBar);
         progressBar.setProgress(0);
@@ -58,6 +66,13 @@ public class Splash extends AppCompatActivity{
                 }
             }
         }, 0, period);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+
     }
 
 }

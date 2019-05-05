@@ -1,12 +1,12 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+    <!--style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!- Customize your theme here. -->
+        <!--item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">#646675</item>
-    </style>
+    </style-->
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -52,15 +52,22 @@
         <item name="android:imeActionId">1</item>
     </style>
 
-    <style name="AppTheme.SlidrActivityTheme">
+
+    <style name="NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <!--style name="AppTheme.SlidrActivityTheme">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
 
-    </style>
+    </style-->
     <style name="Circle">
 
     </style>
-    <style name="BlueTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!--style name="BlueTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/cornflower_blue</item>
         <item name="colorPrimaryDark">@color/cornflower_blue_dark</item>
         <item name="colorAccent">@color/cornflower_blue</item>
@@ -71,15 +78,84 @@
         <item name="colorPrimaryDark">@color/cornflower_blue_dark</item>
         <item name="colorAccent">@color/cornflower_blue</item>
 
-        <!--item name="android:windowTranslucentStatus">true</item-->
+        <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowActionBarOverlay">true</item>
         <item name="android:windowContentOverlay">@null</item>
-    </style>
+    </style-->
 
     <style name="GreenTheme" parent="Theme.AppCompat.Light.DarkActionBar">
     <item name="colorPrimary">@color/green</item>
     <item name="colorPrimaryDark">@color/green_dark</item>
     <item name="colorAccent">@color/green</item>
     </style>
+
+    <style name="SwitchCompatTheme" >
+        <item name="colorControlActivated">@color/colorPink</item>
+
+    </style>
+
+    <style name="CTYL" >
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+
+    </style>
+
+    <!-- Base application theme. -->
+    <!-- Light/Day Mode theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#3f3b57</item>
+        <item name="colorPrimaryDark">#3f3b57</item>
+        <item name="colorAccent">#646675</item>
+        <item name="backgroundcolor">#fcfcfc</item>
+        <item name="cardbackground">#ffffff</item>
+        <item name="textcolor">#000000</item>
+        <item name="tintcolor">#000000</item>
+        <item name="whitetext">#ffffff</item>
+        <item name="titletext">#ffffff</item>
+        <item name="textHint">#ffffff</item>
+
+        <item name="buttoncolor">#FF3366</item>
+        <item name="colorToolBar">#3f3b57</item>
+        <item name="whitebutton">#ffffff</item>
+
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <!-- Night / dark  Mode theme. -->
+    <style name="darktheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#212121</item>
+        <item name="colorPrimaryDark">#000000</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="backgroundcolor">#303030</item>
+        <item name="cardbackground">#424242</item>
+        <item name="textcolor">#ffffff</item>
+        <item name="tintcolor">#ffffff</item>
+        <item name="whitetext">#ababab</item>
+        <item name="titletext">#ffffff</item>
+        <item name="textHint">#ffffff</item>
+
+        <item name="buttoncolor">#B82549</item>
+        <item name="colorToolBar">#212121</item>
+        <item name="whitebutton">#424242</item>
+
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+    </style>
+
+
+    <style name="WindowAnimationTransition">
+        <item name="android:windowEnterAnimation" >@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+
+    </style>
+
 
 </resources>

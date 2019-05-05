@@ -84,11 +84,11 @@
             android:id="@+id/tableRow1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ffffff"
             android:paddingLeft="2dp"
             android:paddingTop="6dp"
             android:paddingRight="2dp"
-            android:paddingBottom="5dp">
+            android:paddingBottom="5dp"
+            android:background= "?attr/backgroundcolor">
 
             <TextView
                 android:id="@+id/TextView06"
@@ -97,7 +97,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/wek_day7"
-                android:textColor="#4b4a4a" />
+                android:textColor="?attr/titletext" />
 
             <TextView
                 android:id="@+id/TextView05"
@@ -106,7 +106,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/wek_day1"
-                android:textColor="#4b4a4a" />
+                android:textColor="?attr/titletext" />
 
             <TextView
                 android:id="@+id/TextView04"
@@ -115,7 +115,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/wek_day2"
-                android:textColor="#4b4a4a" />
+                android:textColor="?attr/titletext" />
 
             <TextView
                 android:id="@+id/TextView03"
@@ -124,7 +124,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/wek_day3"
-                android:textColor="#4b4a4a" />
+                android:textColor="?attr/titletext" />
 
             <TextView
                 android:id="@+id/TextView02"
@@ -133,7 +133,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/wek_day4"
-                android:textColor="#4b4a4a" />
+                android:textColor="?attr/titletext" />
 
             <TextView
                 android:id="@+id/TextView01"
@@ -142,7 +142,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/wek_day5"
-                android:textColor="#4b4a4a" />
+                android:textColor="?attr/titletext" />
 
             <TextView
                 android:id="@+id/textView1"
@@ -151,7 +151,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/wek_day6"
-                android:textColor="#4b4a4a" />
+                android:textColor="?attr/titletext" />
 
         </TableRow>
 

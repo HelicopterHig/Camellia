@@ -153,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
     public void openActivity2(){
         Intent intent  = new Intent(this , Activity2.class);
         startActivity(intent);
+
     }
 
     class SendLogin extends AsyncTask<Void, Void, Void>{
@@ -415,5 +416,14 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("password", password);
 
         startActivity(intent);
+        finish();
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+
     }
 }

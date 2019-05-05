@@ -32,10 +32,18 @@ import com.r0adkll.slidr.model.SlidrInterface;
 
 public class TskActivity extends AppCompatActivity {
 
+    SharedPref sharedpref;
+
     private SlidrInterface slidr;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        sharedpref = new SharedPref(this);
+        if(sharedpref.loadNightModeState()==true) {
+            setTheme(R.style.darktheme);
+        }
+        else  setTheme(R.style.AppTheme);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tsk);
 
@@ -45,6 +53,7 @@ public class TskActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs_tsk);
         tabLayout.addTab(tabLayout.newTab().setText(R.string.notttttes));
+
         tabLayout.addTab(tabLayout.newTab().setText(R.string.Users));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.Achievementts));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);

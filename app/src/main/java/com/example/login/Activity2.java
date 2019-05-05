@@ -95,6 +95,7 @@ public class Activity2 extends AppCompatActivity {
     public void openLogin(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+
     }
    /* public void openLeft() {
         Intent intent = new Intent(this, Left.class);

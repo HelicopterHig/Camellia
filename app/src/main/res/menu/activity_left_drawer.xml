@@ -1,28 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background= "?attr/backgroundcolor"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:checkableBehavior="single"
+        android:enabled="true">
         <item
             android:id="@+id/esc"
             android:icon="@drawable/esc"
-            android:title="@string/private_note" />
+
+
+            android:title="@string/private_note"
+            />
         <item
             android:id="@+id/pro"
             android:icon="@drawable/profil"
+
+
             android:title="@string/my_projects" />
         <item
             android:id="@+id/cal"
             android:icon="@drawable/calen"
+
+
             android:title="@string/calendar" />
         <item
             android:id="@+id/sett"
             android:icon="@drawable/sett"
+
+
             android:title="@string/settings" />
         <item
             android:id="@+id/logout"
             android:icon="@drawable/logout"
+
+
             android:title="@string/log_out" />
     </group>
 

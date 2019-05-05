@@ -6,18 +6,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+
     tools:openDrawer="start">
 
     <include
         layout="@layout/app_bar_left"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        />
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        app:itemTextColor="?attr/textcolor"
+        app:itemIconTint="?attr/textcolor"
+        android:background="?attr/backgroundcolor"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_left"
         app:menu="@menu/activity_left_drawer" />

@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="@color/colorRipple">     <!-- ripple color -->
+    xmlns:tools="http://schemas.android.com/tools"
+    android:color="@color/colorRipple"
+    tools:ignore="NewApi">     <!-- ripple color -->
 
     <!-- for Button -->
     <item>
         <shape android:shape="rectangle">
             <corners android:radius="3dp" />
-            <solid android:color="@color/colorPrimary"/>
+
             <corners
                 android:bottomLeftRadius="30dp"
                 android:bottomRightRadius="30dp"
@@ -15,7 +17,7 @@
                 android:topLeftRadius="30dp"
                 android:topRightRadius="30dp" />
 
-            <solid android:color="@color/colorPink" />
+            <solid android:color="?attr/buttoncolor" />
 
             <padding
                 android:bottom="0dp"
