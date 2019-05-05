@@ -29,8 +29,15 @@ public class CalendarActivity extends AppCompatActivity {
     protected String name;
     EditText edit1;
 
+    SharedPref sharedpref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedpref = new SharedPref(this);
+        if(sharedpref.loadNightModeState()==true) {
+            setTheme(R.style.darktheme);
+        }
+        else  setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
