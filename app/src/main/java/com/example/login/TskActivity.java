@@ -3,6 +3,8 @@ package com.example.login;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -54,6 +56,7 @@ public class TskActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs_tsk);
         tabLayout.addTab(tabLayout.newTab().setText(R.string.notttttes));
 
+     //   getSupportActionBar().setBackgroundDrawable(   );
         tabLayout.addTab(tabLayout.newTab().setText(R.string.Users));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.Achievementts));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);

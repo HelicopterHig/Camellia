@@ -16,7 +16,8 @@
         android:layout_height="wrap_content"
 
         android:paddingTop="@dimen/appbar_padding_top"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        app:elevation="0dp">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbarTsk"
@@ -24,10 +25,11 @@
             android:layout_height="?attr/actionBarSize"
             android:layout_weight="1"
 
+            android:theme="@style/AppTheme"
             app:layout_scrollFlags="scroll|enterAlways"
-            android:background="?attr/colorToolBar"
             app:title="@string/title_tsk"
-            app:titleTextColor="?attr/whitetext">
+            app:titleTextColor="?attr/whitetext"
+            app:elevation="0dp">
 
         </android.support.v7.widget.Toolbar>
 
@@ -36,9 +38,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/toolbarTsk"
+            android:background="?attr/colorPrimary"
             android:elevation="6dp"
             app:tabMode="fixed"
-            android:background="?attr/colorToolBar"
             app:titleTextColor="?attr/whitetext">
 
 
