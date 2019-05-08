@@ -18,6 +18,7 @@ public class activity_chat extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager_mess;
     private ArrayList<ItemChat> itemChatArrayList;
 
+    SharedPref sharedpref;
     EditText message;
     ImageButton fab_send;
     String text_mess;
@@ -34,6 +35,10 @@ public class activity_chat extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedpref = new SharedPref(this);
+        if (sharedpref.loadNightModeState() == true) {
+            setTheme(R.style.darktheme);
+        } else setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
