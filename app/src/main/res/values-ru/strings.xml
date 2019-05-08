@@ -98,6 +98,7 @@
     <string name="date_br">Дата рождения</string>
     <string name="profile">Профиль</string>
     <string name="settings">Настройки</string>
+    <string name="about">About Camellia</string>
     <string name="private_note">Личные заметки</string>
     <string name="my_projects">Мои проекты</string>
     <string name="calendar">Календарь</string>
@@ -111,7 +112,13 @@
     <string name="notttttes">Заметки</string>
     <string name="Users">Пользователи</string>
     <string name="Achievementts">Выполнение</string>
-
+    <string name="Team">Команда разработчиков:</string>
+    <string name="Nikita">Трофимов Никита</string>
+    <string name="Andrew">Горбачев Андрей</string>
+    <string name="Rustam">Сагдеев Рустам</string>
+    <string name="Dmitry">Алексеев Дмитрий</string>
+    <string name="Max">Ковалев Максим</string>
+    <string name="Co"> Все права защищены. 2019 © Copyright </string>
 </resources>
 
 

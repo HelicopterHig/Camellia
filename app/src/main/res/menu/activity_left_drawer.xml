@@ -32,6 +32,8 @@
 
 
             android:title="@string/settings" />
+
+
         <item
             android:id="@+id/logout"
             android:icon="@drawable/logout"
@@ -40,6 +42,19 @@
             android:title="@string/log_out" />
     </group>
 
+
+
+
+<item android:title="">
+    <menu>
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/sharp_copyright_24"
+
+
+            android:title="@string/about" />
+    </menu>
+</item>
 
 
 </menu>

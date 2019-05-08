@@ -259,7 +259,13 @@ public class Left extends AppCompatActivity
             mItemArrayList.clear();
             startActivity(intent);
             return false;
-        }
+
+        } else if (id == R.id.about) {
+        Intent intent = new Intent(this, About_activity.class);
+
+        startActivity(intent);
+        return false;
+    }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

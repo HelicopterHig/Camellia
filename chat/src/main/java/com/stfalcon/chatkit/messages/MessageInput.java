@@ -150,7 +150,7 @@ public class MessageInput extends RelativeLayout
 
     /**
      * This method is called to notify you that, within s,
-     * the count characters beginning at start are about to be replaced by new text with length after.
+     * the count characters beginning at start are about_activity to be replaced by new text with length after.
      */
     @Override
     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

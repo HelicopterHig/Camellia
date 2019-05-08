@@ -97,6 +97,7 @@
     <string name="date_br">Date of Birth</string>
     <string name="profile">Profile</string>
     <string name="settings">Settings</string>
+    <string name="about">About Camellia</string>
     <string name="private_note">Private notes</string>
     <string name="my_projects">My projects</string>
     <string name="calendar">Calendar</string>
@@ -110,7 +111,13 @@
     <string name="notttttes">Notes</string>
     <string name="Users">Users</string>
     <string name="Achievementts">Achievement</string>
-
+    <string name="Team">Development team:</string>
+    <string name="Nikita">Trofimov Nikita</string>
+    <string name="Andrew">Gorbachev Andrew</string>
+    <string name="Rustam">Sagdeev Rustam</string>
+    <string name="Dmitry">Alekseev Dmitriy</string>
+    <string name="Max">Kovalev Maxim</string>
+    <string name="Co"> All rights reserved. 2019 © Copyright </string>
 </resources>
 
 
