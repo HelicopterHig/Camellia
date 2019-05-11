@@ -37,6 +37,8 @@
     <string name="title_note">Note title</string>
     <string name="password">Password</string>
     <string name="create">Create</string>
+    <string name="ok">OK</string>
+    <string name="check">Check your Email, and enter a verification code in the field below.</string>
     <string name="cancel">Cancel</string>
     <string name="todo">TODO</string>
     <string name="want_to_write">Enter your note?</string>

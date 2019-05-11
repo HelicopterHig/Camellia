@@ -113,5 +113,4 @@ public class User {
     public void setAuthorised(int _authorised){
         this._authorised = _authorised;
     }
-
 }

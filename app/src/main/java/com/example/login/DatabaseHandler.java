@@ -72,7 +72,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
             + " text," + KEY_PASSWORD + " text," + KEY_MAIL + " text,"
             + KEY_ICON_ID  + " integer," + KEY_BIRTHDAY_DATE + " numeric,"
             + KEY_ACCESS_TOKEN + " text," + KEY_REFRESH_TOKEN + " text,"
-            + KEY_AUTHORISED + " numeric" + ")";
+            + KEY_AUTHORISED + " numeric)";
 
     private static final String CREATE_GROUPS_TABLE = "CREATE TABLE " + TABLE_GROUPS + " ("
             + KEY_GROUP_ID + " INTEGER PRIMARY KEY, " + KEY_GROUP_GROUP_ID + " INTEGER, " + KEY_GROUP_SECRET + " INTEGER, " + KEY_GROUP_NAME
@@ -299,6 +299,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
                 user.setAcToken(cursor.getString(7));
                 user.setReToken(cursor.getString(8));
                 user.setAuthorised(cursor.getInt(9));
+
                 userList.add(user);
             } while (cursor.moveToNext());
         }

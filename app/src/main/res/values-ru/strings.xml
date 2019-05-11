@@ -37,6 +37,8 @@
     <string name="title_note">Название заметки</string>
     <string name="password">Password</string>
     <string name="create">Создать</string>
+    <string name="ok">ОК</string>
+    <string name="check">Проверьте свою электронную почту, и введите проверочный код в поле ниже.</string>
     <string name="cancel">Отмена</string>
     <string name="todo">TODO</string>
     <string name="want_to_write">Что вы хотите написать?</string>
