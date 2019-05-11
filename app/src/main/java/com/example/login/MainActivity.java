@@ -7,10 +7,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.login.LocalDataBase.DatabaseHandler;
+import com.example.login.LocalDataBase.Groups;
+import com.example.login.LocalDataBase.Message;
+import com.example.login.LocalDataBase.Note;
+import com.example.login.LocalDataBase.UNote;
+import com.example.login.LocalDataBase.User;
+import com.example.login.LocalDataBase.User_group;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -75,13 +81,6 @@ public class MainActivity extends AppCompatActivity {
         // инициализируем бд
         db = new DatabaseHandler(this);
 
-
-        /*db.deleteAllContacts();
-        db.deleteAllGroups();
-        db.deleteAllMessages();
-        db.deleteAllNotes();
-        db.deleteAllUNotes();*/
-
         List<User> user_local = db.getAllContacts();
 
         // вывод таблицы для проверки
@@ -94,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 db.deleteAllMessages();
                 db.deleteAllNotes();
                 db.deleteAllUNotes();
+                db.deleteAllUser_groups();
             }
         }
 
@@ -269,6 +269,9 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("Inserting unotes ..");
                     db.addUNote(new UNote(1, "Do something.", "20.04.2019", "I need to do something.", true, 1));
 
+                    System.out.println("Inserting user-groups..");
+                    db.addUser_group(new User_group(1,1));
+
                     System.out.println("Reading all contacts..");
                     List<User> user_local = db.getAllContacts();
 
@@ -326,6 +329,16 @@ public class MainActivity extends AppCompatActivity {
                                 + ", UserID: " + cn.get_userID();
 
                         System.out.print("Unote: ");
+                        System.out.println(log);
+                    }
+
+                    System.out.println("Reading all user_groups..");
+                    List<User_group> user_group_local = db.getAllUser_groups();
+
+                    for (User_group cn : user_group_local) {
+                        String log = "GroupID: " + cn.get_group_id() + " , UserID: " + cn.get_user_id();
+
+                        System.out.print("User_group: ");
                         System.out.println(log);
                     }
 

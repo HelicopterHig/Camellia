@@ -1,17 +1,19 @@
 package com.example.login;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
+import com.example.login.LocalDataBase.DatabaseHandler;
+import com.example.login.LocalDataBase.Message;
+import com.example.login.LocalDataBase.User;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

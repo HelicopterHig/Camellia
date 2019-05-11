@@ -1,34 +1,37 @@
-package com.example.login;
+package com.example.login.LocalDataBase;
 
-public class UNote {
+public class Note {
 
     int _id;
-    int _unoteID;
+    int _noteID;
     String _name;
     String _date;
     String _description;
     Boolean _done;
     int _userID;
+    int _groupID;
 
-    public UNote(){}
+    public Note(){}
 
-    public UNote(int _id, int _unoteID, String _name, String _date, String _description, boolean _done, int _userID){
+    public Note(int _id, int _noteID, String _name, String _date, String _description, boolean _done, int _userID, int _groupID){
         this._id = _id;
-        this._unoteID = _unoteID;
+        this._noteID = _noteID;
         this._name = _name;
         this._date = _date;
         this._description = _description;
         this._done = _done;
         this._userID = _userID;
+        this._groupID = _groupID;
     }
 
-    public UNote(int _unoteID, String _name, String _date, String _description, boolean _done, int _userID){
-        this._unoteID = _unoteID;
+    public Note(int _noteID, String _name, String _date, String _description, boolean _done, int _userID, int _groupID){
+        this._noteID = _noteID;
         this._name = _name;
         this._date = _date;
         this._description = _description;
         this._done = _done;
         this._userID = _userID;
+        this._groupID = _groupID;
     }
 
     public int get_userID() {
@@ -38,6 +41,13 @@ public class UNote {
         this._userID = _userID;
     }
 
+    public int get_groupID() {
+        return _groupID;
+    }
+    public void set_groupID(int _groupID) {
+        this._groupID = _groupID;
+    }
+
     public int get_id() {
         return _id;
     }
@@ -45,11 +55,11 @@ public class UNote {
         this._id = _id;
     }
 
-    public int get_unoteID() {
-        return _unoteID;
+    public int get_noteID() {
+        return _noteID;
     }
-    public void set_unoteID(int _unoteID) {
-        this._unoteID = _unoteID;
+    public void set_noteID(int _noteID) {
+        this._noteID = _noteID;
     }
 
     public Boolean get_done() {
@@ -80,3 +90,4 @@ public class UNote {
         this._name = _name;
     }
 }
+

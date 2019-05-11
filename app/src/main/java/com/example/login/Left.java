@@ -25,10 +25,9 @@ import android.widget.ImageButton;
 import android.widget.Button;
 import android.content.Intent;
 
-import com.example.login.features.demo.styled.StyledMessagesActivity;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.example.login.LocalDataBase.DatabaseHandler;
+import com.example.login.LocalDataBase.Groups;
+import com.example.login.LocalDataBase.User;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
