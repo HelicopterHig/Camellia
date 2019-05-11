@@ -1,5 +1,6 @@
 package com.example.login;
 
+import android.net.wifi.p2p.WifiP2pManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,7 +28,12 @@ import android.content.Intent;
 
 import com.example.login.LocalDataBase.DatabaseHandler;
 import com.example.login.LocalDataBase.Groups;
+import com.example.login.LocalDataBase.Message;
 import com.example.login.LocalDataBase.User;
+import com.example.login.features.demo.styled.StyledMessagesActivity;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -38,6 +44,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Left extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -46,8 +54,6 @@ public class Left extends AppCompatActivity
     ImageButton floatButton;
     //объявляем обновление списка диалогов
     SwipeRefreshLayout swipeRefreshLayout;
-
-    SharedPref sharedpref;
 
     int number = 0;
 
@@ -70,17 +76,19 @@ public class Left extends AppCompatActivity
 
     public static String server_name = "message.dlinkddns.com:8008";
 
+    private static String TAG_MESSAGE = "message";
+    private static String TAG_MESSAGE_ID = "id";
+    private static String TAG_TEXT = "user_message";
+    private static String TAG_DATETIME = "datetime";
+    private static String TAG_USER_ID = "user_id";
+    private static String TAG_GROUP_ID = "group_id";
 
+    int message_id, user_id_mess, group_id;
+    String text_mess, datetime;
+
+    int flag = 0, temp, size;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        sharedpref = new SharedPref(this);
-        if(sharedpref.loadNightModeState()==true) {
-            setTheme(R.style.darktheme);
-        }
-        else {
-            setTheme(R.style.AppTheme);
-        }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_left);
 
@@ -158,7 +166,8 @@ public class Left extends AppCompatActivity
 
                         dialog.dismiss();
 
-                        insertItem(0, name_group);
+                        size = mItemArrayList.size();
+                        insertItem(size, name_group);
                     }
                 });
             }
@@ -260,13 +269,12 @@ public class Left extends AppCompatActivity
             mItemArrayList.clear();
             startActivity(intent);
             return false;
+        }else if (id == R.id.about) {
+            Intent intent = new Intent(this, About_activity.class);
 
-        } else if (id == R.id.about) {
-        Intent intent = new Intent(this, About_activity.class);
-
-        startActivity(intent);
-        return false;
-    }
+            startActivity(intent);
+            return false;
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -380,10 +388,115 @@ public class Left extends AppCompatActivity
             @Override
             public void onItemClick(int position) {
                 //changeItem(position, "Clicked");
+                group_id = position + 1;
+
+                /*List<Groups> groups_local = db.getAllGroups();
+                for(Groups gr : groups_local){
+                    temp = gr.get_id();
+                    if (temp == (position+1)){
+                        group_id = gr.get_groupID();
+                    }
+                }*/
+
+                try {
+                    flag = 0;
+                    new LoadMessage().execute();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+                while(flag == 0){
+                    System.out.println("load");
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                /*try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }*/
+
                 Intent intent = new Intent(Left.this, activity_chat.class);
-                intent.putExtra("group_id", position);
+                intent.putExtra("group_id", group_id);
                 startActivity(intent);
             }
         });
     }
+
+    class LoadMessage extends AsyncTask<Void, Void, Void>{
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try{
+                System.out.println("load and load");
+
+                db.deleteAllMessages();
+                flag = 0;
+                String myURL = "http://"+server_name+"/load_message.php?&group_id="+group_id;
+
+                try {
+                    URL url = new URL(myURL);
+
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setReadTimeout(10000);
+                    conn.setConnectTimeout(15000);
+                    conn.setRequestMethod("GET");
+                    conn.setDoInput(true);
+
+                    conn.connect();
+
+                    InputStream stream = conn.getInputStream();
+
+                    String data = convertStreamToString(stream);
+
+                    JSONObject jsonObject = new JSONObject(data);
+
+                    JSONArray message = jsonObject.getJSONArray(TAG_MESSAGE);
+
+
+                    for (int i = 0; i < message.length(); i++){
+                        JSONObject schedule = message.getJSONObject(i);
+
+                        message_id = Integer.parseInt(schedule.getString(TAG_MESSAGE_ID));
+                        text_mess = schedule.getString(TAG_TEXT);
+                        datetime = schedule.getString(TAG_DATETIME);
+                        user_id_mess = Integer.parseInt(schedule.getString(TAG_USER_ID));
+                        group_id = Integer.parseInt(schedule.getString(TAG_GROUP_ID));
+
+                        db.addMessage(new Message(message_id, text_mess, datetime, user_id_mess, group_id));
+                    }
+
+                    System.out.println("Reading all messages..");
+                    List<Message> message_local = db.getAllMessages();
+
+                    for (Message cn : message_local) {
+                        String log = "Id: " + cn.get_id() + " , MessageID: " + cn.get_messageID() + " , Text: " + cn.get_text() + " , DateTime: " + cn.get_datetime()
+                                + ", UserID: " + cn.get_userID() + ", GroupID: " + cn.get_groupID();
+
+                        System.out.print("Message: ");
+                        System.out.println(log);
+                    }
+
+                    flag = 1;
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                    flag = 1;
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+    }
+
+    private String convertStreamToString(InputStream stream) {
+        java.util.Scanner s = new java.util.Scanner(stream).useDelimiter("\\A");
+        return s.hasNext() ? s.next() : "";
+    }
+
 }
