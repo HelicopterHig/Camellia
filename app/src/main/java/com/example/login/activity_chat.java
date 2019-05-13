@@ -1,19 +1,20 @@
 package com.example.login;
 
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-
-import com.example.login.LocalDataBase.DatabaseHandler;
-import com.example.login.LocalDataBase.Message;
-import com.example.login.LocalDataBase.User;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -72,11 +73,16 @@ public class activity_chat extends AppCompatActivity {
     Timer timer;
     Button back;
 
+    Fragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
 
         db = new DatabaseHandler(this);
 
@@ -129,7 +135,7 @@ public class activity_chat extends AppCompatActivity {
 
                 insertItemMessage(count++, text_mess);
 
-                db.addMessage(new Message((message_id+1), text_mess, datetime, user_id, group_id, "user_name", "user_surname"));
+                db.addMessage(new Message((message_id+1), text_mess, datetime, user_id, group_id));
 
                 try{
                     new InsertNewMeassage().execute();
@@ -248,7 +254,7 @@ public class activity_chat extends AppCompatActivity {
 
 
                         if (user_id_mess != user_id) {
-                            db.addMessage(new Message(message_id, text_mess, datetime, user_id_mess, group_id, "user_name", "user_surname"));
+                            db.addMessage(new Message(message_id, text_mess, datetime, user_id_mess, group_id));
                             insertItemMessageCOMP(count++, text_mess);
                             recyclerView_mess.smoothScrollToPosition(count);
                         }
@@ -351,6 +357,33 @@ public class activity_chat extends AppCompatActivity {
 
     public void onBackPressed(){
         finish();
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.left, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        // переход по кнопке (в правом углу ) на  замекти
+        if (id == R.id.next){
+            Intent intent = new Intent(this, TskActivity.class);
+            startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }
