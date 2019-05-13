@@ -1,6 +1,4 @@
-package com.example.login.LocalDataBase;
-
-import java.lang.ref.SoftReference;
+package com.example.login;
 
 public class Note {
 
@@ -12,12 +10,10 @@ public class Note {
     Boolean _done;
     int _userID;
     int _groupID;
-    String _userName;
-    String _userSurname;
 
     public Note(){}
 
-    public Note(int _id, int _noteID, String _name, String _date, String _description, boolean _done, int _userID, int _groupID, String _userName, String _userSurname){
+    public Note(int _id, int _noteID, String _name, String _date, String _description, boolean _done, int _userID, int _groupID){
         this._id = _id;
         this._noteID = _noteID;
         this._name = _name;
@@ -26,11 +22,9 @@ public class Note {
         this._done = _done;
         this._userID = _userID;
         this._groupID = _groupID;
-        this._userName = _userName;
-        this._userSurname = _userSurname;
     }
 
-    public Note(int _noteID, String _name, String _date, String _description, boolean _done, int _userID, int _groupID, String _userName, String _userSurname){
+    public Note(int _noteID, String _name, String _date, String _description, boolean _done, int _userID, int _groupID){
         this._noteID = _noteID;
         this._name = _name;
         this._date = _date;
@@ -38,8 +32,6 @@ public class Note {
         this._done = _done;
         this._userID = _userID;
         this._groupID = _groupID;
-        this._userName = _userName;
-        this._userSurname = _userSurname;
     }
 
     public int get_userID() {
@@ -96,20 +88,6 @@ public class Note {
     }
     public void set_name(String _name) {
         this._name = _name;
-    }
-
-    public String get_userName() {
-        return _userName;
-    }
-    public void set_userName(String _userName) {
-        this._userName = _userName;
-    }
-
-    public String get_userSurname() {
-        return _userSurname;
-    }
-    public void set_userSurname(String _userSurname) {
-        this._userSurname = _userSurname;
     }
 }
 
