@@ -466,7 +466,7 @@ public class Left extends AppCompatActivity
                         user_id_mess = Integer.parseInt(schedule.getString(TAG_USER_ID));
                         group_id = Integer.parseInt(schedule.getString(TAG_GROUP_ID));
 
-                        db.addMessage(new Message(message_id, text_mess, datetime, user_id_mess, group_id, "user_name", "user_surname"));
+                        db.addMessage(new Message(message_id, text_mess, datetime, user_id_mess, group_id));
                     }
 
                     System.out.println("Reading all messages..");
