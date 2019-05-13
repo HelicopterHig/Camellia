@@ -3,16 +3,20 @@ package com.example.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 public class Base_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
     }
 
     @Override
@@ -23,8 +27,8 @@ public class Base_Activity extends AppCompatActivity {
     }
 
 
-    //@Override
-    /*public boolean onOptionsItemSelected(MenuItem item) {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
 
@@ -49,5 +53,5 @@ public class Base_Activity extends AppCompatActivity {
 
         }
         return super.onOptionsItemSelected(item);
-    }*/
+    }
 }
