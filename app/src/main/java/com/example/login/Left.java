@@ -26,10 +26,6 @@ import android.widget.ImageButton;
 import android.widget.Button;
 import android.content.Intent;
 
-import com.example.login.LocalDataBase.DatabaseHandler;
-import com.example.login.LocalDataBase.Groups;
-import com.example.login.LocalDataBase.Message;
-import com.example.login.LocalDataBase.User;
 import com.example.login.features.demo.styled.StyledMessagesActivity;
 
 import org.json.JSONArray;
@@ -157,16 +153,17 @@ public class Left extends AppCompatActivity
 
                         secreteKey = GenerateKey.generateKey();
 
+                        size = mItemArrayList.size();
+
                         try{
                             new CreateGroup().execute();
-                            db.addGroup(new Groups(2, 1, name_group, user_id, 1));
+                            db.addGroup(new Groups(2, size, name_group, user_id, 1));
                         }catch (Exception e){
                             e.printStackTrace();
                         }
 
                         dialog.dismiss();
 
-                        size = mItemArrayList.size();
                         insertItem(size, name_group);
                     }
                 });
@@ -222,7 +219,7 @@ public class Left extends AppCompatActivity
 
         // переход по кнопке (в правом углу ) на  замекти
         if (id == R.id.next){
-            Intent intent = new Intent(this, Activity_Note.class);
+            Intent intent = new Intent(this, TskActivity.class);
             startActivity(intent);
         }
 
@@ -388,15 +385,16 @@ public class Left extends AppCompatActivity
             @Override
             public void onItemClick(int position) {
                 //changeItem(position, "Clicked");
-                group_id = position + 1;
+                //group_id = position + 1;
 
-                /*List<Groups> groups_local = db.getAllGroups();
+                List<Groups> groups_local = db.getAllGroups();
+
                 for(Groups gr : groups_local){
                     temp = gr.get_id();
                     if (temp == (position+1)){
                         group_id = gr.get_groupID();
                     }
-                }*/
+                }
 
                 try {
                     flag = 0;
