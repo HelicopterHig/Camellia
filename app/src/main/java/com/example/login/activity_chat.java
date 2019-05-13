@@ -33,6 +33,10 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.example.login.LocalDataBase.DatabaseHandler;
+import com.example.login.LocalDataBase.Message;
+import com.example.login.LocalDataBase.User;
+
 public class activity_chat extends AppCompatActivity {
 
     public static String server_name = "message.dlinkddns.com:8008";
@@ -379,7 +383,7 @@ public class activity_chat extends AppCompatActivity {
 
         // переход по кнопке (в правом углу ) на  замекти
         if (id == R.id.next){
-            Intent intent = new Intent(this, TskActivity.class);
+            Intent intent = new Intent(this, Base_Activity.class);
             startActivity(intent);
         }
 

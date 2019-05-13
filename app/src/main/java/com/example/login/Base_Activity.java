@@ -23,8 +23,8 @@ public class Base_Activity extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    //@Override
+    /*public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
 
@@ -49,5 +49,5 @@ public class Base_Activity extends AppCompatActivity {
 
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 }

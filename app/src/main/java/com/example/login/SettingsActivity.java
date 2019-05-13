@@ -13,6 +13,8 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 
+import com.example.login.LocalDataBase.DatabaseHandler;
+import com.example.login.LocalDataBase.User;
 import com.r0adkll.slidr.Slidr;
 import com.r0adkll.slidr.model.SlidrInterface;
 

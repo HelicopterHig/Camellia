@@ -1,4 +1,4 @@
-package com.example.login;
+package com.example.login.LocalDataBase;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandler {
+public class DatabaseHandler extends SQLiteOpenHelper implements com.example.login.LocalDataBase.IDatabaseHandler {
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "messenger1488";

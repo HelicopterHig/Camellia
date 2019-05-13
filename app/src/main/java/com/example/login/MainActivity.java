@@ -12,6 +12,13 @@ import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.login.LocalDataBase.DatabaseHandler;
+import com.example.login.LocalDataBase.Groups;
+import com.example.login.LocalDataBase.Message;
+import com.example.login.LocalDataBase.Note;
+import com.example.login.LocalDataBase.UNote;
+import com.example.login.LocalDataBase.User;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 

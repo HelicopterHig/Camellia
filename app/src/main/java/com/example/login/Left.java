@@ -26,6 +26,10 @@ import android.widget.ImageButton;
 import android.widget.Button;
 import android.content.Intent;
 
+import com.example.login.LocalDataBase.DatabaseHandler;
+import com.example.login.LocalDataBase.Groups;
+import com.example.login.LocalDataBase.Message;
+import com.example.login.LocalDataBase.User;
 import com.example.login.features.demo.styled.StyledMessagesActivity;
 
 import org.json.JSONArray;
@@ -219,7 +223,7 @@ public class Left extends AppCompatActivity
 
         // переход по кнопке (в правом углу ) на  замекти
         if (id == R.id.next){
-            Intent intent = new Intent(this, TskActivity.class);
+            Intent intent = new Intent(this, Base_Activity.class);
             startActivity(intent);
         }
 
