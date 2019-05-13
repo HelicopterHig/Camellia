@@ -1,4 +1,4 @@
-package com.example.login;
+/*package com.example.login;
 
 
 import android.app.AlertDialog;
@@ -16,7 +16,7 @@ import android.widget.ImageButton;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BlankFragmentTab3 extends Fragment {
+/*public class BlankFragmentTab3 extends Fragment {
 
 
     private int mPage;
@@ -39,7 +39,7 @@ public class BlankFragmentTab3 extends Fragment {
             mPage = getArguments().getInt(ARG_PAGE);
         }
     }*/
-    @Override
+   /* @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_blank_fragment_tab3, container, false);
@@ -87,4 +87,4 @@ public class BlankFragmentTab3 extends Fragment {
     }
 
 
-}
+}*/

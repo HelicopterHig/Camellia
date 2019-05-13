@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <item
+        android:id="@+id/note_note"
+        android:icon="@drawable/ic_note"
+        android:title="@string/item1"
+        app:showAsAction="ifRoom">
+    </item>
+    <item
+        android:id="@+id/note_user"
+        android:icon="@drawable/ic_users"
+        android:title="@string/item2"
+        app:showAsAction="ifRoom">
+    </item>
+    <item
+        android:id="@+id/note_progr"
+        android:icon="@drawable/ic_progress"
+        android:title="@string/item3"
+        app:showAsAction="ifRoom">
+    </item>
+
+
+</menu>

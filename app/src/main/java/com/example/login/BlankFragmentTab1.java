@@ -1,4 +1,4 @@
-package com.example.login;
+/*package com.example.login;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -19,7 +19,7 @@ import android.widget.ImageButton;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BlankFragmentTab1 extends Fragment {
+/*public class BlankFragmentTab1 extends Fragment {
 
     protected String name_note;
     View vie;
@@ -48,7 +48,7 @@ public class BlankFragmentTab1 extends Fragment {
     }*/
 
 
-    @Override
+ /*   @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -80,7 +80,7 @@ public class BlankFragmentTab1 extends Fragment {
                         e.printStackTrace();
                     }*/
 
-                            dialog.dismiss();
+       /*                     dialog.dismiss();
                             openEditNoteActivity();
 
 //                        insertItem(position, name_group);
@@ -150,7 +150,7 @@ public class BlankFragmentTab1 extends Fragment {
         });
 
         }*/
-    }
+    //}
    /* floatButton = (ImageButton) findViewById(R.id.imageButton);
         floatButton.setOnClickListener(new View.OnClickListener(){
 

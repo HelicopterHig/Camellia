@@ -222,7 +222,7 @@ public class Left extends AppCompatActivity
 
         // переход по кнопке (в правом углу ) на  замекти
         if (id == R.id.next){
-            Intent intent = new Intent(this, TskActivity.class);
+            Intent intent = new Intent(this, Activity_Note.class);
             startActivity(intent);
         }
 

@@ -121,6 +121,11 @@
     <string name="Dmitry">Алексеев Дмитрий</string>
     <string name="Max">Ковалев Максим</string>
     <string name="Co"> Все права защищены. 2019 © Copyright </string>
+
+    <string name="item1">Item1</string>
+    <string name="item2">Item2</string>
+    <string name="item3">Item3</string>
+
 </resources>
 
 

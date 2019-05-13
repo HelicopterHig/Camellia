@@ -1,4 +1,4 @@
-package com.example.login;
+/*package com.example.login;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,7 +12,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
         this.mNumOfTabs = NumOfTabs;
     }
 
-    @Override
+   /* @Override
     public Fragment getItem(int position) {
 
         switch (position) {
@@ -34,4 +34,4 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     public int getCount() {
         return mNumOfTabs;
     }
-}
+}*/

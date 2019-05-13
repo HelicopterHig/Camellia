@@ -1,4 +1,4 @@
-package com.example.login;
+/*package com.example.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -60,7 +60,7 @@ public class NoteEditActivity extends AppCompatActivity {
                 dao.updateNote(temp);
             }*/
 
-            Toast.makeText(NoteEditActivity.this,
+       /*     Toast.makeText(NoteEditActivity.this,
                     R.string.save_note,
                     Toast.LENGTH_SHORT).show();
             openTskActivity();
@@ -69,3 +69,4 @@ public class NoteEditActivity extends AppCompatActivity {
     }
 
 }
+*/
