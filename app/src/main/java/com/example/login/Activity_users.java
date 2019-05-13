@@ -1,4 +1,4 @@
-package com.example.login;
+/*package com.example.login;
 
 import android.os.Bundle;
 
@@ -8,4 +8,4 @@ public class Activity_users extends Base_Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users);
     }
-}
+}*/
