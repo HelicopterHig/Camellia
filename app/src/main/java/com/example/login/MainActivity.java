@@ -261,16 +261,16 @@ public class MainActivity extends AppCompatActivity {
                     db.addGroup(new Groups(1, 1, "Camellia",1, 2));*/
 
                     System.out.println("Inserting messages ..");
-                    db.addMessage(new Message(1, "Hello.", "10.04.2019 14:00", 1, 1));
+                    db.addMessage(new Message(1, "Hello.", "10.04.2019 14:00", 1, 1, "user_name", "user_surname"));
 
                     System.out.println("Inserting notes ..");
-                    db.addNote(new Note(1, "Do something.", "20.04.2019", "We need to do something.", true, 1, 1));
+                    db.addNote(new Note(1, "Do something.", "20.04.2019", "We need to do something.", true, 1, 1, "user_name", "user_surname"));
 
                     System.out.println("Inserting unotes ..");
                     db.addUNote(new UNote(1, "Do something.", "20.04.2019", "I need to do something.", true, 1));
 
                     System.out.println("Inserting user-groups..");
-                    db.addUser_group(new User_group(1,1));
+                    db.addUser_group(new User_group(1,1, "user_name", "user_surname"));
 
                     System.out.println("Reading all contacts..");
                     List<User> user_local = db.getAllContacts();
@@ -302,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
 
                     for (Message cn : message_local) {
                         String log = "Id: " + cn.get_id() + " , MessageID: " + cn.get_messageID() + " , Text: " + cn.get_text() + " , DateTime: " + cn.get_datetime()
-                                + ", UserID: " + cn.get_userID() + ", GroupID: " + cn.get_groupID();
+                                + ", UserID: " + cn.get_userID() + ", GroupID: " + cn.get_groupID() + ", UserName: " + cn.get_userName() + ", UserSurname: " + cn.get_userSurname();
 
                         System.out.print("Message: ");
                         System.out.println(log);
