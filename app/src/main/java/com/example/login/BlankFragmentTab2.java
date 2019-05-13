@@ -1,4 +1,4 @@
-package com.example.login;
+/*package com.example.login;
 
 
 import android.app.AlertDialog;
@@ -16,7 +16,7 @@ import android.widget.Toast;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BlankFragmentTab2 extends Fragment {
+/*public class BlankFragmentTab2 extends Fragment {
 
     private int mPage;
     public static final String ARG_PAGE = "ARG_PAGE";
@@ -38,7 +38,7 @@ public class BlankFragmentTab2 extends Fragment {
             mPage = getArguments().getInt(ARG_PAGE);
         }
     }*/
-    @Override
+   /* @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_blank_fragment_tab2, container, false);
@@ -78,4 +78,4 @@ public class BlankFragmentTab2 extends Fragment {
         return rootView;
     }
 
-}
+//}*/
