@@ -1,4 +1,4 @@
-package com.example.login.LocalDataBase;
+package com.example.login;
 
 public class User {
 
@@ -113,4 +113,5 @@ public class User {
     public void setAuthorised(int _authorised){
         this._authorised = _authorised;
     }
+
 }
