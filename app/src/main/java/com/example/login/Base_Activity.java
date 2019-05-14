@@ -9,8 +9,17 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 public class Base_Activity extends AppCompatActivity {
+
+    SharedPref sharedpref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedpref = new SharedPref(this);
+        if(sharedpref.loadNightModeState()==true) {
+            setTheme(R.style.darktheme);
+        }
+        else  setTheme(R.style.AppTheme);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
 

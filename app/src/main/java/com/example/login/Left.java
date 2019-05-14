@@ -55,6 +55,8 @@ public class Left extends AppCompatActivity
     //объявляем обновление списка диалогов
     SwipeRefreshLayout swipeRefreshLayout;
 
+    SharedPref sharedpref;
+
     int number = 0;
 
     protected String user_id_id, name, second_name, email, password, birthday_date;
@@ -89,6 +91,12 @@ public class Left extends AppCompatActivity
     int flag = 0, temp, size;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedpref = new SharedPref(this);
+        if(sharedpref.loadNightModeState()==true) {
+            setTheme(R.style.darktheme);
+        }
+        else  setTheme(R.style.AppTheme);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_left);
 

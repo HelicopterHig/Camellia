@@ -77,10 +77,16 @@ public class activity_chat extends AppCompatActivity {
     Timer timer;
     Button back;
 
-    Fragment fragment;
+    SharedPref sharedpref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedpref = new SharedPref(this);
+        if(sharedpref.loadNightModeState()==true) {
+            setTheme(R.style.darktheme);
+        }
+        else  setTheme(R.style.AppTheme);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
