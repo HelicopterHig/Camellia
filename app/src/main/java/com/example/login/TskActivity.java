@@ -1,4 +1,4 @@
-package com.example.login;
+/*package com.example.login;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -94,5 +94,5 @@ public class TskActivity extends AppCompatActivity {
 
 
 
-}
+}*/
 

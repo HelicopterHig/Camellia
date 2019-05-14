@@ -30,6 +30,7 @@ import com.example.login.LocalDataBase.DatabaseHandler;
 import com.example.login.LocalDataBase.Groups;
 import com.example.login.LocalDataBase.Message;
 import com.example.login.LocalDataBase.User;
+import com.example.login.LocalDataBase.User_group;
 import com.example.login.features.demo.styled.StyledMessagesActivity;
 
 import org.json.JSONArray;
@@ -54,6 +55,8 @@ public class Left extends AppCompatActivity
     ImageButton floatButton;
     //объявляем обновление списка диалогов
     SwipeRefreshLayout swipeRefreshLayout;
+
+    SharedPref sharedpref;
 
     int number = 0;
 
@@ -83,12 +86,26 @@ public class Left extends AppCompatActivity
     private static String TAG_USER_ID = "user_id";
     private static String TAG_GROUP_ID = "group_id";
 
+    private static String TAG_USER_GROUP = "user_group";
+    private static String TAG_USER_GROUP_ID = "user_id";
+    private static String TAG_NAME = "name";
+    private static String TAG_SECOND_NAME = "second_name";
+
     int message_id, user_id_mess, group_id;
     String text_mess, datetime;
+
+    String user_group_name, user_group_second_name;
+    int user_group_id;
 
     int flag = 0, temp, size;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedpref = new SharedPref(this);
+        if(sharedpref.loadNightModeState()==true) {
+            setTheme(R.style.darktheme);
+        }
+        else  setTheme(R.style.AppTheme);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_left);
 
@@ -157,16 +174,17 @@ public class Left extends AppCompatActivity
 
                         secreteKey = GenerateKey.generateKey();
 
+                        size = mItemArrayList.size();
+
                         try{
                             new CreateGroup().execute();
-                            db.addGroup(new Groups(2, 1, name_group, user_id, 1));
+                            db.addGroup(new Groups(2, size, name_group, user_id, 1));
                         }catch (Exception e){
                             e.printStackTrace();
                         }
 
                         dialog.dismiss();
 
-                        size = mItemArrayList.size();
                         insertItem(size, name_group);
                     }
                 });
@@ -222,7 +240,7 @@ public class Left extends AppCompatActivity
 
         // переход по кнопке (в правом углу ) на  замекти
         if (id == R.id.next){
-            Intent intent = new Intent(this, TskActivity.class);
+            Intent intent = new Intent(this, Base_Activity.class);
             startActivity(intent);
         }
 
@@ -388,19 +406,26 @@ public class Left extends AppCompatActivity
             @Override
             public void onItemClick(int position) {
                 //changeItem(position, "Clicked");
-                group_id = position + 1;
+                //group_id = position + 1;
 
-                /*List<Groups> groups_local = db.getAllGroups();
+                List<Groups> groups_local = db.getAllGroups();
+
                 for(Groups gr : groups_local){
                     temp = gr.get_id();
                     if (temp == (position+1)){
                         group_id = gr.get_groupID();
                     }
-                }*/
+                }
 
                 try {
                     flag = 0;
                     new LoadMessage().execute();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+                try{
+                    new LoadUsers().execute();
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -466,7 +491,7 @@ public class Left extends AppCompatActivity
                         user_id_mess = Integer.parseInt(schedule.getString(TAG_USER_ID));
                         group_id = Integer.parseInt(schedule.getString(TAG_GROUP_ID));
 
-                        db.addMessage(new Message(message_id, text_mess, datetime, user_id_mess, group_id));
+                        db.addMessage(new Message(message_id, text_mess, datetime, user_id_mess, group_id, "dbsnd", "dbsnd"));
                     }
 
                     System.out.println("Reading all messages..");
@@ -497,6 +522,64 @@ public class Left extends AppCompatActivity
     private String convertStreamToString(InputStream stream) {
         java.util.Scanner s = new java.util.Scanner(stream).useDelimiter("\\A");
         return s.hasNext() ? s.next() : "";
+    }
+
+    class LoadUsers extends AsyncTask<Void, Void, Void>{
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try{
+
+                db.deleteAllUser_groups();
+                String myURL = "http://"+server_name+"/load_group_user.php?&group_id="+group_id;
+
+                try {
+                    URL url = new URL(myURL);
+
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setReadTimeout(10000);
+                    conn.setConnectTimeout(15000);
+                    conn.setRequestMethod("GET");
+                    conn.setDoInput(true);
+
+                    conn.connect();
+
+                    InputStream stream = conn.getInputStream();
+
+                    String data = convertStreamToString(stream);
+
+                    JSONObject jsonObject = new JSONObject(data);
+
+                    JSONArray user_group = jsonObject.getJSONArray(TAG_USER_GROUP);
+
+                    for (int i = 0; i < user_group.length(); i++){
+                        JSONObject schedule = user_group.getJSONObject(i);
+
+                        user_group_id = Integer.parseInt(schedule.getString(TAG_USER_GROUP_ID));
+                        user_group_name = schedule.getString(TAG_NAME);
+                        user_group_second_name = schedule.getString(TAG_SECOND_NAME);
+
+                        db.addUser_group(new User_group(group_id, user_group_id, user_group_name, user_group_second_name));
+                    }
+
+                    System.out.println("Reading all user group..");
+                    List<User_group> user_group_local = db.getAllUser_groups();
+
+                    for (User_group ug : user_group_local) {
+                        String log = "id: " + ug.get_group_id() + " , user_id " + ug.get_user_id() + " , name: " + ug.get_userName() + " , second name: " + ug.get_userSurname();
+
+                        System.out.print("User group: ");
+                        System.out.println(log);
+                    }
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            return null;
+        }
     }
 
 }
