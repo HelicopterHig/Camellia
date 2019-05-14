@@ -10,7 +10,7 @@
         android:normalScreens="true"
         android:smallScreens="true"
         android:xlargeScreens="true" />
-
+    <!--android:hardwareAccelerated ="true"-->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,15 +20,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <!--activity
-            android:name=".TskActivity"
-            android:label="@string/title_activity_tsk"
-            android:theme="@style/AppTheme"></activity-->
+
         <activity android:name=".Base_Activity"  ></activity>
         <activity android:name=".Activity_Note"  ></activity>
         <activity android:name=".Activity_progress" />
         <activity android:name=".Activity_users"></activity>
-        android:parentActivityName=".Left"
+
         <activity
             android:name=".Splash"
             android:theme="@style/AppTheme.NoActionBar">
@@ -57,7 +54,7 @@
             android:name=".CalendarActivity"
             android:theme="@style/AppTheme" />
         <activity android:name=".activity_chat" />
-        <!--activity android:name=".NoteEditActivity"></activity-->
+
 
 
     </application>
