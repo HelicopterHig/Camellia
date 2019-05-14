@@ -145,7 +145,7 @@ public class activity_chat extends AppCompatActivity {
 
                 insertItemMessage(count++, text_mess);
 
-                db.addMessage(new Message((message_id+1), text_mess, datetime, user_id, group_id));
+                db.addMessage(new Message((message_id+1), text_mess, datetime, user_id, group_id, "dsmdn", "ndsmnds"));
 
                 try{
                     new InsertNewMeassage().execute();
@@ -264,7 +264,7 @@ public class activity_chat extends AppCompatActivity {
 
 
                         if (user_id_mess != user_id) {
-                            db.addMessage(new Message(message_id, text_mess, datetime, user_id_mess, group_id));
+                            db.addMessage(new Message(message_id, text_mess, datetime, user_id_mess, group_id, "sdnmdn", "dsdbsn"));
                             insertItemMessageCOMP(count++, text_mess);
                             recyclerView_mess.smoothScrollToPosition(count);
                         }

@@ -1,4 +1,4 @@
-/*package com.example.login.LocalDataBase;
+package com.example.login.LocalDataBase;
 
 public class User_group {
 
@@ -43,4 +43,4 @@ public class User_group {
     public void set_userSurname(String _userSurname) {
         this._userSurname = _userSurname;
     }
-}*/
+}

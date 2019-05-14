@@ -9,10 +9,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseHandler extends SQLiteOpenHelper implements com.example.login.LocalDataBase.IDatabaseHandler {
+public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandler {
 
-    private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "messenger1488";
+    private static final int DATABASE_VERSION = 2;
+    private static final String DATABASE_NAME = "messenger_camellia";
 
 
     //User
@@ -45,6 +45,8 @@ public class DatabaseHandler extends SQLiteOpenHelper implements com.example.log
     private static final String KEY_MESSAGE_DATETIME = "datetime";
     private static final String KEY_MESSAGE_USER_ID = "userID";
     private static final String KEY_MESSAGE_GROUP_ID = "groupID";
+    private static final String KEY_MESSAGE_USER_NAME = "user_name";
+    private static final String KEY_MESSAGE_USER_SURNAME = "user_surname";
 
     //Note
     private static final String TABLE_NOTE = "note";
@@ -56,6 +58,8 @@ public class DatabaseHandler extends SQLiteOpenHelper implements com.example.log
     private static final String KEY_NOTE_DONE = "done";
     private static final String KEY_NOTE_USER_ID = "userID";
     private static final String KEY_NOTE_GROUP_ID = "groupID";
+    private static final String KEY_NOTE_USER_NAME = "user_name";
+    private static final String KEY_NOTE_USER_SURNAME = "user_surname";
 
     //UNote
     private static final String TABLE_UNOTE = "unote";
@@ -67,12 +71,19 @@ public class DatabaseHandler extends SQLiteOpenHelper implements com.example.log
     private static final String KEY_UNOTE_DONE = "done";
     private static final String KEY_UNOTE_USER_ID = "userID";
 
+    //User_group
+    private static final String TABLE_UG = "user_group";
+    private static final String KEY_UG_GROUP_ID = "group_id";
+    private static final String KEY_UG_USER_ID = "user_id";
+    private static final String KEY_UG_USER_NAME = "user_name";
+    private static final String KEY_UG_USER_SURNAME = "user_surname";
+
     private static final String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
             + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " text," + KEY_SECOND_NAME
             + " text," + KEY_PASSWORD + " text," + KEY_MAIL + " text,"
             + KEY_ICON_ID  + " integer," + KEY_BIRTHDAY_DATE + " numeric,"
             + KEY_ACCESS_TOKEN + " text," + KEY_REFRESH_TOKEN + " text,"
-            + KEY_AUTHORISED + " numeric" + ")";
+            + KEY_AUTHORISED + " numeric)";
 
     private static final String CREATE_GROUPS_TABLE = "CREATE TABLE " + TABLE_GROUPS + " ("
             + KEY_GROUP_ID + " INTEGER PRIMARY KEY, " + KEY_GROUP_GROUP_ID + " INTEGER, " + KEY_GROUP_SECRET + " INTEGER, " + KEY_GROUP_NAME
@@ -82,18 +93,21 @@ public class DatabaseHandler extends SQLiteOpenHelper implements com.example.log
     private static final String CREATE_MESSAGE_TABLE = "CREATE TABLE " + TABLE_MESSAGE + " ("
             + KEY_MESSAGE_ID + " INTEGER PRIMARY KEY, " + KEY_MESSAGE_MESSAGE_ID + " INTEGER, " + KEY_MESSAGE_TEXT + " TEXT, "
             + KEY_MESSAGE_DATETIME + " DATETIME, " + KEY_MESSAGE_USER_ID + " INTEGER, "
-            + KEY_MESSAGE_GROUP_ID + " INTEGER)";
+            + KEY_MESSAGE_GROUP_ID + " INTEGER, " + KEY_MESSAGE_USER_NAME + " TEXT, " + KEY_MESSAGE_USER_SURNAME + " TEXT)";
 
     private static final String CREATE_NOTE_TABLE = "CREATE TABLE " + TABLE_NOTE + " ("
             + KEY_NOTE_ID + " INTEGER PRIMARY KEY, " + KEY_NOTE_NOTE_ID + " INTEGER, " + KEY_NOTE_NAME + " STRING, "
             + KEY_NOTE_DATE + " DATE, " + KEY_NOTE_DESCRIPTION + " text, "
             + KEY_NOTE_DONE + " BINARY, " + KEY_NOTE_USER_ID + " INTEGER, "
-            + KEY_NOTE_GROUP_ID + " INTEGER)";
+            + KEY_NOTE_GROUP_ID + " INTEGER, " + KEY_NOTE_USER_NAME + " TEXT, " + KEY_NOTE_USER_SURNAME + " TEXT)";
 
     private static final String CREATE_UNOTE_TABLE = "CREATE TABLE " + TABLE_UNOTE + " ("
             + KEY_UNOTE_ID + " INTEGER PRIMARY KEY, " + KEY_UNOTE_UNOTE_ID + " INTEGER, " + KEY_UNOTE_NAME + " STRING, "
             + KEY_UNOTE_DATE + " DATE, " + KEY_UNOTE_DESCRIPTION + " text, "
             + KEY_UNOTE_DONE + " BINARY, " + KEY_UNOTE_USER_ID + " INTEGER)";
+
+    public static final String CREATE_UG_TABLE = "CREATE TABLE " + TABLE_UG + " (" + KEY_UG_GROUP_ID + " INTEGER, " +
+            KEY_UG_USER_ID + " INTEGER, " + KEY_UG_USER_NAME + " TEXT, " + KEY_UG_USER_SURNAME + " TEXT)";
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -106,6 +120,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements com.example.log
         db.execSQL(CREATE_MESSAGE_TABLE);
         db.execSQL(CREATE_NOTE_TABLE);
         db.execSQL(CREATE_UNOTE_TABLE);
+        db.execSQL(CREATE_UG_TABLE);
     }
 
     @Override
@@ -115,6 +130,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements com.example.log
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MESSAGE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NOTE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_UNOTE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_UG);
 
         onCreate(db);
     }
@@ -163,6 +179,8 @@ public class DatabaseHandler extends SQLiteOpenHelper implements com.example.log
         values.put(KEY_MESSAGE_DATETIME, message.get_datetime());
         values.put(KEY_MESSAGE_USER_ID, message.get_userID());
         values.put(KEY_MESSAGE_GROUP_ID, message.get_groupID());
+        values.put(KEY_MESSAGE_USER_NAME, message.get_userName());
+        values.put(KEY_MESSAGE_USER_SURNAME, message.get_userSurname());
 
         db.insert(TABLE_MESSAGE, null, values);
         db.close();
@@ -180,11 +198,14 @@ public class DatabaseHandler extends SQLiteOpenHelper implements com.example.log
         values.put(KEY_NOTE_DONE, note.get_done());
         values.put(KEY_NOTE_USER_ID, note.get_userID());
         values.put(KEY_NOTE_GROUP_ID, note.get_groupID());
+        values.put(KEY_NOTE_USER_NAME, note.get_userName());
+        values.put(KEY_NOTE_USER_SURNAME, note.get_userSurname());
 
         db.insert(TABLE_NOTE, null, values);
         db.close();
     }
 
+    @Override
     public void addUNote(UNote unote){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -197,6 +218,20 @@ public class DatabaseHandler extends SQLiteOpenHelper implements com.example.log
         values.put(KEY_UNOTE_USER_ID, unote.get_userID());
 
         db.insert(TABLE_UNOTE, null, values);
+        db.close();
+    }
+
+    @Override
+    public void addUser_group(User_group user_group) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(KEY_UG_GROUP_ID, user_group.get_group_id());
+        values.put(KEY_UG_USER_ID, user_group.get_user_id());
+        values.put(KEY_UG_USER_NAME, user_group.get_userName());
+        values.put(KEY_UG_USER_SURNAME, user_group.get_userSurname());
+
+        db.insert(TABLE_UG, null, values);
         db.close();
     }
 
@@ -244,9 +279,9 @@ public class DatabaseHandler extends SQLiteOpenHelper implements com.example.log
     public Message getMessage(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_GROUPS, new String[] { KEY_MESSAGE_ID, KEY_MESSAGE_MESSAGE_ID,
-                        KEY_MESSAGE_TEXT, KEY_MESSAGE_DATETIME, KEY_MESSAGE_USER_ID, KEY_MESSAGE_GROUP_ID }, KEY_GROUP_ID + "=?",
-                new String[] { String.valueOf(id) }, null, null, null, null);
+        Cursor cursor = db.query(TABLE_MESSAGE, new String[] { KEY_MESSAGE_ID, KEY_MESSAGE_MESSAGE_ID,
+                        KEY_MESSAGE_TEXT, KEY_MESSAGE_DATETIME, KEY_MESSAGE_USER_ID, KEY_MESSAGE_GROUP_ID, KEY_MESSAGE_USER_NAME, KEY_MESSAGE_USER_SURNAME },
+                KEY_MESSAGE_MESSAGE_ID + "=?", new String[] { String.valueOf(id) }, null, null, null, null);
 
         if (cursor != null){
             cursor.moveToFirst();
@@ -254,7 +289,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements com.example.log
 
         Message message = new Message(Integer.parseInt(cursor.getString(0)), Integer.parseInt(cursor.getString(1)),
                 cursor.getString(2), cursor.getString(3), Integer.parseInt(cursor.getString(4)),
-                Integer.parseInt(cursor.getString(5)));
+                Integer.parseInt(cursor.getString(5)), cursor.getString(6), cursor.getString(7));
 
         return message;
     }
@@ -263,8 +298,8 @@ public class DatabaseHandler extends SQLiteOpenHelper implements com.example.log
     public Note getNote(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_GROUPS, new String[] { KEY_NOTE_ID, KEY_NOTE_NOTE_ID, KEY_NOTE_NAME,
-                        KEY_NOTE_DATE, KEY_NOTE_DESCRIPTION, KEY_NOTE_DONE, KEY_NOTE_USER_ID, KEY_NOTE_GROUP_ID}, KEY_GROUP_ID + "=?",
+        Cursor cursor = db.query(TABLE_NOTE, new String[] { KEY_NOTE_ID, KEY_NOTE_NOTE_ID, KEY_NOTE_NAME,
+                        KEY_NOTE_DATE, KEY_NOTE_DESCRIPTION, KEY_NOTE_DONE, KEY_NOTE_USER_ID, KEY_NOTE_GROUP_ID, KEY_NOTE_USER_NAME, KEY_NOTE_USER_SURNAME}, KEY_NOTE_ID + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
 
         if (cursor != null){
@@ -273,9 +308,46 @@ public class DatabaseHandler extends SQLiteOpenHelper implements com.example.log
 
         Note note = new Note(Integer.parseInt(cursor.getString(0)), Integer.parseInt(cursor.getString(1)),
                 cursor.getString(2), cursor.getString(3), cursor.getString(4),
-                Boolean.parseBoolean(cursor.getString(5)), Integer.parseInt(cursor.getString(6)), Integer.parseInt(cursor.getString(7)));
+                Boolean.parseBoolean(cursor.getString(5)), Integer.parseInt(cursor.getString(6)), Integer.parseInt(cursor.getString(7)),
+                cursor.getString(8), cursor.getString(9));
 
         return note;
+    }
+
+    @Override
+    public UNote getUNote(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_UNOTE, new String[] { KEY_UNOTE_ID, KEY_UNOTE_UNOTE_ID, KEY_UNOTE_NAME,
+                        KEY_UNOTE_DATE, KEY_UNOTE_DESCRIPTION, KEY_UNOTE_DONE, KEY_UNOTE_USER_ID}, KEY_UNOTE_ID + "=?",
+                new String[] { String.valueOf(id) }, null, null, null, null);
+
+        if (cursor != null){
+            cursor.moveToFirst();
+        }
+
+        UNote unote = new UNote(Integer.parseInt(cursor.getString(0)), Integer.parseInt(cursor.getString(1)),
+                cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                Boolean.parseBoolean(cursor.getString(5)), Integer.parseInt(cursor.getString(6)));
+
+        return unote;
+    }
+
+    @Override
+    public User_group getUser_group(int group_id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_UG, new String[] { KEY_UG_GROUP_ID, KEY_UG_USER_ID, KEY_UG_USER_NAME, KEY_UG_USER_SURNAME}, KEY_UG_GROUP_ID + "=?",
+                new String[] {String.valueOf(group_id)}, null, null, null, null);
+
+        if (cursor != null){
+            cursor.moveToFirst();
+        }
+
+        User_group user_group = new User_group(Integer.parseInt(cursor.getString(0)), Integer.parseInt(cursor.getString(1)),
+                cursor.getString(2), cursor.getString(3));
+
+        return user_group;
     }
 
     @Override
@@ -299,6 +371,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements com.example.log
                 user.setAcToken(cursor.getString(7));
                 user.setReToken(cursor.getString(8));
                 user.setAuthorised(cursor.getInt(9));
+
                 userList.add(user);
             } while (cursor.moveToNext());
         }
@@ -348,6 +421,8 @@ public class DatabaseHandler extends SQLiteOpenHelper implements com.example.log
                 message.set_datetime(cursor.getString(3));
                 message.set_userID(Integer.parseInt(cursor.getString(4)));
                 message.set_groupID(Integer.parseInt(cursor.getString(5)));
+                message.set_userName(cursor.getString(6));
+                message.set_userSurname(cursor.getString(7));
 
                 messageList.add(message);
             } while (cursor.moveToNext());
@@ -375,6 +450,8 @@ public class DatabaseHandler extends SQLiteOpenHelper implements com.example.log
                 note.set_done(Boolean.parseBoolean(cursor.getString(5)));
                 note.set_userID(Integer.parseInt(cursor.getString(6)));
                 note.set_groupID(Integer.parseInt(cursor.getString(7)));
+                note.set_userName(cursor.getString(8));
+                note.set_userSurname(cursor.getString(9));
 
                 noteList.add(note);
             } while (cursor.moveToNext());
@@ -407,6 +484,29 @@ public class DatabaseHandler extends SQLiteOpenHelper implements com.example.log
         }
 
         return unoteList;
+    }
+
+    @Override
+    public List<User_group> getAllUser_groups() {
+        List<User_group> user_groupsList = new ArrayList<User_group>();
+        String selectQuery = "SELECT  * FROM " + TABLE_UG;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                User_group user_group = new User_group();
+                user_group.set_group_id(Integer.parseInt(cursor.getString(0)));
+                user_group.set_user_id(Integer.parseInt(cursor.getString(1)));
+                user_group.set_userName(cursor.getString(2));
+                user_group.set_userSurname(cursor.getString(3));
+
+                user_groupsList.add(user_group);
+            } while (cursor.moveToNext());
+        }
+
+        return user_groupsList;
     }
 
     @Override
@@ -452,6 +552,9 @@ public class DatabaseHandler extends SQLiteOpenHelper implements com.example.log
         values.put(KEY_MESSAGE_DATETIME, message.get_datetime());
         values.put(KEY_MESSAGE_USER_ID, message.get_userID());
         values.put(KEY_MESSAGE_GROUP_ID, message.get_groupID());
+        values.put(KEY_MESSAGE_USER_NAME, message.get_userName());
+        values.put(KEY_MESSAGE_USER_SURNAME, message.get_userSurname());
+
         return db.update(TABLE_MESSAGE, values, KEY_MESSAGE_ID + " = ?",
                 new String[] { String.valueOf(message.get_id()) });
     }
@@ -468,9 +571,41 @@ public class DatabaseHandler extends SQLiteOpenHelper implements com.example.log
         values.put(KEY_NOTE_DONE, note.get_done());
         values.put(KEY_NOTE_USER_ID, note.get_userID());
         values.put(KEY_NOTE_GROUP_ID, note.get_groupID());
+        values.put(KEY_NOTE_USER_NAME, note.get_userName());
+        values.put(KEY_NOTE_USER_SURNAME, note.get_userSurname());
 
         return db.update(TABLE_NOTE, values, KEY_NOTE_ID + " = ?",
                 new String[] { String.valueOf(note.get_id()) });
+    }
+
+    @Override
+    public int updateUNote(UNote unote) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_UNOTE_UNOTE_ID, unote.get_unoteID());
+        values.put(KEY_UNOTE_NAME, unote.get_name());
+        values.put(KEY_UNOTE_DATE, unote.get_date());
+        values.put(KEY_UNOTE_DESCRIPTION, unote.get_description());
+        values.put(KEY_UNOTE_DONE, unote.get_done());
+        values.put(KEY_UNOTE_USER_ID, unote.get_userID());
+
+        return db.update(TABLE_UNOTE, values, KEY_UNOTE_ID + " = ?",
+                new String[] { String.valueOf(unote.get_id()) });
+    }
+
+    @Override
+    public int updateUser_group(User_group user_group) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_UG_GROUP_ID, user_group.get_group_id());
+        values.put(KEY_UG_USER_ID, user_group.get_user_id());
+        values.put(KEY_UG_USER_NAME, user_group.get_userName());
+        values.put(KEY_UG_USER_SURNAME, user_group.get_userSurname());
+
+        return db.update(TABLE_UG, values, KEY_UG_GROUP_ID + " = ?",
+                new String[] { String.valueOf(user_group.get_group_id()) });
     }
 
     @Override
@@ -498,6 +633,20 @@ public class DatabaseHandler extends SQLiteOpenHelper implements com.example.log
     public void deleteNote(Note note) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NOTE, KEY_NOTE_ID + " = ?", new String[] { String.valueOf(note.get_id()) });
+        db.close();
+    }
+
+    @Override
+    public void deleteUNote(UNote unote) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_UNOTE, KEY_UNOTE_ID + " = ?", new String[] { String.valueOf(unote.get_id()) });
+        db.close();
+    }
+
+    @Override
+    public void deleteUser_group(User_group user_group) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_UG, KEY_UG_GROUP_ID + " = ?", new String[] { String.valueOf(user_group.get_group_id()) });
         db.close();
     }
 
@@ -537,6 +686,13 @@ public class DatabaseHandler extends SQLiteOpenHelper implements com.example.log
     }
 
     @Override
+    public void deleteAllUser_groups() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_UG,null, null);
+        db.close();
+    }
+
+    @Override
     public int getContactsCount() {
         String countQuery = "SELECT  * FROM " + TABLE_CONTACTS;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -568,7 +724,27 @@ public class DatabaseHandler extends SQLiteOpenHelper implements com.example.log
 
     @Override
     public int getNoteCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_MESSAGE;
+        String countQuery = "SELECT  * FROM " + TABLE_NOTE;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        cursor.close();
+
+        return cursor.getCount();
+    }
+
+    @Override
+    public int getUNoteCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_UNOTE;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        cursor.close();
+
+        return cursor.getCount();
+    }
+
+    @Override
+    public int getUser_groupCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_UG;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
         cursor.close();

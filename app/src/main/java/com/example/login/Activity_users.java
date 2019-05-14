@@ -1,7 +1,9 @@
 package com.example.login;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -10,7 +12,19 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.login.LocalDataBase.DatabaseHandler;
+import com.example.login.LocalDataBase.User;
+import com.example.login.LocalDataBase.User_group;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Activity_users extends Base_Activity {
     private RecyclerView recyclerView_usersGroup;
@@ -19,12 +33,19 @@ public class Activity_users extends Base_Activity {
     private ArrayList<ItemUserGroup> itemUserGroupArrayList;
 
     public String email, name, second_name, name_user;
+    int group_id;
 
     ImageButton imageButton;
 
     EditText editText;
 
     SharedPref sharedpref;
+
+    DatabaseHandler db;
+
+    List<User_group> user_groups;
+
+    public static String server_name = "message.dlinkddns.com:8008";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +57,8 @@ public class Activity_users extends Base_Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users);
+
+        db = new DatabaseHandler(this);
 
         createListUsersGroup();
         buildRecyclerViewUsersGroup();
@@ -56,6 +79,12 @@ public class Activity_users extends Base_Activity {
                 mLogin.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        email = String.valueOf(editText.getText().toString());
+                        try {
+                            new InsertUser().execute();
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
                         dialog.dismiss();
                     }
                 });
@@ -73,7 +102,17 @@ public class Activity_users extends Base_Activity {
     private void createListUsersGroup() {
         itemUserGroupArrayList = new ArrayList<>();
 
-        itemUserGroupArrayList.add(new ItemUserGroup(R.drawable.ic_android, "dnsmnd"));
+        user_groups = db.getAllUser_groups();
+
+        for (User_group ug : user_groups){
+            group_id = ug.get_group_id();
+            name = ug.get_userName();
+            second_name = ug.get_userSurname();
+
+            name = name + " " + second_name;
+            itemUserGroupArrayList.add(new ItemUserGroup(R.drawable.ic_android, name));
+        }
+
     }
 
     private void buildRecyclerViewUsersGroup() {
@@ -84,5 +123,73 @@ public class Activity_users extends Base_Activity {
 
         recyclerView_usersGroup.setLayoutManager(layoutManager_usersGroup);
         recyclerView_usersGroup.setAdapter(usersGroupAdapter);
+    }
+
+    class InsertUser extends AsyncTask<Void, Void, Void> {
+        String resultString = null;
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                String myURL = "http://" + server_name + "/insert_user.php?email=" + email + "&group_id=" + group_id;
+                String parammetrs = "/group.php?id=null&email=" + email + "&group_id=" + group_id;
+                byte[] data = null;
+                InputStream is = null;
+
+
+                try {
+                    URL url = new URL(myURL);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setReadTimeout(10000);
+                    conn.setConnectTimeout(15000);
+                    conn.setRequestMethod("GET");
+
+                    conn.setRequestProperty("Connection", "Keep-Alive");
+                    conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                    conn.setRequestProperty("Content-Length", "" + Integer.toString(parammetrs.getBytes().length));
+                    conn.setDoOutput(true);
+                    conn.setDoInput(true);
+
+                    data = parammetrs.getBytes("UTF-8");
+
+                    OutputStream os = conn.getOutputStream();
+
+                    os.write(data);
+                    os.flush();
+                    os.close();
+                    data = null;
+                    conn.connect();
+                    int responseCode = conn.getResponseCode();
+
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+                    if (responseCode == 200) {
+                        is = conn.getInputStream();
+
+                        byte[] buffer = new byte[8192];
+                        int bytesRead;
+
+                        while ((bytesRead = is.read(buffer)) != -1) {
+                            baos.write(buffer, 0, bytesRead);
+                        }
+
+                        data = baos.toByteArray();
+                        resultString = new String(data, "UTF-8");
+
+                    } else {
+                        conn.disconnect();
+                    }
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
     }
 }

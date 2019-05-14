@@ -30,6 +30,7 @@ import com.example.login.LocalDataBase.DatabaseHandler;
 import com.example.login.LocalDataBase.Groups;
 import com.example.login.LocalDataBase.Message;
 import com.example.login.LocalDataBase.User;
+import com.example.login.LocalDataBase.User_group;
 import com.example.login.features.demo.styled.StyledMessagesActivity;
 
 import org.json.JSONArray;
@@ -85,8 +86,16 @@ public class Left extends AppCompatActivity
     private static String TAG_USER_ID = "user_id";
     private static String TAG_GROUP_ID = "group_id";
 
+    private static String TAG_USER_GROUP = "user_group";
+    private static String TAG_USER_GROUP_ID = "user_id";
+    private static String TAG_NAME = "name";
+    private static String TAG_SECOND_NAME = "second_name";
+
     int message_id, user_id_mess, group_id;
     String text_mess, datetime;
+
+    String user_group_name, user_group_second_name;
+    int user_group_id;
 
     int flag = 0, temp, size;
     @Override
@@ -415,6 +424,12 @@ public class Left extends AppCompatActivity
                     e.printStackTrace();
                 }
 
+                try{
+                    new LoadUsers().execute();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
                 while(flag == 0){
                     System.out.println("load");
                     try {
@@ -476,7 +491,7 @@ public class Left extends AppCompatActivity
                         user_id_mess = Integer.parseInt(schedule.getString(TAG_USER_ID));
                         group_id = Integer.parseInt(schedule.getString(TAG_GROUP_ID));
 
-                        db.addMessage(new Message(message_id, text_mess, datetime, user_id_mess, group_id));
+                        db.addMessage(new Message(message_id, text_mess, datetime, user_id_mess, group_id, "dbsnd", "dbsnd"));
                     }
 
                     System.out.println("Reading all messages..");
@@ -507,6 +522,64 @@ public class Left extends AppCompatActivity
     private String convertStreamToString(InputStream stream) {
         java.util.Scanner s = new java.util.Scanner(stream).useDelimiter("\\A");
         return s.hasNext() ? s.next() : "";
+    }
+
+    class LoadUsers extends AsyncTask<Void, Void, Void>{
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try{
+
+                db.deleteAllUser_groups();
+                String myURL = "http://"+server_name+"/load_group_user.php?&group_id="+group_id;
+
+                try {
+                    URL url = new URL(myURL);
+
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setReadTimeout(10000);
+                    conn.setConnectTimeout(15000);
+                    conn.setRequestMethod("GET");
+                    conn.setDoInput(true);
+
+                    conn.connect();
+
+                    InputStream stream = conn.getInputStream();
+
+                    String data = convertStreamToString(stream);
+
+                    JSONObject jsonObject = new JSONObject(data);
+
+                    JSONArray user_group = jsonObject.getJSONArray(TAG_USER_GROUP);
+
+                    for (int i = 0; i < user_group.length(); i++){
+                        JSONObject schedule = user_group.getJSONObject(i);
+
+                        user_group_id = Integer.parseInt(schedule.getString(TAG_USER_GROUP_ID));
+                        user_group_name = schedule.getString(TAG_NAME);
+                        user_group_second_name = schedule.getString(TAG_SECOND_NAME);
+
+                        db.addUser_group(new User_group(group_id, user_group_id, user_group_name, user_group_second_name));
+                    }
+
+                    System.out.println("Reading all user group..");
+                    List<User_group> user_group_local = db.getAllUser_groups();
+
+                    for (User_group ug : user_group_local) {
+                        String log = "id: " + ug.get_group_id() + " , user_id " + ug.get_user_id() + " , name: " + ug.get_userName() + " , second name: " + ug.get_userSurname();
+
+                        System.out.print("User group: ");
+                        System.out.println(log);
+                    }
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            return null;
+        }
     }
 
 }

@@ -18,6 +18,7 @@ import com.example.login.LocalDataBase.Message;
 import com.example.login.LocalDataBase.Note;
 import com.example.login.LocalDataBase.UNote;
 import com.example.login.LocalDataBase.User;
+import com.example.login.LocalDataBase.User_group;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -267,11 +268,14 @@ public class MainActivity extends AppCompatActivity {
                     /*System.out.println("Inserting groups ..");
                     db.addGroup(new Groups(1, 1, "Camellia",1, 2));*/
 
+                    System.out.println("Inserting user_group ..");
+                    db.addUser_group(new User_group(1, 1, "snams", "snams"));
+
                     System.out.println("Inserting messages ..");
-                    db.addMessage(new Message(1, "Hello.", "10.04.2019 14:00", 1, 1));
+                    db.addMessage(new Message(1, "Hello.", "10.04.2019 14:00", 1, 1, "mxz,mx", "xnmzx"));
 
                     System.out.println("Inserting notes ..");
-                    db.addNote(new Note(1, "Do something.", "20.04.2019", "We need to do something.", true, 1, 1));
+                    db.addNote(new Note(1, "Do something.", "20.04.2019", "We need to do something.", true, 1, 1, "xm,zmx", "xzm,mx"));
 
                     System.out.println("Inserting unotes ..");
                     db.addUNote(new UNote(1, "Do something.", "20.04.2019", "I need to do something.", true, 1));
@@ -300,6 +304,16 @@ public class MainActivity extends AppCompatActivity {
                         System.out.print("Group: ");
                         System.out.println(log);
                     }*/
+
+                    System.out.println("Reading all user group..");
+                    List<User_group> user_group_local = db.getAllUser_groups();
+
+                    for (User_group ug : user_group_local) {
+                        String log = "id: " + ug.get_group_id() + " , user_id " + ug.get_user_id() + " , name: " + ug.get_userName() + " , second name: " + ug.get_userSurname();
+
+                        System.out.print("User group: ");
+                        System.out.println(log);
+                    }
 
                     System.out.println("Reading all messages..");
                     List<Message> message_local = db.getAllMessages();
