@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/half_margin"
+    android:layout_marginTop="@dimen/small_margin"
+    android:layout_marginBottom="@dimen/small_margin"
+    android:layout_marginRight="@dimen/half_margin"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:background= "?attr/backgroundcolor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="?attr/backgroundcolor"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/date_node_group_row"
+            android:layout_width="55dp"
+            android:layout_height="match_parent"
+            android:padding="2dp"
+            android:textSize="30sp" />
+
+        <LinearLayout
+            android:layout_width="269dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/small_margin"
+            android:background="?attr/backgroundcolor"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name_node_group_row"
+                android:layout_width="206dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="53dp"
+                android:layout_marginLeft="53dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="@dimen/small_margin"
+                android:maxLines="7"
+
+                android:textColor="?attr/textcolor"
+                android:textColorHint="?attr/tintcolor"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/holder_node_group_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:text=" "
+                android:textColor="?attr/textcolor"
+                android:textColorHint="?attr/tintcolor"
+                android:textSize="13sp" />
+
+
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/checkBox_node_group_row"
+            android:layout_width="72dp"
+            android:layout_height="71dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
+
+
