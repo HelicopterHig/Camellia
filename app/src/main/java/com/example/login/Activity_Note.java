@@ -3,15 +3,24 @@ package com.example.login;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import java.util.ArrayList;
+
 public class Activity_Note extends Base_Activity {
     ImageButton floatButton;
     protected String name_note;
     EditText editText;
+
+    private RecyclerView recyclerView;
+    private NoteAdapter noteAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private ArrayList<ItemNote> itemNoteArrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedpref = new SharedPref(this);
@@ -22,6 +31,8 @@ public class Activity_Note extends Base_Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
 
+        createListMessage();
+        buildRecyclerViewMessage();
 
         floatButton = (ImageButton) findViewById(R.id.imageButton_insert_note);
         floatButton.setOnClickListener(new View.OnClickListener(){
@@ -63,6 +74,25 @@ public class Activity_Note extends Base_Activity {
 
         });
     }
+
+    private void createListMessage() {
+        itemNoteArrayList = new ArrayList<>();
+
+        itemNoteArrayList.add(new ItemNote("13 март", "Создать пользовательский интерфейс", false));
+        itemNoteArrayList.add(new ItemNote("20 март", "Создать локальную базу данных", false));
+
+    }
+
+    private void buildRecyclerViewMessage() {
+        recyclerView = findViewById(R.id.recyclerView_row_note_group);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        noteAdapter = new NoteAdapter(itemNoteArrayList);
+
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(noteAdapter);
+    }
+
     public void openEditNoteActivity(){
         Intent intent  = new Intent(this, NoteEditActivity.class);
         startActivity(intent);

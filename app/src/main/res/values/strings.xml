@@ -31,8 +31,8 @@
     <string name="create_note">Create note</string>
     <string name="save_note">Your note is saved!</string>
     <string name="title">Project name</string>
-    <string name="add_user">Enter user id </string>
-    <string name="add_id_user">user id</string>
+    <string name="add_user">Enter user email </string>
+    <string name="add_id_user">user email</string>
     <string name="add_user_greetings">Your have added a new user!</string>
     <string name="title_note">Note title</string>
     <string name="password">Password</string>

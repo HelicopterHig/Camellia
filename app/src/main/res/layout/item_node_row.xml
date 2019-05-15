@@ -19,13 +19,14 @@
 
         <TextView
             android:id="@+id/date_node_group_row"
-            android:layout_width="55dp"
+            android:layout_width="77dp"
             android:layout_height="match_parent"
             android:padding="2dp"
+            android:textColor="@color/white"
             android:textSize="30sp" />
 
         <LinearLayout
-            android:layout_width="269dp"
+            android:layout_width="247dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_margin="@dimen/small_margin"

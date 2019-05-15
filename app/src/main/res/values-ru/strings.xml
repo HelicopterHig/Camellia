@@ -31,8 +31,8 @@
     <string name="create_note">Создать заметку</string>
     <string name="save_note">Ваша заметка сохранена!</string>
     <string name="title">Название проекта</string>
-    <string name="add_user">Введите id пользователя</string>
-    <string name="add_id_user">id пользователя</string>
+    <string name="add_user">Введите email пользователя</string>
+    <string name="add_id_user">email пользователя</string>
     <string name="add_user_greetings">Вы добавили нового пользователя!</string>
     <string name="title_note">Название заметки</string>
     <string name="password">Password</string>
