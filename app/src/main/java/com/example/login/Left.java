@@ -417,15 +417,26 @@ public class Left extends AppCompatActivity
                     }
                 }
 
-                try {
+                try{
                     flag = 0;
-                    new LoadMessage().execute();
+                    new LoadUsers().execute();
+                    flag = 0;
                 }catch (Exception e){
                     e.printStackTrace();
                 }
 
-                try{
-                    new LoadUsers().execute();
+                while(flag == 0){
+                    System.out.println("load user");
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                try {
+                    flag = 0;
+                    new LoadMessage().execute();
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -455,6 +466,8 @@ public class Left extends AppCompatActivity
     class LoadMessage extends AsyncTask<Void, Void, Void>{
         @Override
         protected Void doInBackground(Void... voids) {
+            List<User_group> user_groupList = db.getAllUser_groups();
+
             try{
                 System.out.println("load and load");
 
@@ -491,7 +504,12 @@ public class Left extends AppCompatActivity
                         user_id_mess = Integer.parseInt(schedule.getString(TAG_USER_ID));
                         group_id = Integer.parseInt(schedule.getString(TAG_GROUP_ID));
 
-                        db.addMessage(new Message(message_id, text_mess, datetime, user_id_mess, group_id, "dbsnd", "dbsnd"));
+                        for (User_group ug : user_groupList){
+                            if (ug.get_user_id() == user_id_mess){
+                                db.addMessage(new Message(message_id, text_mess, datetime, user_id_mess, group_id, ug.get_userName(), ug.get_userSurname()));
+                            }
+                        }
+
                     }
 
                     System.out.println("Reading all messages..");
@@ -499,7 +517,7 @@ public class Left extends AppCompatActivity
 
                     for (Message cn : message_local) {
                         String log = "Id: " + cn.get_id() + " , MessageID: " + cn.get_messageID() + " , Text: " + cn.get_text() + " , DateTime: " + cn.get_datetime()
-                                + ", UserID: " + cn.get_userID() + ", GroupID: " + cn.get_groupID();
+                                + ", UserID: " + cn.get_userID() + ", GroupID: " + cn.get_groupID() + ", name: " + cn.get_userName();
 
                         System.out.print("Message: ");
                         System.out.println(log);
@@ -530,6 +548,7 @@ public class Left extends AppCompatActivity
             try{
 
                 db.deleteAllUser_groups();
+                flag = 0;
                 String myURL = "http://"+server_name+"/load_group_user.php?&group_id="+group_id;
 
                 try {
@@ -571,8 +590,11 @@ public class Left extends AppCompatActivity
                         System.out.println(log);
                     }
 
+                    flag = 1;
+
                 }catch (Exception e){
                     e.printStackTrace();
+                    flag = 1;
                 }
             }catch (Exception e){
                 e.printStackTrace();

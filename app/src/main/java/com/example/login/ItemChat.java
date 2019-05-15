@@ -8,12 +8,14 @@ public class ItemChat {
     private String date_mess;
     private int image_user;
     private int type_mess;
+    private String name_user;
 
-    public ItemChat(String text, String date, int image, int type){
+    public ItemChat(String text, String date, int image, int type, String name){
         this.text_mess = text;
         this.date_mess = date;
         this.image_user = image;
         this.type_mess = type;
+        this.name_user = name;
     }
 
     public String getText_mess(){
@@ -48,4 +50,7 @@ public class ItemChat {
         this.type_mess = type_mess;
     }
 
+    public String getName_user(){
+        return name_user;
+    }
 }

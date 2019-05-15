@@ -37,6 +37,7 @@ import java.util.TimerTask;
 import com.example.login.LocalDataBase.DatabaseHandler;
 import com.example.login.LocalDataBase.Message;
 import com.example.login.LocalDataBase.User;
+import com.example.login.LocalDataBase.User_group;
 
 public class activity_chat extends AppCompatActivity {
 
@@ -63,7 +64,7 @@ public class activity_chat extends AppCompatActivity {
     String datetime;
     DatabaseHandler db;
 
-    String name, second_name;
+    String name, second_name, name_u;
     int user_id, message_id;
 
     String text_message;
@@ -144,9 +145,10 @@ public class activity_chat extends AppCompatActivity {
 
                 datetime = simpleDateFormat.format(date_now);
 
-                insertItemMessage(count++, text_mess);
+                name_u = name+" "+second_name;
+                insertItemMessage(count++, text_mess, name_u);
 
-                db.addMessage(new Message((message_id+1), text_mess, datetime, user_id, group_id, "dsmdn", "ndsmnds"));
+                db.addMessage(new Message((message_id+1), text_mess, datetime, user_id, group_id, name, second_name));
 
                 try{
                     new InsertNewMeassage().execute();
@@ -177,13 +179,13 @@ public class activity_chat extends AppCompatActivity {
         timer.schedule(timerTask, 1000, 1000);
     }
 
-    public void insertItemMessage(int position, String text_message){
-        itemChatArrayList.add(position, new ItemChat(text_message, datetime, R.drawable.ic_android, ItemChat.MESS_COMP));
+    public void insertItemMessage(int position, String text_message, String user_name){
+        itemChatArrayList.add(position, new ItemChat(text_message, datetime, R.drawable.ic_android, ItemChat.MESS_COMP, user_name));
         adapter_mess.notifyDataSetChanged();
     }
 
-    public void insertItemMessageCOMP(int position, String text_message){
-        itemChatArrayList.add(position, new ItemChat(text_message, datetime, R.drawable.ic_android, ItemChat.MESS_USER));
+    public void insertItemMessageCOMP(int position, String text_message, String user_name){
+        itemChatArrayList.add(position, new ItemChat(text_message, datetime, R.drawable.ic_android, ItemChat.MESS_USER, user_name));
         adapter_mess.notifyDataSetChanged();
     }
 
@@ -198,11 +200,15 @@ public class activity_chat extends AppCompatActivity {
                 user_id_mess = messD.get_userID();
                 text_message = messD.get_text();
                 message_id = messD.get_messageID();
+                name = messD.get_userName();
+                second_name = messD.get_userSurname();
+
+                name_u = name+" "+second_name;
 
                 if (user_id_mess == user_id) {
-                    itemChatArrayList.add(new ItemChat(messD.get_text(), messD.get_datetime(), R.drawable.ic_android, ItemChat.MESS_COMP));
+                    itemChatArrayList.add(new ItemChat(messD.get_text(), messD.get_datetime(), R.drawable.ic_android, ItemChat.MESS_COMP, name_u));
                 } else {
-                    itemChatArrayList.add(new ItemChat(messD.get_text(), messD.get_datetime(), R.drawable.ic_android, ItemChat.MESS_USER));
+                    itemChatArrayList.add(new ItemChat(messD.get_text(), messD.get_datetime(), R.drawable.ic_android, ItemChat.MESS_USER, name_u));
                 }
             }
         }
@@ -223,6 +229,7 @@ public class activity_chat extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             List<Message> messageList = db.getAllMessages();
+            List<User_group> user_groupList = db.getAllUser_groups();
 
             for (Message messD : messageList){
                 group_mess_id = messD.get_groupID();
@@ -263,10 +270,18 @@ public class activity_chat extends AppCompatActivity {
                         user_id_mess = Integer.parseInt(schedule.getString(TAG_USER_ID));
                         group_id = Integer.parseInt(schedule.getString(TAG_GROUP_ID));
 
+                        for (User_group ug : user_groupList){
+                            if (ug.get_user_id() == user_id_mess){
+                                name = ug.get_userName();
+                                second_name = ug.get_userSurname();
+
+                                name_u = name+" "+second_name;
+                            }
+                        }
 
                         if (user_id_mess != user_id) {
-                            db.addMessage(new Message(message_id, text_mess, datetime, user_id_mess, group_id, "sdnmdn", "dsdbsn"));
-                            insertItemMessageCOMP(count++, text_mess);
+                            db.addMessage(new Message(message_id, text_mess, datetime, user_id_mess, group_id, name, second_name));
+                            insertItemMessageCOMP(count++, text_mess, name_u);
                             recyclerView_mess.smoothScrollToPosition(count);
                         }
                     }
