@@ -1,12 +1,11 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <!--style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!- Customize your theme here. -->
-        <!--item name="colorPrimary">@color/colorPrimary</item>
+    <style name="AppTheme.NoteEdit" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">#646675</item>
-    </style-->
+        <item name="actionMenuTextColor">@color/colorPink</item>
+    </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>

@@ -7,71 +7,35 @@
     tools:context=".NoteEditActivity"
     >
 
-    <LinearLayout
-        android:id="@+id/linear_note"
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/edit_note_activity_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/AppTheme.NoteEdit"
+        app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay"
+        app:title="@string/your_note"
+        app:titleTextColor="#ffffff"/>
+
+    <EditText
+        android:id="@+id/input_note"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/edit_note_activity_toolbar"
+        android:layout_gravity="top"
         android:background="#ffffff"
-        android:orientation="vertical">
+        android:ems="10"
+        android:gravity="top"
+        android:hint="@string/want_to_write"
+        android:inputType="textMultiLine"
+        android:paddingStart="12dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="12dp"
 
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/edit_note_activity_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:background="?attr/colorPrimary"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:popupTheme="@style/AppTheme"
-            app:title="@string/your_note"
-            app:titleTextColor="#ffffff"/>
-
-
-        <EditText
-            android:id="@+id/input_note"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/edit_note_activity_toolbar"
-            android:layout_gravity="top"
-            android:ems="10"
-            android:gravity="top"
-            android:hint="@string/want_to_write"
-            android:inputType="textMultiLine"
-            android:paddingStart="12dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="12dp"
-
-
-            />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/button_note_save"
-
-        android:layout_width="351dp"
-        android:layout_height="59dp"
-
-        android:layout_below="@+id/linear_note"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="bottom|center"
-        android:layout_marginStart="26dp"
-        android:layout_marginLeft="26dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="26dp"
-        android:layout_marginRight="26dp"
-        android:background="@drawable/ripple_effect"
-        android:clickable="true"
-        android:focusable="true"
-        android:text="@string/save"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-      />
-
-
-
+        />
 
 
 </RelativeLayout>

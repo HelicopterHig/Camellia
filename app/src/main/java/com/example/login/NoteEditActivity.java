@@ -1,4 +1,4 @@
-/*package com.example.login;
+package com.example.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,7 +25,7 @@ public class NoteEditActivity extends AppCompatActivity {
 
     }
     public void openTskActivity(){
-        Intent intent  = new Intent(this, TskActivity.class);
+        Intent intent  = new Intent(this,Activity_Note.class );
         startActivity(intent);
     }
 
@@ -58,9 +58,9 @@ public class NoteEditActivity extends AppCompatActivity {
                 temp.setNoteText(text);
                 temp.setNoteDate(date);
                 dao.updateNote(temp);
-            }*/
-
-       /*     Toast.makeText(NoteEditActivity.this,
+            }
+*/
+            Toast.makeText(NoteEditActivity.this,
                     R.string.save_note,
                     Toast.LENGTH_SHORT).show();
             openTskActivity();
@@ -69,4 +69,3 @@ public class NoteEditActivity extends AppCompatActivity {
     }
 
 }
-*/
