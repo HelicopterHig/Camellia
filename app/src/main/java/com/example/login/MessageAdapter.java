@@ -57,6 +57,7 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 case MESS_USER:
                     ((UserMessViewHolder) holder).text_mess.setText(object.getText_mess());
                     ((UserMessViewHolder) holder).image_mess.setImageResource(object.getImage_user());
+                    ((UserMessViewHolder) holder).textView_name.setText(object.getName_user());
                     break;
                 case MESS_COMP:
                     ((CompMessViewHolder) holder).text_mess.setText(object.getText_mess());
@@ -78,11 +79,13 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         private TextView text_mess;
         private TextView date_mess;
         private ImageView image_mess;
+        private TextView textView_name;
 
         public UserMessViewHolder(@NonNull View itemView) {
             super(itemView);
             text_mess = (TextView) itemView.findViewById(R.id.titleTextView_user);
             image_mess = (ImageView) itemView.findViewById(R.id.imageView_user);
+            textView_name = (TextView) itemView.findViewById(R.id.name);
         }
     }
 

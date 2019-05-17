@@ -1,4 +1,5 @@
-/*package com.example.login;
+/*
+package com.example.login;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,10 +17,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 
-/**
+
  * A simple {@link Fragment} subclass.
- */
-/*public class BlankFragmentTab1 extends Fragment {
+public class BlankFragmentTab1 extends Fragment {
 
     protected String name_note;
     View vie;
@@ -29,7 +29,7 @@ import android.widget.ImageButton;
     private int mPage;
 
 
-/*    public static BlankFragmentTab1 newInstance(int page){
+   public static BlankFragmentTab1 newInstance(int page){
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, page);
         BlankFragmentTab1 fragment = new BlankFragmentTab1();
@@ -45,10 +45,10 @@ import android.widget.ImageButton;
         }
 
 
-    }*/
+    }
 
 
- /*   @Override
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -74,13 +74,9 @@ import android.widget.ImageButton;
 
                         name_note = String.valueOf(editText.getText().toString());
 
- /*                      try{
-                        new CreateGroup().execute();
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }*/
 
-       /*                     dialog.dismiss();
+
+                            dialog.dismiss();
                             openEditNoteActivity();
 
 //                        insertItem(position, name_group);
@@ -112,7 +108,8 @@ import android.widget.ImageButton;
     }
 
 
-    /*private void configureImageButton() {
+    */
+/*private void configureImageButton() {
         floatButton = (ImageButton) v.findViewById(R.id.imageButtonTask);
         floatButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -134,11 +131,11 @@ import android.widget.ImageButton;
 
                         name_note = String.valueOf(editText.getText().toString());
 
-    *//*                    try{
+                        try{
                             new CreateGroup().execute();
                         }catch (Exception e){
                             e.printStackTrace();
-                        }*//*
+                        }
 
                         dialog.dismiss();
 
@@ -149,9 +146,9 @@ import android.widget.ImageButton;
 
         });
 
-        }*/
+        }
     //}
-   /* floatButton = (ImageButton) findViewById(R.id.imageButton);
+    floatButton = (ImageButton) findViewById(R.id.imageButton);
         floatButton.setOnClickListener(new View.OnClickListener(){
 
         @Override
@@ -173,11 +170,11 @@ import android.widget.ImageButton;
 
                     name_note = String.valueOf(editText.getText().toString());
 
-  *//*                      try{
+                        try{
                             new CreateGroup().execute();
                         }catch (Exception e){
                             e.printStackTrace();
-                        }*//*
+                        }
 
                     dialog.dismiss();
 
@@ -186,8 +183,9 @@ import android.widget.ImageButton;
             });
         }
 
-        });*/
+        });
 
 
 
 
+*/
