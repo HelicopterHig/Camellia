@@ -2,7 +2,6 @@ package com.example.login.LocalDataBase;
 
 public class Message {
 
-
     int _id;
     int _messageID;
     String _text;
@@ -14,25 +13,25 @@ public class Message {
 
     public Message(){}
 
-    public Message(int _id, int _messageID, String _text, String _datetime, int _userID, int _groupID){
+    public Message(int _id, int _messageID, String _text, String _datetime, int _userID, int _groupID, String _userName, String _userSurname){
         this._id = _id;
         this._messageID = _messageID;
         this._text = _text;
         this._datetime = _datetime;
         this._userID = _userID;
         this._groupID = _groupID;
-        //this._userName = _userName;
-        //this._userSurname = _userSurname;
+        this._userName = _userName;
+        this._userSurname = _userSurname;
     }
 
-    public Message(int _messageID, String _text, String _datetime, int _userID, int _groupID){
+    public Message(int _messageID, String _text, String _datetime, int _userID, int _groupID, String _userName, String _userSurname){
         this._messageID = _messageID;
         this._text = _text;
         this._datetime = _datetime;
         this._userID = _userID;
         this._groupID = _groupID;
-        //this._userName = _userName;
-        //this._userSurname = _userSurname;
+        this._userName = _userName;
+        this._userSurname = _userSurname;
     }
 
     public int get_id() {
@@ -90,5 +89,4 @@ public class Message {
     public void set_userSurname(String _userSurname) {
         this._userSurname = _userSurname;
     }
-
 }
