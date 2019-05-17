@@ -269,13 +269,13 @@ public class MainActivity extends AppCompatActivity {
                     db.addGroup(new Groups(1, 1, "Camellia",1, 2));*/
 
                     System.out.println("Inserting user_group ..");
-                    db.addUser_group(new User_group(1, 1, "snams", "snams", "ggg", 2));
+                    db.addUser_group(new User_group(1, 1, "snams", "snams"));
 
                     System.out.println("Inserting messages ..");
-                    db.addMessage(new Message(1, "Hello.", "10.04.2019 14:00", 1, 1));
+                    db.addMessage(new Message(1, "Hello.", "10.04.2019 14:00", 1, 1, "mxz,mx", "xnmzx"));
 
                     System.out.println("Inserting notes ..");
-                    db.addNote(new Note(1, "Do something.", "20.04.2019", "We need to do something.", true, 1, 1));
+                    db.addNote(new Note(1, "Do something.", "20.04.2019", "We need to do something.", true, 1, 1, "xm,zmx", "xzm,mx"));
 
                     System.out.println("Inserting unotes ..");
                     db.addUNote(new UNote(1, "Do something.", "20.04.2019", "I need to do something.", true, 1));
