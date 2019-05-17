@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     //для таблицы user
     protected String name, second_name, email, password, birthday_date, access;
-    public int user_id;
+    public int user_id, icon_id;
 
     private static String TAG_USER = "user";
     private static String TAG_NAME = "name";
@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private static String TAG_EMAIL = "email";
     private static String TAG_PASSWORD = "password";
     private static String TAG_BIRTHDAY_DATE = "birthday_date";
+    private static String TAG_ICON_ID = "icon_id";
     private static String TAG_USER_ID = "id";
     private static String TAG_ACCESS = "accessToken";
 
@@ -198,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
                         second_name = schedule.getString(TAG_SECOND_NAME);
                         password = schedule.getString(TAG_PASSWORD);
                         birthday_date = schedule.getString(TAG_BIRTHDAY_DATE);
+                        icon_id = Integer.parseInt(schedule.getString(TAG_ICON_ID));
                         email = schedule.getString(TAG_EMAIL);
                         access = schedule.getString(TAG_ACCESS);
                     }
@@ -263,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
 
                     System.out.println("Inserting contacts ..");
                     // добавляем строку в бд
-                    db.addContact(new User(user_id, name, second_name, password, email, 2, birthday_date, access, refreshTokensMap, 1));
+                    db.addContact(new User(user_id, name, second_name, password, email, icon_id, birthday_date, access, refreshTokensMap, 1));
 
                     /*System.out.println("Inserting groups ..");
                     db.addGroup(new Groups(1, 1, "Camellia",1, 2));*/
