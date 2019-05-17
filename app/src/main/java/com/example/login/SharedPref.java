@@ -4,10 +4,6 @@ package com.example.login;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-/**
- * Created by Aws on 21/12/2017.
- */
-
 public class SharedPref {
     SharedPreferences mySharedPref ;
     public SharedPref(Context context) {

@@ -9,11 +9,11 @@ android:clipToPadding="false">
 
     <ImageView
         android:id="@+id/imageView_comp"
-        android:layout_alignParentRight="true"
-        android:scaleType="centerInside"
-        android:background="@drawable/circle"
         android:layout_width="34dp"
-        android:layout_height="34dp" />
+        android:layout_height="34dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/circle"
+        android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/name"
