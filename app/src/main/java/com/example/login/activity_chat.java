@@ -2,7 +2,6 @@ package com.example.login;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -81,6 +80,9 @@ public class activity_chat extends AppCompatActivity {
 
     SharedPref sharedpref;
 
+    int icon_id, foto;
+    CheckIcon c_icon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedpref = new SharedPref(this);
@@ -95,6 +97,7 @@ public class activity_chat extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        c_icon = new CheckIcon();
 
         db = new DatabaseHandler(this);
 
@@ -104,6 +107,7 @@ public class activity_chat extends AppCompatActivity {
             user_id = userD.getID();
             name = userD.getName();
             second_name = userD.getSecName();
+            icon_id = userD.getIcon();
         }
 
         List<Message> messageList = db.getAllMessages();
@@ -176,7 +180,7 @@ public class activity_chat extends AppCompatActivity {
 
 
 
-        timer.schedule(timerTask, 1000, 1000);
+        timer.schedule(timerTask, 1000, 500);
     }
 
     public void insertItemMessage(int position, String text_message, String user_name){
@@ -206,7 +210,8 @@ public class activity_chat extends AppCompatActivity {
                 name_u = name+" "+second_name;
 
                 if (user_id_mess == user_id) {
-                    itemChatArrayList.add(new ItemChat(messD.get_text(), messD.get_datetime(), R.drawable.ic_android, ItemChat.MESS_COMP, name_u));
+                    foto = c_icon.checkIconUser(icon_id);
+                    itemChatArrayList.add(new ItemChat(messD.get_text(), messD.get_datetime(), foto, ItemChat.MESS_COMP, name_u));
                 } else {
                     itemChatArrayList.add(new ItemChat(messD.get_text(), messD.get_datetime(), R.drawable.ic_android, ItemChat.MESS_USER, name_u));
                 }
