@@ -3,6 +3,7 @@ package com.example.login;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,9 +11,12 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.example.login.Avatar.Avatar;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -25,7 +29,7 @@ import java.net.URL;
 /*
 
 
-Version 0.5.0
+Version 0.7.4
 
 
  */
@@ -35,6 +39,12 @@ public class Activity2 extends AppCompatActivity {
     public  static String server_name = "message.dlinkddns.com:8008";
     protected String name, second_name, password, email, bithday_date;
     protected int icon_id = 2;
+
+    public void openActivityAvatar(){
+        Intent intent  = new Intent(this , Avatar.class);
+        startActivity(intent);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +56,14 @@ public class Activity2 extends AppCompatActivity {
 
         // инициализируем анимацию
        // final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
+
+        //ImageButton imageButton = (ImageButton) findViewById(R.id.imageButton3);
+        //imageButton.setOnClickListener(new View.OnClickListener() {
+            //@Override
+            //public void onClick(View v) {
+             //   openActivityAvatar();
+           // }
+              //  });
 
         button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
