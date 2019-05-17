@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandler {
 
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 5;
     private static final String DATABASE_NAME = "messenger_camellia";
 
 
