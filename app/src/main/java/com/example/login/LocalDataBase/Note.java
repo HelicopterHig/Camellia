@@ -4,6 +4,7 @@ import java.lang.ref.SoftReference;
 
 public class Note {
 
+
     int _id;
     int _noteID;
     String _name;

@@ -2,6 +2,7 @@ package com.example.login.LocalDataBase;
 
 public class User_group {
 
+
     int _group_id;
     int _user_id;
     String _userName;

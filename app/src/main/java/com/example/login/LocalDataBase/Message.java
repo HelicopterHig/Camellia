@@ -2,6 +2,7 @@ package com.example.login.LocalDataBase;
 
 public class Message {
 
+
     int _id;
     int _messageID;
     String _text;
