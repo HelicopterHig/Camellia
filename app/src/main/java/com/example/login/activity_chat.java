@@ -152,7 +152,7 @@ public class activity_chat extends AppCompatActivity {
                 name_u = name+" "+second_name;
                 insertItemMessage(count++, text_mess, name_u);
 
-                db.addMessage(new Message((message_id+1), text_mess, datetime, user_id, group_id, "dfdf", "dfdf"));
+                db.addMessage(new Message((message_id+1), text_mess, datetime, user_id, group_id, "dfdf", "dfdf", "fdgg", 2));
 
                 try{
                     new InsertNewMeassage().execute();
@@ -285,7 +285,7 @@ public class activity_chat extends AppCompatActivity {
                         }
 
                         if (user_id_mess != user_id) {
-                            db.addMessage(new Message(message_id, text_mess, datetime, user_id_mess, group_id, "fgdg", "fgdfg"));
+                            db.addMessage(new Message(message_id, text_mess, datetime, user_id_mess, group_id, "fgdg", "fgdfg", "sdfsdf", 2));
                             insertItemMessageCOMP(count++, text_mess, name_u);
                             recyclerView_mess.smoothScrollToPosition(count);
                         }

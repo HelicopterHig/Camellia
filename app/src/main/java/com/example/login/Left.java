@@ -506,7 +506,7 @@ public class Left extends AppCompatActivity
 
                         for (User_group ug : user_groupList){
                             if (ug.get_user_id() == user_id_mess){
-                                db.addMessage(new Message(message_id, text_mess, datetime, user_id_mess, group_id, ug.get_userName(), ug.get_userSurname()));
+                                db.addMessage(new Message(message_id, text_mess, datetime, user_id_mess, group_id, ug.get_userName(), ug.get_userSurname(), "email", 2));
                             }
                         }
 
@@ -577,7 +577,7 @@ public class Left extends AppCompatActivity
                         user_group_name = schedule.getString(TAG_NAME);
                         user_group_second_name = schedule.getString(TAG_SECOND_NAME);
 
-                        db.addUser_group(new User_group(group_id, user_group_id, user_group_name, user_group_second_name));
+                        db.addUser_group(new User_group(group_id, user_group_id, user_group_name, user_group_second_name, "email", 2));
                     }
 
                     System.out.println("Reading all user group..");

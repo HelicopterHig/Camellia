@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandler {
 
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 8;
     private static final String DATABASE_NAME = "messenger_camellia";
 
 
@@ -47,6 +47,8 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
     private static final String KEY_MESSAGE_GROUP_ID = "groupID";
     private static final String KEY_MESSAGE_USER_NAME = "user_name";
     private static final String KEY_MESSAGE_USER_SURNAME = "user_surname";
+    private static final String KEY_MESSAGE_USER_EMAIL = "user_email";
+    private static final String KEY_MESSAGE_ICON_ID = "icon_id";
 
     //Note
     private static final String TABLE_NOTE = "note";
@@ -60,6 +62,8 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
     private static final String KEY_NOTE_GROUP_ID = "groupID";
     private static final String KEY_NOTE_USER_NAME = "user_name";
     private static final String KEY_NOTE_USER_SURNAME = "user_surname";
+    private static final String KEY_NOTE_USER_EMAIL = "user_email";
+    private static final String KEY_NOTE_ICON_ID = "icon_id";
 
     //UNote
     private static final String TABLE_UNOTE = "unote";
@@ -77,6 +81,8 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
     private static final String KEY_UG_USER_ID = "user_id";
     private static final String KEY_UG_USER_NAME = "user_name";
     private static final String KEY_UG_USER_SURNAME = "user_surname";
+    private static final String KEY_UG_USER_EMAIL = "user_email";
+    private static final String KEY_UG_ICON_ID = "icon_id";
 
     private static final String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
             + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " text," + KEY_SECOND_NAME
@@ -93,13 +99,15 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
     private static final String CREATE_MESSAGE_TABLE = "CREATE TABLE " + TABLE_MESSAGE + " ("
             + KEY_MESSAGE_ID + " INTEGER PRIMARY KEY, " + KEY_MESSAGE_MESSAGE_ID + " INTEGER, " + KEY_MESSAGE_TEXT + " TEXT, "
             + KEY_MESSAGE_DATETIME + " DATETIME, " + KEY_MESSAGE_USER_ID + " INTEGER, "
-            + KEY_MESSAGE_GROUP_ID + " INTEGER, " + KEY_MESSAGE_USER_NAME + " TEXT, " + KEY_MESSAGE_USER_SURNAME + " TEXT)";
+            + KEY_MESSAGE_GROUP_ID + " INTEGER, " + KEY_MESSAGE_USER_NAME + " TEXT, " + KEY_MESSAGE_USER_SURNAME + " TEXT, "
+            + KEY_MESSAGE_USER_EMAIL + " TEXT, " + KEY_MESSAGE_ICON_ID + " INTEGER)";
 
     private static final String CREATE_NOTE_TABLE = "CREATE TABLE " + TABLE_NOTE + " ("
             + KEY_NOTE_ID + " INTEGER PRIMARY KEY, " + KEY_NOTE_NOTE_ID + " INTEGER, " + KEY_NOTE_NAME + " STRING, "
             + KEY_NOTE_DATE + " DATE, " + KEY_NOTE_DESCRIPTION + " text, "
             + KEY_NOTE_DONE + " BINARY, " + KEY_NOTE_USER_ID + " INTEGER, "
-            + KEY_NOTE_GROUP_ID + " INTEGER, " + KEY_NOTE_USER_NAME + " TEXT, " + KEY_NOTE_USER_SURNAME + " TEXT)";
+            + KEY_NOTE_GROUP_ID + " INTEGER, " + KEY_NOTE_USER_NAME + " TEXT, " + KEY_NOTE_USER_SURNAME + " TEXT, "
+            + KEY_NOTE_USER_EMAIL + " TEXT, " + KEY_NOTE_ICON_ID + " INTEGER)";
 
     private static final String CREATE_UNOTE_TABLE = "CREATE TABLE " + TABLE_UNOTE + " ("
             + KEY_UNOTE_ID + " INTEGER PRIMARY KEY, " + KEY_UNOTE_UNOTE_ID + " INTEGER, " + KEY_UNOTE_NAME + " STRING, "
@@ -107,7 +115,8 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
             + KEY_UNOTE_DONE + " BINARY, " + KEY_UNOTE_USER_ID + " INTEGER)";
 
     public static final String CREATE_UG_TABLE = "CREATE TABLE " + TABLE_UG + " (" + KEY_UG_GROUP_ID + " INTEGER, " +
-            KEY_UG_USER_ID + " INTEGER, " + KEY_UG_USER_NAME + " TEXT, " + KEY_UG_USER_SURNAME + " TEXT)";
+            KEY_UG_USER_ID + " INTEGER, " + KEY_UG_USER_NAME + " TEXT, " + KEY_UG_USER_SURNAME + " TEXT, "
+            + KEY_UG_USER_EMAIL + " TEXT, " + KEY_UG_ICON_ID + " INTEGER)";
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -181,6 +190,8 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         values.put(KEY_MESSAGE_GROUP_ID, message.get_groupID());
         values.put(KEY_MESSAGE_USER_NAME, message.get_userName());
         values.put(KEY_MESSAGE_USER_SURNAME, message.get_userSurname());
+        values.put(KEY_MESSAGE_USER_EMAIL, message.get_userEmail());
+        values.put(KEY_MESSAGE_ICON_ID, message.get_icon_id());
 
         db.insert(TABLE_MESSAGE, null, values);
         db.close();
@@ -200,6 +211,8 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         values.put(KEY_NOTE_GROUP_ID, note.get_groupID());
         values.put(KEY_NOTE_USER_NAME, note.get_userName());
         values.put(KEY_NOTE_USER_SURNAME, note.get_userSurname());
+        values.put(KEY_NOTE_USER_EMAIL, note.get_userEmail());
+        values.put(KEY_NOTE_ICON_ID, note.get_icon_id());
 
         db.insert(TABLE_NOTE, null, values);
         db.close();
@@ -230,6 +243,8 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         values.put(KEY_UG_USER_ID, user_group.get_user_id());
         values.put(KEY_UG_USER_NAME, user_group.get_userName());
         values.put(KEY_UG_USER_SURNAME, user_group.get_userSurname());
+        values.put(KEY_UG_USER_EMAIL, user_group.get_userEmail());
+        values.put(KEY_UG_ICON_ID, user_group.get_icon_id());
 
         db.insert(TABLE_UG, null, values);
         db.close();
@@ -280,7 +295,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_MESSAGE, new String[] { KEY_MESSAGE_ID, KEY_MESSAGE_MESSAGE_ID,
-                        KEY_MESSAGE_TEXT, KEY_MESSAGE_DATETIME, KEY_MESSAGE_USER_ID, KEY_MESSAGE_GROUP_ID, KEY_MESSAGE_USER_NAME, KEY_MESSAGE_USER_SURNAME },
+                        KEY_MESSAGE_TEXT, KEY_MESSAGE_DATETIME, KEY_MESSAGE_USER_ID, KEY_MESSAGE_GROUP_ID, KEY_MESSAGE_USER_NAME, KEY_MESSAGE_USER_SURNAME, KEY_MESSAGE_USER_EMAIL, KEY_MESSAGE_ICON_ID },
                 KEY_MESSAGE_MESSAGE_ID + "=?", new String[] { String.valueOf(id) }, null, null, null, null);
 
         if (cursor != null){
@@ -289,7 +304,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
 
         Message message = new Message(Integer.parseInt(cursor.getString(0)), Integer.parseInt(cursor.getString(1)),
                 cursor.getString(2), cursor.getString(3), Integer.parseInt(cursor.getString(4)),
-                Integer.parseInt(cursor.getString(5)), cursor.getString(6), cursor.getString(7));
+                Integer.parseInt(cursor.getString(5)), cursor.getString(6), cursor.getString(7), cursor.getString(8), Integer.parseInt(cursor.getString(9)));
 
         return message;
     }
@@ -299,7 +314,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_NOTE, new String[] { KEY_NOTE_ID, KEY_NOTE_NOTE_ID, KEY_NOTE_NAME,
-                        KEY_NOTE_DATE, KEY_NOTE_DESCRIPTION, KEY_NOTE_DONE, KEY_NOTE_USER_ID, KEY_NOTE_GROUP_ID, KEY_NOTE_USER_NAME, KEY_NOTE_USER_SURNAME}, KEY_NOTE_ID + "=?",
+                        KEY_NOTE_DATE, KEY_NOTE_DESCRIPTION, KEY_NOTE_DONE, KEY_NOTE_USER_ID, KEY_NOTE_GROUP_ID, KEY_NOTE_USER_NAME, KEY_NOTE_USER_SURNAME, KEY_NOTE_USER_EMAIL, KEY_NOTE_ICON_ID}, KEY_NOTE_ID + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
 
         if (cursor != null){
@@ -309,7 +324,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         Note note = new Note(Integer.parseInt(cursor.getString(0)), Integer.parseInt(cursor.getString(1)),
                 cursor.getString(2), cursor.getString(3), cursor.getString(4),
                 Boolean.parseBoolean(cursor.getString(5)), Integer.parseInt(cursor.getString(6)), Integer.parseInt(cursor.getString(7)),
-                cursor.getString(8), cursor.getString(9));
+                cursor.getString(8), cursor.getString(9), cursor.getString(10), Integer.parseInt(cursor.getString(11)));
 
         return note;
     }
@@ -337,7 +352,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
     public User_group getUser_group(int group_id){
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_UG, new String[] { KEY_UG_GROUP_ID, KEY_UG_USER_ID, KEY_UG_USER_NAME, KEY_UG_USER_SURNAME}, KEY_UG_GROUP_ID + "=?",
+        Cursor cursor = db.query(TABLE_UG, new String[] { KEY_UG_GROUP_ID, KEY_UG_USER_ID, KEY_UG_USER_NAME, KEY_UG_USER_SURNAME, KEY_UG_USER_EMAIL, KEY_UG_ICON_ID}, KEY_UG_GROUP_ID + "=?",
                 new String[] {String.valueOf(group_id)}, null, null, null, null);
 
         if (cursor != null){
@@ -345,7 +360,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         }
 
         User_group user_group = new User_group(Integer.parseInt(cursor.getString(0)), Integer.parseInt(cursor.getString(1)),
-                cursor.getString(2), cursor.getString(3));
+                cursor.getString(2), cursor.getString(3), cursor.getString(4), Integer.parseInt(cursor.getString(5)));
 
         return user_group;
     }
@@ -423,6 +438,8 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
                 message.set_groupID(Integer.parseInt(cursor.getString(5)));
                 message.set_userName(cursor.getString(6));
                 message.set_userSurname(cursor.getString(7));
+                message.set_userEmail(cursor.getString(8));
+                message.set_icon_id(Integer.parseInt(cursor.getString(9)));
 
                 messageList.add(message);
             } while (cursor.moveToNext());
@@ -452,6 +469,8 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
                 note.set_groupID(Integer.parseInt(cursor.getString(7)));
                 note.set_userName(cursor.getString(8));
                 note.set_userSurname(cursor.getString(9));
+                note.set_userEmail(cursor.getString(10));
+                note.set_icon_id(Integer.parseInt(cursor.getString(11)));
 
                 noteList.add(note);
             } while (cursor.moveToNext());
@@ -501,6 +520,8 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
                 user_group.set_user_id(Integer.parseInt(cursor.getString(1)));
                 user_group.set_userName(cursor.getString(2));
                 user_group.set_userSurname(cursor.getString(3));
+                user_group.set_userEmail(cursor.getString(4));
+                user_group.set_icon_id(Integer.parseInt(cursor.getString(5)));
 
                 user_groupsList.add(user_group);
             } while (cursor.moveToNext());
@@ -554,6 +575,8 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         values.put(KEY_MESSAGE_GROUP_ID, message.get_groupID());
         values.put(KEY_MESSAGE_USER_NAME, message.get_userName());
         values.put(KEY_MESSAGE_USER_SURNAME, message.get_userSurname());
+        values.put(KEY_MESSAGE_USER_EMAIL, message.get_userEmail());
+        values.put(KEY_MESSAGE_ICON_ID, message.get_icon_id());
 
         return db.update(TABLE_MESSAGE, values, KEY_MESSAGE_ID + " = ?",
                 new String[] { String.valueOf(message.get_id()) });
@@ -573,6 +596,8 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         values.put(KEY_NOTE_GROUP_ID, note.get_groupID());
         values.put(KEY_NOTE_USER_NAME, note.get_userName());
         values.put(KEY_NOTE_USER_SURNAME, note.get_userSurname());
+        values.put(KEY_NOTE_USER_EMAIL, note.get_userEmail());
+        values.put(KEY_NOTE_ICON_ID, note.get_icon_id());
 
         return db.update(TABLE_NOTE, values, KEY_NOTE_ID + " = ?",
                 new String[] { String.valueOf(note.get_id()) });
@@ -603,6 +628,8 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         values.put(KEY_UG_USER_ID, user_group.get_user_id());
         values.put(KEY_UG_USER_NAME, user_group.get_userName());
         values.put(KEY_UG_USER_SURNAME, user_group.get_userSurname());
+        values.put(KEY_UG_USER_EMAIL, user_group.get_userEmail());
+        values.put(KEY_UG_ICON_ID, user_group.get_icon_id());
 
         return db.update(TABLE_UG, values, KEY_UG_GROUP_ID + " = ?",
                 new String[] { String.valueOf(user_group.get_group_id()) });
