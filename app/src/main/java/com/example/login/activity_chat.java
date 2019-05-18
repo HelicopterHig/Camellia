@@ -80,7 +80,7 @@ public class activity_chat extends AppCompatActivity {
 
     SharedPref sharedpref;
 
-    int icon_id, foto;
+    int icon_id, foto, icon_id_user;
     CheckIcon c_icon;
 
     @Override
@@ -107,7 +107,7 @@ public class activity_chat extends AppCompatActivity {
             user_id = userD.getID();
             name = userD.getName();
             second_name = userD.getSecName();
-            icon_id = userD.getIcon();
+            icon_id_user = userD.getIcon();
         }
 
         List<Message> messageList = db.getAllMessages();
@@ -140,30 +140,29 @@ public class activity_chat extends AppCompatActivity {
         fab_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                message = (EditText) findViewById(R.id.input);
+                message = (EditText)findViewById(R.id.input);
                 text_mess = String.valueOf(message.getText().toString());
 
-                if(!message.getText().toString().isEmpty() && text_mess.matches("(?i).*[А-Яа-яA-Za-z0-9!@#$%^&*()_+№;:?=/|.><,`~{}].*")){
                 date_now = new Date();
 
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
                 datetime = simpleDateFormat.format(date_now);
 
-                name_u = name + " " + second_name;
-                insertItemMessage(count++, text_mess, name_u);
+                name_u = name+" "+second_name;
+                insertItemMessage(count++, text_mess, name_u, icon_id_user);
 
-                db.addMessage(new Message((message_id + 1), text_mess, datetime, user_id, group_id, "dfdf", "dfdf", "fdgg", 2));
+                db.addMessage(new Message((message_id+1), text_mess, datetime, user_id, group_id, "dfdf", "dfdf", "fdgg", icon_id_user));
 
-                try {
+                try{
                     new InsertNewMeassage().execute();
-                } catch (Exception e) {
+                }catch (Exception e){
                     e.printStackTrace();
                 }
 
                 message.setText("");
-                recyclerView_mess.smoothScrollToPosition(count + 1);
-            }
+                recyclerView_mess.smoothScrollToPosition(count+1);
+
             }
         });
 
@@ -184,13 +183,15 @@ public class activity_chat extends AppCompatActivity {
         timer.schedule(timerTask, 1000, 500);
     }
 
-    public void insertItemMessage(int position, String text_message, String user_name){
-        itemChatArrayList.add(position, new ItemChat(text_message, datetime, R.drawable.ic_android, ItemChat.MESS_COMP, user_name));
+    public void insertItemMessage(int position, String text_message, String user_name, int ico){
+        int iconUser = c_icon.checkIconUser(ico);
+        itemChatArrayList.add(position, new ItemChat(text_message, datetime, iconUser, ItemChat.MESS_COMP, user_name));
         adapter_mess.notifyDataSetChanged();
     }
 
-    public void insertItemMessageCOMP(int position, String text_message, String user_name){
-        itemChatArrayList.add(position, new ItemChat(text_message, datetime, R.drawable.ic_android, ItemChat.MESS_USER, user_name));
+    public void insertItemMessageCOMP(int position, String text_message, String user_name, int ico){
+        int iconUser = c_icon.checkIconUser(ico);
+        itemChatArrayList.add(position, new ItemChat(text_message, datetime, iconUser, ItemChat.MESS_USER, user_name));
         adapter_mess.notifyDataSetChanged();
     }
 
@@ -198,6 +199,7 @@ public class activity_chat extends AppCompatActivity {
         itemChatArrayList = new ArrayList<>();
 
         List<Message> messageList = db.getAllMessages();
+        List<User_group> user_groupList = db.getAllUser_groups();
 
         for (Message messD : messageList){
             group_mess_id = messD.get_groupID();
@@ -208,13 +210,20 @@ public class activity_chat extends AppCompatActivity {
                 name = messD.get_userName();
                 second_name = messD.get_userSurname();
 
+                for (User_group ug : user_groupList){
+                    if(ug.get_user_id() == user_id_mess){
+                        icon_id = ug.get_icon_id();
+                    }
+                }
+
                 name_u = name+" "+second_name;
 
                 if (user_id_mess == user_id) {
-                    foto = c_icon.checkIconUser(icon_id);
+                    foto = c_icon.checkIconUser(icon_id_user);
                     itemChatArrayList.add(new ItemChat(messD.get_text(), messD.get_datetime(), foto, ItemChat.MESS_COMP, name_u));
                 } else {
-                    itemChatArrayList.add(new ItemChat(messD.get_text(), messD.get_datetime(), R.drawable.ic_android, ItemChat.MESS_USER, name_u));
+                    foto = c_icon.checkIconUser(icon_id);
+                    itemChatArrayList.add(new ItemChat(messD.get_text(), messD.get_datetime(), foto, ItemChat.MESS_USER, name_u));
                 }
             }
         }
@@ -280,14 +289,15 @@ public class activity_chat extends AppCompatActivity {
                             if (ug.get_user_id() == user_id_mess){
                                 name = ug.get_userName();
                                 second_name = ug.get_userSurname();
+                                icon_id = ug.get_icon_id();
 
                                 name_u = name+" "+second_name;
                             }
                         }
 
                         if (user_id_mess != user_id) {
-                            db.addMessage(new Message(message_id, text_mess, datetime, user_id_mess, group_id, "fgdg", "fgdfg", "sdfsdf", 2));
-                            insertItemMessageCOMP(count++, text_mess, name_u);
+                            db.addMessage(new Message(message_id, text_mess, datetime, user_id_mess, group_id, "fgdg", "fgdfg", "sdfsdf", icon_id));
+                            insertItemMessageCOMP(count++, text_mess, name_u, icon_id);
                             recyclerView_mess.smoothScrollToPosition(count);
                         }
                     }

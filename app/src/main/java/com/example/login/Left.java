@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ImageButton;
 import android.widget.Button;
@@ -62,10 +63,11 @@ public class Left extends AppCompatActivity
 
     protected String user_id_id, name, second_name, email, password, birthday_date;
     protected String name_group, secreteKey;
-    int user_id;
+    int user_id, icon_id_user;
 
     TextView textView_name;
     TextView textView_email;
+    ImageView imageView;
 
     EditText editText;
 
@@ -96,9 +98,11 @@ public class Left extends AppCompatActivity
     String text_mess, datetime;
 
     String user_group_name, user_group_second_name;
-    int user_group_id;
+    int user_group_id, ic;
 
     int flag = 0, temp, size;
+
+    CheckIcon checkIcon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedpref = new SharedPref(this);
@@ -114,6 +118,8 @@ public class Left extends AppCompatActivity
 
         db = new DatabaseHandler(this);
 
+        checkIcon = new CheckIcon();
+
         List<User> dataUser = db.getAllContacts();
 
         for (User userD : dataUser){
@@ -121,6 +127,7 @@ public class Left extends AppCompatActivity
             name = userD.getName();
             second_name = userD.getSecName();
             email = userD.getMail();
+            icon_id_user = userD.getIcon();
         }
 
         createList();
@@ -203,9 +210,12 @@ public class Left extends AppCompatActivity
 
         View headerView = navigationView.getHeaderView(0);
 
+        imageView = (ImageView) headerView.findViewById(R.id.imageView) ;
         textView_name = (TextView) headerView.findViewById(R.id.textView_name);
         textView_email = (TextView) headerView.findViewById(R.id.textView_email);
 
+        ic = checkIcon.checkIconUser(icon_id_user);
+        imageView.setImageResource(ic);
         textView_name.setText(name+" "+second_name);
         textView_email.setText(email);
     }
