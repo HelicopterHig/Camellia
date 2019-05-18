@@ -20,7 +20,7 @@
         app:titleTextColor="#ffffff"/>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView_row_user_group"
+        android:id="@+id/recyclerView_row_progress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/edit_progress_activity_toolbar"
@@ -29,22 +29,5 @@
         android:layout_marginBottom="1dp"/>
 
 
-    <ImageButton
-        android:id="@+id/imageButton_insert_progress"
-        android:layout_width="67dp"
-        android:layout_height="67dp"
 
-
-        android:layout_alignParentEnd="true"
-
-        android:layout_alignParentRight="true"
-
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="21dp"
-        android:layout_marginRight="21dp"
-        android:layout_marginBottom="27dp"
-        android:background="@drawable/oval"
-        android:padding="19dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/add1" />
 </RelativeLayout>

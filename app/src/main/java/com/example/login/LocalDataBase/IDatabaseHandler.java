@@ -66,4 +66,5 @@ interface IDatabaseHandler {
     public int updateUser_group(User_group user_group);
     public void deleteUser_group(User_group user_group);
     public void deleteAllUser_groups();
+
 }
