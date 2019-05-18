@@ -25,14 +25,15 @@
     <string name="error_reg_msg">Please enter the data</string>
     <string name="success_reg_msg">Successfully</string>
     <string name="success_login_msg">Welcome!</string>
-
+    <string name="delete_note">Delete note?</string>
     <string name="save">Save</string>
     <string name="create_project">Create project</string>
     <string name="create_note">Create note</string>
     <string name="save_note">Your note is saved!</string>
     <string name="title">Project name</string>
-    <string name="add_user">Enter user id </string>
-    <string name="add_id_user">user id</string>
+    <string name="add_user">Enter user email </string>
+    <string name="add_id_user">user email</string>
+    <string name="no_notes">No notes!</string>
     <string name="add_user_greetings">Your have added a new user!</string>
     <string name="title_note">Note title</string>
     <string name="password">Password</string>

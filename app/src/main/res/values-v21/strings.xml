@@ -31,7 +31,7 @@
     <string name="create_note">Create note</string>
     <string name="save_note">Your note is saved!</string>
     <string name="title">Project name</string>
-    <string name="add_user">Enter user id </string>
+    <string name="add_user">Enter user email </string>
     <string name="add_id_user">user id</string>
     <string name="add_user_greetings">Your have added a new user!</string>
     <string name="title_note">Note title</string>
@@ -60,6 +60,7 @@
     <string name="hint_enter_a_message">Type a message…</string>
     <string name="on_log_click_message">Your custom long click handler</string>
     <string name="action_delete">Delete</string>
+    <string name="delete_note">Delete note?</string>
     <string name="action_copy">Copy</string>
     <string name="copied_message">Message copied!</string>
 
@@ -87,6 +88,7 @@
     <string name="descript_event">Event description</string>
     <string name="event_type">Event type</string>
     <string name="nwme_event">Event name</string>
+    <string name="no_notes">No notes!</string>
     <string name="date_birth">Date of Birth</string>
     <string name="sign_up">Sign up</string>
     <string name="psswrd">Password</string>

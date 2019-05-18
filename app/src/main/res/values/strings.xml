@@ -91,6 +91,8 @@
     <string name="e_mail">Email</string>
     <string name="surn_name">Surname</string>
     <string name="name">Name</string>
+    <string name="no_notes">No notes!</string>
+    <string name="delete_note">Delete note?</string>
     <string name="create_account">create account</string>
     <string name="notific">Notifications</string>
     <string name="night_mode">Night mode</string>

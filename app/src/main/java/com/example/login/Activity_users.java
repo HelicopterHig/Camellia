@@ -1,11 +1,13 @@
 package com.example.login;
 
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -123,7 +125,60 @@ public class Activity_users extends Base_Activity {
 
         recyclerView_usersGroup.setLayoutManager(layoutManager_usersGroup);
         recyclerView_usersGroup.setAdapter(usersGroupAdapter);
+
+        //swipeToDeleteHelper.attachToRecyclerView(recyclerView_usersGroup);
     }
+
+
+//Удаление пользователя фронт
+
+//    private ItemTouchHelper swipeToDeleteHelper = new ItemTouchHelper(
+//            new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+//                @Override
+//                public boolean onMove(RecyclerView recyclerView_usersGroup, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+//                    return false;
+//                }
+//
+//                @Override
+//                public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+//
+//                    if (itemUserGroupArrayList != null) {
+//                        //Note swipedNote = notes.get(viewHolder.getAdapterPosition());
+//                        //if (swipedNote != null) {
+//                        swipeToDelete(viewHolder);
+//
+//
+//                        //}
+//
+//                    }
+//                }
+//            });
+//
+//    private void swipeToDelete( final RecyclerView.ViewHolder viewHolder) {
+//        new android.support.v7.app.AlertDialog.Builder(Activity_users.this)
+//                .setMessage(R.string.delete_note)
+//                .setPositiveButton(R.string.action_delete, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        //Удаление пользователя
+//                        //dao.deleteNote(swipedNote);
+//                        //notes.remove(swipedNote);
+//                        //adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+//
+//                    }
+//                })
+//                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        recyclerView_usersGroup.getAdapter().notifyItemChanged(viewHolder.getAdapterPosition());
+//
+//
+//                    }
+//                })
+//                .setCancelable(false)
+//                .create().show();
+//
+//    }
 
     class InsertUser extends AsyncTask<Void, Void, Void> {
         String resultString = null;

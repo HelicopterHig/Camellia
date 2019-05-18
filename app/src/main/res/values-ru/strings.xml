@@ -27,12 +27,14 @@
     <string name="success_login_msg">Добро пожаловать</string>
 
     <string name="save">Сохранить</string>
+    <string name="delete_note">Удалить заметку?</string>
     <string name="create_project">Создать проект</string>
     <string name="create_note">Создать заметку</string>
     <string name="save_note">Ваша заметка сохранена!</string>
     <string name="title">Название проекта</string>
     <string name="add_user">Введите email пользователя</string>
     <string name="add_id_user">email пользователя</string>
+    <string name="no_notes">Нет заметок!</string>
     <string name="add_user_greetings">Вы добавили нового пользователя!</string>
     <string name="title_note">Название заметки</string>
     <string name="password">Password</string>

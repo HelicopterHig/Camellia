@@ -22,8 +22,11 @@
             android:layout_width="77dp"
             android:layout_height="match_parent"
             android:padding="2dp"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textColor="?attr/textcolor"
+            android:textSize="13sp"
+            />
 
         <LinearLayout
             android:layout_width="247dp"

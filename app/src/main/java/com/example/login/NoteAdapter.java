@@ -12,10 +12,24 @@ import java.util.ArrayList;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     private ArrayList<ItemNote> itemNoteArrayList;
-
+    private NoteEventListener Listener;
+    private ArrayList<ItemNote> notes;
     public NoteAdapter(ArrayList<ItemNote> itemNotes){
         itemNoteArrayList = itemNotes;
     }
+
+
+
+
+    public interface NoteEventListener{
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(NoteEventListener listener){
+        Listener = listener;
+    }
+
+
 
     @NonNull
     @Override
@@ -32,12 +46,14 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         holder.dateTextview.setText(currentItem.getDateNote());
         holder.textView.setText(currentItem.getTextNote());
         holder.checkBox.setChecked(currentItem.getCheckNote());
+
     }
 
     @Override
     public int getItemCount() {
         return itemNoteArrayList.size();
     }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView dateTextview;
@@ -49,6 +65,21 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             dateTextview = itemView.findViewById(R.id.date_node_group_row);
             textView = itemView.findViewById(R.id.name_node_group_row);
             checkBox = itemView.findViewById(R.id.checkBox_node_group_row);
+
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (Listener != null){
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION){
+                            Listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
+
 }
+
