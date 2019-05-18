@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -11,6 +12,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Switch;
 
 import com.example.login.LocalDataBase.DatabaseHandler;
@@ -35,12 +37,13 @@ public class SettingsActivity extends AppCompatActivity {
 
     private Switch myswitch;
     SharedPref sharedpref;
+    ImageButton imageButton;
 
     private SlidrInterface slidr;
     public static String server_name = "message.dlinkddns.com:8008";
 
     protected String name, second_name, password, email, birthday_date, access, refresh;
-    protected int icon_id = 0, user_id;
+    protected int icon_id, user_id;
 
     //для таблицы user_token
     protected String refresh_id, refresh_user_id, refreshTokensMap;
@@ -55,6 +58,7 @@ public class SettingsActivity extends AppCompatActivity {
     EditText editText_name;
     EditText editText_second_name;
     EditText editText_email;
+    EditText editText_icon_id;
     EditText editText_password;
     EditText editText_date;
 
@@ -93,6 +97,93 @@ public class SettingsActivity extends AppCompatActivity {
         });
        // final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
 
+        imageButton = (ImageButton) findViewById(R.id.imageButton13);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(SettingsActivity.this);
+                final View mView = getLayoutInflater().inflate(R.layout.choose_avatar, null);
+
+                ImageButton imageButton3 = (ImageButton) mView.findViewById(R.id.imageButton3);
+                ImageButton imageButton4 = (ImageButton) mView.findViewById(R.id.imageButton4);
+                ImageButton imageButton5 = (ImageButton) mView.findViewById(R.id.imageButton5);
+                ImageButton imageButton6 = (ImageButton) mView.findViewById(R.id.imageButton6);
+                ImageButton imageButton7 = (ImageButton) mView.findViewById(R.id.imageButton7);
+                ImageButton imageButton8 = (ImageButton) mView.findViewById(R.id.imageButton8);
+                ImageButton imageButton9 = (ImageButton) mView.findViewById(R.id.imageButton9);
+                ImageButton imageButton10 = (ImageButton) mView.findViewById(R.id.imageButton10);
+                ImageButton imageButton11 = (ImageButton) mView.findViewById(R.id.imageButton11);
+
+                mBuilder.setView(mView);
+                final AlertDialog dialog = mBuilder.create();
+                dialog.show();
+
+                imageButton3.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        icon_id =  0;
+                        dialog.dismiss();
+                    }
+                });
+                imageButton4.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        icon_id =  1;
+                        dialog.dismiss();
+                    }
+                });
+                imageButton5.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        icon_id =  2;
+                        dialog.dismiss();
+                    }
+                });
+                imageButton6.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        icon_id =  3;
+                        dialog.dismiss();
+                    }
+                });
+                imageButton7.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        icon_id =  5;
+                        dialog.dismiss();
+                    }
+                });
+                imageButton8.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        icon_id =  6;
+                        dialog.dismiss();
+                    }
+                });
+                imageButton9.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        icon_id =  7;
+                        dialog.dismiss();
+                    }
+                });
+                imageButton10.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        icon_id =  4;
+                        dialog.dismiss();
+                    }
+                });
+                imageButton11.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        icon_id =  8;
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
+
         db = new DatabaseHandler(this);
 
         List<User> dataUser = db.getAllContacts();
@@ -102,6 +193,7 @@ public class SettingsActivity extends AppCompatActivity {
             name = userD.getName();
             second_name = userD.getSecName();
             email = userD.getMail();
+            icon_id = userD.getIcon();
             birthday_date = userD.getBdate();
             password = userD.getPassword();
             access = userD.getAcToken();

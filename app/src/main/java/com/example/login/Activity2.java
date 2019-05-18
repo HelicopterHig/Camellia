@@ -3,6 +3,7 @@ package com.example.login;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
+import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.login.Avatar.Avatar;
+import com.example.login.common.data.model.Message;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -29,7 +31,7 @@ import java.net.URL;
 /*
 
 
-Version 0.7.4
+Version 0.7.6
 
 
  */
@@ -38,7 +40,8 @@ public class Activity2 extends AppCompatActivity {
     private Button button;
     public  static String server_name = "message.dlinkddns.com:8008";
     protected String name, second_name, password, email, bithday_date;
-    protected int icon_id = 2;
+    protected int icon_id;
+    ImageButton imageButton;
 
     public void openActivityAvatar(){
         Intent intent  = new Intent(this , Avatar.class);
@@ -64,6 +67,93 @@ public class Activity2 extends AppCompatActivity {
              //   openActivityAvatar();
            // }
               //  });
+
+        imageButton = (ImageButton) findViewById(R.id.imageButton12);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(Activity2.this);
+                final View mView = getLayoutInflater().inflate(R.layout.choose_avatar, null);
+
+                ImageButton imageButton3 = (ImageButton) mView.findViewById(R.id.imageButton3);
+                ImageButton imageButton4 = (ImageButton) mView.findViewById(R.id.imageButton4);
+                ImageButton imageButton5 = (ImageButton) mView.findViewById(R.id.imageButton5);
+                ImageButton imageButton6 = (ImageButton) mView.findViewById(R.id.imageButton6);
+                ImageButton imageButton7 = (ImageButton) mView.findViewById(R.id.imageButton7);
+                ImageButton imageButton8 = (ImageButton) mView.findViewById(R.id.imageButton8);
+                ImageButton imageButton9 = (ImageButton) mView.findViewById(R.id.imageButton9);
+                ImageButton imageButton10 = (ImageButton) mView.findViewById(R.id.imageButton10);
+                ImageButton imageButton11 = (ImageButton) mView.findViewById(R.id.imageButton11);
+
+                mBuilder.setView(mView);
+                final AlertDialog dialog = mBuilder.create();
+                dialog.show();
+
+                imageButton3.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        icon_id =  0;
+                        dialog.dismiss();
+                    }
+                });
+                imageButton4.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        icon_id =  1;
+                        dialog.dismiss();
+                    }
+                });
+                imageButton5.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        icon_id =  2;
+                        dialog.dismiss();
+                    }
+                });
+                imageButton6.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        icon_id =  3;
+                        dialog.dismiss();
+                    }
+                });
+                imageButton7.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        icon_id =  5;
+                        dialog.dismiss();
+                    }
+                });
+                imageButton8.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        icon_id =  6;
+                        dialog.dismiss();
+                    }
+                });
+                imageButton9.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        icon_id =  7;
+                        dialog.dismiss();
+                    }
+                });
+                imageButton10.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        icon_id =  4;
+                        dialog.dismiss();
+                    }
+                });
+                imageButton11.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        icon_id =  8;
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
 
         button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {

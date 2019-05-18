@@ -7,13 +7,13 @@ android:paddingLeft="15dp"
 android:paddingRight="60dp"
 android:clipToPadding="false">
 
-<ImageView
-    android:id="@+id/imageView_user"
-    android:layout_alignParentLeft="true"
-    android:scaleType="centerInside"
-    android:background="@drawable/circle"
-    android:layout_width="34dp"
-    android:layout_height="34dp" />
+    <ImageView
+        android:id="@+id/imageView_user"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/circle"
+        android:scaleType="fitCenter" />
 
 <TextView
     android:id="@+id/name"

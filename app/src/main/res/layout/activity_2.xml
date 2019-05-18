@@ -38,24 +38,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.148" />
 
-    <Button
-        android:id="@+id/imageView"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
+    <ImageButton
+        android:id="@+id/imageButton12"
+        style="@style/Circle"
+        android:layout_width="139dp"
+        android:layout_height="136dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:layout_weight="1"
         android:background="@drawable/enter_photo"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/barrier4"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/formBack"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/enter_photo" />
+        app:srcCompat="@color/black_10" />
 
     <TextView
         android:id="@+id/textView"
@@ -66,15 +67,12 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         android:text="@string/create_account"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/barrier5"
-        app:layout_constraintTop_toTopOf="@+id/guideline5"
-        app:layout_constraintVertical_bias="0.104" />
+        app:layout_constraintTop_toTopOf="@+id/guideline5" />
 
 
     <ImageView

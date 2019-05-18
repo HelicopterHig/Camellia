@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:background="#3f3b56">
+
+    <TextView
+        android:id="@+id/textViewNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:text="@string/choose_avatar"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TableLayout
+        android:layout_width="334dp"
+        android:layout_height="333dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_alignParentTop="true"
+                android:background="@color/black_10"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/barash" />
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black_10"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/cucarecu" />
+
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black_10"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ia" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/imageButton6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black_10"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/korova" />
+
+            <ImageButton
+                android:id="@+id/imageButton7"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@color/black_10"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/meduzaaaaaa" />
+
+            <ImageButton
+                android:id="@+id/imageButton8"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/black_10"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/pavuk" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/imageButton9"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black_10"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/pchelka" />
+
+            <ImageButton
+                android:id="@+id/imageButton10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black_10"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/shhhh" />
+
+            <ImageButton
+                android:id="@+id/imageButton11"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@color/black_10"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/volchara" />
+
+        </TableRow>
+
+    </TableLayout>
+
+
+</LinearLayout>
