@@ -85,13 +85,14 @@ public class Left extends AppCompatActivity
     private static String TAG_DATETIME = "datetime";
     private static String TAG_USER_ID = "user_id";
     private static String TAG_GROUP_ID = "group_id";
+    private static String TAG_ICON_ID = "icon_id";
 
     private static String TAG_USER_GROUP = "user_group";
     private static String TAG_USER_GROUP_ID = "user_id";
     private static String TAG_NAME = "name";
     private static String TAG_SECOND_NAME = "second_name";
 
-    int message_id, user_id_mess, group_id;
+    int message_id, user_id_mess, group_id, icon_id;
     String text_mess, datetime;
 
     String user_group_name, user_group_second_name;
@@ -576,8 +577,9 @@ public class Left extends AppCompatActivity
                         user_group_id = Integer.parseInt(schedule.getString(TAG_USER_GROUP_ID));
                         user_group_name = schedule.getString(TAG_NAME);
                         user_group_second_name = schedule.getString(TAG_SECOND_NAME);
+                        icon_id = Integer.parseInt(schedule.getString(TAG_ICON_ID));
 
-                        db.addUser_group(new User_group(group_id, user_group_id, user_group_name, user_group_second_name, "email", 2));
+                        db.addUser_group(new User_group(group_id, user_group_id, user_group_name, user_group_second_name, "email", icon_id));
                     }
 
                     System.out.println("Reading all user group..");

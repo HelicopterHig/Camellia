@@ -35,7 +35,7 @@ public class Activity_users extends Base_Activity {
     private ArrayList<ItemUserGroup> itemUserGroupArrayList;
 
     public String email, name, second_name, name_user;
-    int group_id;
+    int group_id, icon;
 
     ImageButton imageButton;
 
@@ -49,6 +49,8 @@ public class Activity_users extends Base_Activity {
 
     public static String server_name = "message.dlinkddns.com:8008";
 
+    CheckIcon checkIcon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedpref = new SharedPref(this);
@@ -61,6 +63,8 @@ public class Activity_users extends Base_Activity {
         setContentView(R.layout.activity_users);
 
         db = new DatabaseHandler(this);
+
+        checkIcon = new CheckIcon();
 
         createListUsersGroup();
         buildRecyclerViewUsersGroup();
@@ -112,7 +116,9 @@ public class Activity_users extends Base_Activity {
             second_name = ug.get_userSurname();
 
             name = name + " " + second_name;
-            itemUserGroupArrayList.add(new ItemUserGroup(R.drawable.ic_android, name));
+
+            icon = checkIcon.checkIconUser(ug.get_icon_id());
+            itemUserGroupArrayList.add(new ItemUserGroup(icon, name));
         }
 
     }
