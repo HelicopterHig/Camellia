@@ -142,27 +142,27 @@ public class activity_chat extends AppCompatActivity {
             public void onClick(View v) {
                 message = (EditText)findViewById(R.id.input);
                 text_mess = String.valueOf(message.getText().toString());
+                if(!message.getText().toString().isEmpty() && text_mess.matches("(?i).*[А-Яа-яA-Za-z0-9!@#$%^&*()_+№;:?=/|.><,`~{}].*")) {
+                    date_now = new Date();
 
-                date_now = new Date();
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                    datetime = simpleDateFormat.format(date_now);
 
-                datetime = simpleDateFormat.format(date_now);
+                    name_u = name + " " + second_name;
+                    insertItemMessage(count++, text_mess, name_u, icon_id_user);
 
-                name_u = name+" "+second_name;
-                insertItemMessage(count++, text_mess, name_u, icon_id_user);
+                    db.addMessage(new Message((message_id + 1), text_mess, datetime, user_id, group_id, "dfdf", "dfdf", "fdgg", icon_id_user));
 
-                db.addMessage(new Message((message_id+1), text_mess, datetime, user_id, group_id, "dfdf", "dfdf", "fdgg", icon_id_user));
+                    try {
+                        new InsertNewMeassage().execute();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
-                try{
-                    new InsertNewMeassage().execute();
-                }catch (Exception e){
-                    e.printStackTrace();
+                    message.setText("");
+                    recyclerView_mess.smoothScrollToPosition(count + 1);
                 }
-
-                message.setText("");
-                recyclerView_mess.smoothScrollToPosition(count+1);
-
             }
         });
 
