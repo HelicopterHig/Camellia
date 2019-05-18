@@ -3,6 +3,7 @@ package com.example.login;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,13 @@ import com.example.login.LocalDataBase.DatabaseHandler;
 import com.example.login.LocalDataBase.Note;
 import com.example.login.LocalDataBase.UNote;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +40,9 @@ public class Activity_Note extends Base_Activity{
     private ArrayList<ItemNote>  itemNoteArrayList;
     boolean checkNote;
     String dateNote, textNote;
-    int note_id;
+    int note_id, note_id_id;
+
+    public static String server_name = "message.dlinkddns.com:8008";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -202,6 +212,21 @@ public class Activity_Note extends Base_Activity{
                         //Удаление заметки
                         Note note = new Note();
                         note.set_id(swipedNote.geNoteIde());
+
+                        List<Note> noteList = db.getAllNotes();
+
+                        for (Note nt : noteList){
+                            if (nt.get_id() == note.get_id()){
+                                note_id_id = nt.get_noteID();
+                            }
+                        }
+
+                        try {
+                            new DeleteNote().execute();
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+
                         db.deleteNote(note);
                         itemNoteArrayList.remove(swipedNote);
                         noteAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
@@ -220,6 +245,74 @@ public class Activity_Note extends Base_Activity{
                 .setCancelable(false)
                 .create().show();
 
+    }
+
+    class DeleteNote extends AsyncTask<Void, Void, Void> {
+        String resultString = null;
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                String myURL = "http://" + server_name + "/delete_note.php?note_id=" + note_id_id;
+                String parammetrs = "?note_id=" + note_id_id;
+                byte[] data = null;
+                InputStream is = null;
+
+
+                try {
+                    URL url = new URL(myURL);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setReadTimeout(10000);
+                    conn.setConnectTimeout(15000);
+                    conn.setRequestMethod("GET");
+
+                    conn.setRequestProperty("Connection", "Keep-Alive");
+                    conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                    conn.setRequestProperty("Content-Length", "" + Integer.toString(parammetrs.getBytes().length));
+                    conn.setDoOutput(true);
+                    conn.setDoInput(true);
+
+                    data = parammetrs.getBytes("UTF-8");
+
+                    OutputStream os = conn.getOutputStream();
+
+                    os.write(data);
+                    os.flush();
+                    os.close();
+                    data = null;
+                    conn.connect();
+                    int responseCode = conn.getResponseCode();
+
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+                    if (responseCode == 200) {
+                        is = conn.getInputStream();
+
+                        byte[] buffer = new byte[8192];
+                        int bytesRead;
+
+                        while ((bytesRead = is.read(buffer)) != -1) {
+                            baos.write(buffer, 0, bytesRead);
+                        }
+
+                        data = baos.toByteArray();
+                        resultString = new String(data, "UTF-8");
+
+                    } else {
+                        conn.disconnect();
+                    }
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
     }
 
 

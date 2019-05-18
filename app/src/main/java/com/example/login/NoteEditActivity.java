@@ -1,6 +1,7 @@
 package com.example.login;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,7 +16,15 @@ import com.example.login.LocalDataBase.DatabaseHandler;
 import com.example.login.LocalDataBase.Note;
 import com.example.login.LocalDataBase.UNote;
 import com.example.login.LocalDataBase.User;
+import com.example.login.LocalDataBase.User_group;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -30,6 +39,13 @@ public class NoteEditActivity extends AppCompatActivity {
     DatabaseHandler db;
     String name, surname, datenote, email;
     int id, icon;
+
+    int group_id, note_id;
+
+    public static String server_name = "message.dlinkddns.com:8008";
+
+    private Date date_now;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.note);
@@ -40,6 +56,19 @@ public class NoteEditActivity extends AppCompatActivity {
         noteID = getIntent().getIntExtra("finalnoteID", -1);
         inputNote = findViewById(R.id.input_note);
 
+        List<User_group> user_groupList = db.getAllUser_groups();
+
+        for (User_group ug : user_groupList){
+            group_id = ug.get_group_id();
+        }
+
+        List<Note> noteList = db.getAllNotes();
+
+        for (Note nt : noteList){
+            note_id = nt.get_noteID();
+        }
+
+        date_now = new Date();
 
         if (noteID !=-1) {
             temp = new Note();
@@ -81,7 +110,7 @@ public class NoteEditActivity extends AppCompatActivity {
         if (!text.isEmpty()) {
             long date = new Date().getTime();
             Date c = Calendar.getInstance().getTime();
-            SimpleDateFormat df = new SimpleDateFormat("dd MMM yyyy");
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             datenote = df.format(c);
             List<User> list = db.getAllContacts();
             for (User ug: list){
@@ -93,7 +122,7 @@ public class NoteEditActivity extends AppCompatActivity {
             }
 
             if  (temp == null) {
-                temp = new Note(1, notename, datenote, text, false, id, 1, name, surname, email, icon); //Добавить параметры
+                temp = new Note(note_id, notename, datenote, text, false, id, group_id, name, surname, email, icon); //Добавить параметры
                 db.addNote(temp);
                 System.out.println("Reading all notes..");
                 List<Note> note_local = db.getAllNotes();
@@ -105,6 +134,12 @@ public class NoteEditActivity extends AppCompatActivity {
 
                     System.out.print("Note: ");
                     System.out.println(log);
+                }
+
+                try{
+                    new InsertNote().execute();
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
 
             } else {
@@ -121,4 +156,71 @@ public class NoteEditActivity extends AppCompatActivity {
 
     }
 
+    class InsertNote extends AsyncTask<Void, Void, Void> {
+        String resultString = null;
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                String myURL = "http://" + server_name + "/insert_new_note.php?name=" + notename + "&date=" + datenote + "&discription=" + text + "&done=" + false + "&user_id=" + id + "&group_id=" + group_id;
+                String parammetrs = "/group.php?id=null&email=" + email + "&group_id=" + group_id;
+                byte[] data = null;
+                InputStream is = null;
+
+
+                try {
+                    URL url = new URL(myURL);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setReadTimeout(10000);
+                    conn.setConnectTimeout(15000);
+                    conn.setRequestMethod("GET");
+
+                    conn.setRequestProperty("Connection", "Keep-Alive");
+                    conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                    conn.setRequestProperty("Content-Length", "" + Integer.toString(parammetrs.getBytes().length));
+                    conn.setDoOutput(true);
+                    conn.setDoInput(true);
+
+                    data = parammetrs.getBytes("UTF-8");
+
+                    OutputStream os = conn.getOutputStream();
+
+                    os.write(data);
+                    os.flush();
+                    os.close();
+                    data = null;
+                    conn.connect();
+                    int responseCode = conn.getResponseCode();
+
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+                    if (responseCode == 200) {
+                        is = conn.getInputStream();
+
+                        byte[] buffer = new byte[8192];
+                        int bytesRead;
+
+                        while ((bytesRead = is.read(buffer)) != -1) {
+                            baos.write(buffer, 0, bytesRead);
+                        }
+
+                        data = baos.toByteArray();
+                        resultString = new String(data, "UTF-8");
+
+                    } else {
+                        conn.disconnect();
+                    }
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+    }
 }

@@ -35,6 +35,7 @@ import java.util.TimerTask;
 
 import com.example.login.LocalDataBase.DatabaseHandler;
 import com.example.login.LocalDataBase.Message;
+import com.example.login.LocalDataBase.Note;
 import com.example.login.LocalDataBase.User;
 import com.example.login.LocalDataBase.User_group;
 
@@ -49,6 +50,15 @@ public class activity_chat extends AppCompatActivity {
     private static String TAG_USER_ID = "user_id";
     private static String TAG_GROUP_ID = "group_id";
 
+    private static String TAG_NOTE = "note";
+    private static String TAG_NOTE_ID = "id";
+    private static String TAG_NOTE_NAME = "name";
+    private static String TAG_NOTE_DATE = "date";
+    private static String TAG_NOTE_DIS = "discription";
+    private static String TAG_NOTE_DONE = "done";
+    private static String TAG_NOTE_USER_ID = "user_id";
+    private static String TAG_NOTE_GROUP_ID = "group_id";
+
     private RecyclerView recyclerView_mess;
     private MessageAdapter adapter_mess;
     private RecyclerView.LayoutManager layoutManager_mess;
@@ -62,6 +72,10 @@ public class activity_chat extends AppCompatActivity {
 
     String datetime;
     DatabaseHandler db;
+
+    int note_id, note_user_id, note_group_id, note_user_icon;
+    String note_name, note_date, note_dis, note_user_name, note_user_sec, note_user_email;
+    boolean note_done;
 
     String name, second_name, name_u;
     int user_id, message_id;
@@ -82,6 +96,8 @@ public class activity_chat extends AppCompatActivity {
 
     int icon_id, foto, icon_id_user;
     CheckIcon c_icon;
+
+    int flag = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -416,6 +432,21 @@ public class activity_chat extends AppCompatActivity {
         if(id==R.id.note_note)
         {
             Toast.makeText(this, "Share menu is Clicked", Toast.LENGTH_SHORT).show();
+            try{
+                new LoadNote().execute();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            while(flag == 0){
+                System.out.println("load note");
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
             startActivity(new Intent(this, Activity_Note.class));
 
         }
@@ -434,6 +465,84 @@ public class activity_chat extends AppCompatActivity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    class LoadNote extends AsyncTask<Void, Void, Void>{
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try{
+                db.deleteAllNotes();
+                flag = 0;
+                String myURL = "http://"+server_name+"/load_note.php?&group_id="+group_id;
+
+                try {
+                    URL url = new URL(myURL);
+
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setReadTimeout(10000);
+                    conn.setConnectTimeout(15000);
+                    conn.setRequestMethod("GET");
+                    conn.setDoInput(true);
+
+                    conn.connect();
+
+                    InputStream stream = conn.getInputStream();
+
+                    String data = convertStreamToString(stream);
+
+                    JSONObject jsonObject = new JSONObject(data);
+
+                    JSONArray note = jsonObject.getJSONArray(TAG_NOTE);
+
+                    for (int i = 0; i < note.length(); i++){
+                        JSONObject schedule = note.getJSONObject(i);
+
+                        note_id = Integer.parseInt(schedule.getString(TAG_NOTE_ID));
+                        note_name = schedule.getString(TAG_NOTE_NAME);
+                        note_date = schedule.getString(TAG_NOTE_DATE);
+                        note_dis = schedule.getString(TAG_NOTE_DIS);
+                        note_done = Boolean.parseBoolean(schedule.getString(TAG_NOTE_DONE));
+                        note_user_id = Integer.parseInt(schedule.getString(TAG_NOTE_USER_ID));
+                        note_group_id = Integer.parseInt(schedule.getString(TAG_NOTE_GROUP_ID));
+
+                        List<User_group> user_groupList = db.getAllUser_groups();
+                        for (User_group ugr : user_groupList){
+                            if (ugr.get_user_id() == note_user_id) {
+                                note_user_name = ugr.get_userName();
+                                note_user_sec = ugr.get_userSurname();
+                                note_user_email = ugr.get_userEmail();
+                                note_user_icon = ugr.get_icon_id();
+                            }
+                        }
+
+                        db.addNote(new Note(note_id, note_name, note_date, note_dis, note_done, note_user_id, note_group_id, note_user_name, note_user_sec, note_user_email, note_user_icon));
+                    }
+
+                    System.out.println("Reading all notes..");
+                    List<Note> note_local = db.getAllNotes();
+
+                    for (Note cn : note_local) {
+                        String log = "Id: " + cn.get_id() + " , NoteID: " + cn.get_noteID() + " , Name: " + cn.get_name() + " , Date: " + cn.get_date()
+                                + ", Description: " + cn.get_description() + ", Done: " + cn.get_done()
+                                + ", UserID: " + cn.get_userID() + ", GroupID: " + cn.get_groupID();
+
+                        System.out.print("Note: ");
+                        System.out.println(log);
+                    }
+
+
+                    flag = 1;
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                    flag = 1;
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            return null;
+        }
     }
 
 }
