@@ -23,6 +23,8 @@
     <string name="crt_note">Создание заметки</string>
     <string name="error_login_msg">Пожалуйста введите логин и пароль</string>
     <string name="error_reg_msg">Пожалуйста заполните данные</string>
+    <string name="error_reg_pass_msg">Пароль должен содержать только символы латинского алфавита и цифры</string>
+    <string name="error_reg_pass_2_msg">Вы должны использовать цифры в пароле</string>
     <string name="success_reg_msg">Успешно</string>
     <string name="success_login_msg">Добро пожаловать</string>
 

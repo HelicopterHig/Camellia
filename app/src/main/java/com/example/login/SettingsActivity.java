@@ -14,6 +14,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.example.login.LocalDataBase.DatabaseHandler;
 import com.example.login.LocalDataBase.User;
@@ -233,22 +234,37 @@ public class SettingsActivity extends AppCompatActivity {
                 editText_date = (EditText)findViewById(R.id.editText7);
                 birthday_date = String.valueOf(editText_date.getText().toString());
 
-                try {
-                    new SendRefresh().execute();
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+                if (password.matches("(?i).*[a-z].*")) {
+                    if(password.matches("(?i).*[0-9].*")){
 
-                if (check == true) {
-                    try {
-                        new ChangeData().execute();
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                        try {
+                            new SendRefresh().execute();
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+
+                        if (check == true) {
+                            try {
+                                new ChangeData().execute();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }else {
+                            openLogin();
+                            db.deleteAllContacts();
+                            db.deleteAllGroups();
+                        }
+
+                    }else{
+                        Toast.makeText(SettingsActivity.this,
+                                R.string.error_reg_pass_2_msg,
+                                Toast.LENGTH_SHORT).show();
                     }
-                }else {
-                    openLogin();
-                    db.deleteAllContacts();
-                    db.deleteAllGroups();
+
+                }else{
+                    Toast.makeText(SettingsActivity.this,
+                            R.string.error_reg_pass_msg,
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });

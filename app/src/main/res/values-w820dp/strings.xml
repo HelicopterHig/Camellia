@@ -23,6 +23,8 @@
     <string name="crt_note">Create note</string>
     <string name="error_login_msg">Please enter your login and password</string>
     <string name="error_reg_msg">Please enter the data</string>
+    <string name="error_reg_pass_msg">Password must contain only latin symbol and numbers</string>
+    <string name="error_reg_pass_2_msg">You must use numbers in password</string>
     <string name="success_reg_msg">Successfully</string>
     <string name="success_login_msg">Welcome!</string>
     <string name="delete_note">Delete note?</string>

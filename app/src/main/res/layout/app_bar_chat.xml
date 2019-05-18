@@ -34,8 +34,8 @@
     <include
         android:id="@+id/include"
         layout="@layout/content_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="546dp"
         android:layout_below="@+id/toolbar_messen"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
@@ -43,12 +43,33 @@
         android:layout_marginLeft="0dp"
         android:layout_marginTop="0dp" />
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="?attr/backgroundcolor"
+        tools:ignore="RtlCompat">
+
+        <EditText
+            android:id="@+id/input"
+            android:layout_width="354dp"
+            android:layout_height="wrap_content"
+            android:hint="Input"
+            android:textColor="?attr/tintcolor"
+            android:textSize="20dp"
+            />
+    </android.support.design.widget.TextInputLayout>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="9dp"
         android:clickable="true"
         android:src="@drawable/ic_send"
         android:tint="@android:color/white"
@@ -56,21 +77,4 @@
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="right|bottom"
         tools:ignore="RtlCompat" />
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/fab_send"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        tools:ignore="RtlCompat">
-
-        <EditText
-            android:id="@+id/input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Input"
-            android:textSize="20dp"
-            android:textColor="@android:color/background_light"/>
-    </android.support.design.widget.TextInputLayout>
 </RelativeLayout>
