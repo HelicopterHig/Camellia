@@ -249,12 +249,6 @@ public class Left extends AppCompatActivity
             return true;
         }
 
-        // переход по кнопке (в правом углу ) на  замекти
-        if (id == R.id.next){
-            Intent intent = new Intent(this, Base_Activity.class);
-            startActivity(intent);
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
