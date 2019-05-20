@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -39,6 +41,8 @@ public class Activity_Note extends Base_Activity{
     DatabaseHandler db;
     private ArrayList<ItemNote>  itemNoteArrayList;
     boolean checkNote;
+    boolean[] checked; //Массив, указывающие на чекбоксы
+    CheckBox checkBox;
     String dateNote, textNote;
     int note_id, note_id_id;
 
@@ -53,10 +57,33 @@ public class Activity_Note extends Base_Activity{
         else  setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
-
         db = new DatabaseHandler(this);
-
         buildRecyclerViewMessage();
+
+//        CheckBox starCheckBox ;
+//        starCheckBox = findViewById(R.id.checkBox_node_group_row);
+//        starCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                int pos = noteAdapter.getCheck();
+//                ItemNote checked = itemNoteArrayList.get(pos);
+//                Note note = db.getNote(checked.geNoteIde());
+//                if(isChecked) {
+//                    note.set_done(true);
+//
+//                }
+//
+//                else {
+//                    note.set_done(false);
+//                }
+//
+//                db.updateNote(note);
+//
+//
+//
+//
+//            }
+//        });
 
         floatButton = (ImageButton) findViewById(R.id.imageButton_insert_note);
         floatButton.setOnClickListener(new View.OnClickListener(){
@@ -125,7 +152,8 @@ public class Activity_Note extends Base_Activity{
         recyclerView = findViewById(R.id.recyclerView_row_note_group);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
-        noteAdapter = new NoteAdapter(itemNoteArrayList);
+        noteAdapter = new NoteAdapter(this, itemNoteArrayList);
+        checked = noteAdapter.getChecked();
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(noteAdapter);
@@ -137,7 +165,7 @@ public class Activity_Note extends Base_Activity{
     private void loadNotes() {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
-        noteAdapter = new NoteAdapter(itemNoteArrayList);
+        noteAdapter = new NoteAdapter(this, itemNoteArrayList);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(noteAdapter);
         showEmptyView();
@@ -151,6 +179,7 @@ public class Activity_Note extends Base_Activity{
                 note.set_id(item.geNoteIde());
                 Intent intent = new Intent(Activity_Note.this, NoteEditActivity.class);
                 intent.putExtra("finalnoteID", note.get_id());
+                finish();
                 startActivity(intent);
             }
         });
@@ -164,6 +193,7 @@ public class Activity_Note extends Base_Activity{
     public void openEditNoteActivity(){
         Intent intent  = new Intent(this, NoteEditActivity.class);
         intent.putExtra("notename", name_note);
+        finish();
         startActivity(intent);
     }
 
@@ -314,6 +344,7 @@ public class Activity_Note extends Base_Activity{
             return null;
         }
     }
+
 
 
 
