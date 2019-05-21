@@ -9,7 +9,7 @@ public class Note {
     String _name;
     String _date;
     String _description;
-    Boolean _done;
+    int _done;
     int _userID;
     int _groupID;
     String _userName;
@@ -19,7 +19,7 @@ public class Note {
 
     public Note(){}
 
-    public Note(int _id, int _noteID, String _name, String _date, String _description, boolean _done, int _userID, int _groupID, String _userName, String _userSurname, String _userEmail, int _icon_id){
+    public Note(int _id, int _noteID, String _name, String _date, String _description, int _done, int _userID, int _groupID, String _userName, String _userSurname, String _userEmail, int _icon_id){
         this._id = _id;
         this._noteID = _noteID;
         this._name = _name;
@@ -34,7 +34,7 @@ public class Note {
         this._icon_id = _icon_id;
     }
 
-    public Note(int _noteID, String _name, String _date, String _description, boolean _done, int _userID, int _groupID, String _userName, String _userSurname, String _userEmail, int _icon_id){
+    public Note(int _noteID, String _name, String _date, String _description, int _done, int _userID, int _groupID, String _userName, String _userSurname, String _userEmail, int _icon_id){
         this._noteID = _noteID;
         this._name = _name;
         this._date = _date;
@@ -76,25 +76,25 @@ public class Note {
         this._noteID = _noteID;
     }
 
-    public Boolean get_done() {
+    public int get_done() {
         return _done;
     }
-    public void set_date(String _date) {
-        this._date = _date;
+    public void set_done(int _done) {
+        this._done = _done;
     }
 
     public String get_date() {
         return _date;
     }
-    public void set_description(String _description) {
-        this._description = _description;
+    public void set_date(String _date) {
+        this._date = _date;
     }
 
     public String get_description() {
         return _description;
     }
-    public void set_done(Boolean _done) {
-        this._done = _done;
+    public void set_description(String _description) {
+        this._description = _description;
     }
 
     public String get_name() {

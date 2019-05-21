@@ -323,7 +323,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
 
         Note note = new Note(Integer.parseInt(cursor.getString(0)), Integer.parseInt(cursor.getString(1)),
                 cursor.getString(2), cursor.getString(3), cursor.getString(4),
-                Boolean.parseBoolean(cursor.getString(5)), Integer.parseInt(cursor.getString(6)), Integer.parseInt(cursor.getString(7)),
+                Integer.parseInt(cursor.getString(5)), Integer.parseInt(cursor.getString(6)), Integer.parseInt(cursor.getString(7)),
                 cursor.getString(8), cursor.getString(9), cursor.getString(10), Integer.parseInt(cursor.getString(11)));
 
         return note;
@@ -343,7 +343,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
 
         UNote unote = new UNote(Integer.parseInt(cursor.getString(0)), Integer.parseInt(cursor.getString(1)),
                 cursor.getString(2), cursor.getString(3), cursor.getString(4),
-                Boolean.parseBoolean(cursor.getString(5)), Integer.parseInt(cursor.getString(6)));
+                Integer.parseInt(cursor.getString(5)), Integer.parseInt(cursor.getString(6)));
 
         return unote;
     }
@@ -464,7 +464,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
                 note.set_name(cursor.getString(2));
                 note.set_date(cursor.getString(3));
                 note.set_description(cursor.getString(4));
-                note.set_done(Boolean.parseBoolean(cursor.getString(5)));
+                note.set_done(Integer.parseInt(cursor.getString(5)));
                 note.set_userID(Integer.parseInt(cursor.getString(6)));
                 note.set_groupID(Integer.parseInt(cursor.getString(7)));
                 note.set_userName(cursor.getString(8));
@@ -495,7 +495,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
                 unote.set_name(cursor.getString(2));
                 unote.set_date(cursor.getString(3));
                 unote.set_description(cursor.getString(4));
-                unote.set_done(Boolean.parseBoolean(cursor.getString(5)));
+                unote.set_done(Integer.parseInt(cursor.getString(5)));
                 unote.set_userID(Integer.parseInt(cursor.getString(6)));
 
                 unoteList.add(unote);
