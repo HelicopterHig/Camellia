@@ -22,7 +22,10 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     public  Context context;
     public DatabaseHandler db;
     public boolean[] checked;
-    public int check;
+    public int check, pos;
+    private boolean check_note;
+    UpdateCheckedNote updateCheckedNote;
+
     public NoteAdapter(Context context, ArrayList<ItemNote> itemNotes){
         this.context = context;
         this.itemNoteArrayList = itemNotes;
@@ -54,39 +57,38 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         ItemNote currentItem = itemNoteArrayList.get(position);
 
+        if (currentItem.getCheckNote() == 1){
+            check_note = true;
+        }else {
+            check_note = false;
+        }
+        pos = position;
         holder.dateTextview.setText(currentItem.getDateNote());
         holder.textView.setText(currentItem.getTextNote());
+        holder.checkBox.setChecked(check_note);
 
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 check = position;
-                checked[position] = !checked[position];
+                checked[pos] = !checked[pos];
                 db = new DatabaseHandler(context);
                 ItemNote item = itemNoteArrayList.get(check);
                 Note note = db.getNote(item.geNoteIde());
+                updateCheckedNote = new UpdateCheckedNote();
 
-                String log1 = "Id: " + note.get_id() + " , NoteID: " + note.get_noteID() + " , Name: " + note.get_name() + " , Date: " + note.get_date()
-                        + ", Description: " + note.get_description() + ", Done: " + note.get_done()
-                        + ", UserID: " + note.get_userID() + ", GroupID: " + note.get_groupID();
-
-                System.out.print("ENote: ");
-                System.out.println(log1);
-
-                if(note.get_done()) {
-                    note.set_done(false);
+                if(note.get_done() == 1) {
+                    note.set_done(0);
+                    updateCheckedNote.UpdateCheckNoteVoid(note.get_noteID(), 0);
                 }
 
                 else {
-                    note.set_done(true);
-                    log1 = "Id: " + note.get_id() + " , NoteID: " + note.get_noteID() + " , Name: " + note.get_name() + " , Date: " + note.get_date()
-                            + ", Description: " + note.get_description() + ", Done: " + note.get_done()
-                            + ", UserID: " + note.get_userID() + ", GroupID: " + note.get_groupID();
-                    System.out.print("ENote: ");
-                    System.out.println(log1);
+                    note.set_done(1);
+                    updateCheckedNote.UpdateCheckNoteVoid(note.get_noteID(), 1);
                 }
 
                 db.updateNote(note);
+
 
                 List<Note> note_local = db.getAllNotes();
 
@@ -102,10 +104,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
             }
         });
-
-        holder.checkBox.setChecked(checked[position]);
-
-
     }
 
     public boolean[] getChecked(){

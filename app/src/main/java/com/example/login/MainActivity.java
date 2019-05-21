@@ -277,10 +277,7 @@ public class MainActivity extends AppCompatActivity {
                     db.addMessage(new Message(1, "Hello.", "10.04.2019 14:00", 1, 1, "mxz,mx", "xnmzx", "sdfd", 2));
 
                     System.out.println("Inserting notes ..");
-                    db.addNote(new Note(1, "Do something.", "20.04.2019", "We need to do something.", true, 1, 1, "xm,zmx", "xzm,mx", "asdsad", 2));
-
-                    System.out.println("Inserting unotes ..");
-                    db.addUNote(new UNote(1, "Do something.", "20.04.2019", "I need to do something.", true, 1));
+                    db.addNote(new Note(1, "Do something.", "20.04.2019", "We need to do something.", 0, 1, 1, "xm,zmx", "xzm,mx", "asdsad", 2));
 
                     System.out.println("Reading all contacts..");
                     List<User> user_local = db.getAllContacts();
@@ -337,18 +334,6 @@ public class MainActivity extends AppCompatActivity {
                                 + ", UserID: " + cn.get_userID() + ", GroupID: " + cn.get_groupID();
 
                         System.out.print("Note: ");
-                        System.out.println(log);
-                    }
-
-                    System.out.println("Reading all unotes..");
-                    List<UNote> unote_local = db.getAllUNotes();
-
-                    for (UNote cn : unote_local) {
-                        String log = "Id: " + cn.get_id() + " , UNoteID: " + cn.get_unoteID() + " , Name: " + cn.get_name() + " , Date: " + cn.get_date()
-                                + ", Description: " + cn.get_description() + ", Done: " + cn.get_done()
-                                + ", UserID: " + cn.get_userID();
-
-                        System.out.print("Unote: ");
                         System.out.println(log);
                     }
 

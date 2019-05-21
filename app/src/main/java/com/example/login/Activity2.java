@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,7 +27,7 @@ import java.net.URL;
 /*
 
 
-Version 0.7.14
+Version 0.7.15
 
 
  */
@@ -38,6 +39,8 @@ public class Activity2 extends AppCompatActivity {
     protected int icon_id;
     ImageButton imageButton;
 
+    CheckIcon checkIcon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -46,6 +49,7 @@ public class Activity2 extends AppCompatActivity {
         // блокируем ориентацию на вертикальную
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        checkIcon = new CheckIcon();
         // инициализируем анимацию
         // final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
 
@@ -74,6 +78,7 @@ public class Activity2 extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         icon_id =  0;
+                        imageButton.setImageResource(checkIcon.checkIconUser(icon_id));
                         dialog.dismiss();
                     }
                 });
@@ -81,6 +86,7 @@ public class Activity2 extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         icon_id =  1;
+                        imageButton.setImageResource(checkIcon.checkIconUser(icon_id));
                         dialog.dismiss();
                     }
                 });
@@ -88,6 +94,7 @@ public class Activity2 extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         icon_id =  2;
+                        imageButton.setImageResource(checkIcon.checkIconUser(icon_id));
                         dialog.dismiss();
                     }
                 });
@@ -95,6 +102,7 @@ public class Activity2 extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         icon_id =  3;
+                        imageButton.setImageResource(checkIcon.checkIconUser(icon_id));
                         dialog.dismiss();
                     }
                 });
@@ -102,6 +110,7 @@ public class Activity2 extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         icon_id =  5;
+                        imageButton.setImageResource(checkIcon.checkIconUser(icon_id));
                         dialog.dismiss();
                     }
                 });
@@ -109,6 +118,7 @@ public class Activity2 extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         icon_id =  6;
+                        imageButton.setImageResource(checkIcon.checkIconUser(icon_id));
                         dialog.dismiss();
                     }
                 });
@@ -116,6 +126,7 @@ public class Activity2 extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         icon_id =  7;
+                        imageButton.setImageResource(checkIcon.checkIconUser(icon_id));
                         dialog.dismiss();
                     }
                 });
@@ -123,6 +134,7 @@ public class Activity2 extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         icon_id =  4;
+                        imageButton.setImageResource(checkIcon.checkIconUser(icon_id));
                         dialog.dismiss();
                     }
                 });
@@ -130,18 +142,17 @@ public class Activity2 extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         icon_id =  8;
+                        imageButton.setImageResource(checkIcon.checkIconUser(icon_id));
                         dialog.dismiss();
                     }
                 });
             }
         });
-
         button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //view.startAnimation(animAlpha);
-                //openLeft();
 
                 EditText editText = (EditText)findViewById(R.id.editText);
                 name = String.valueOf(editText.getText().toString());
@@ -167,16 +178,14 @@ public class Activity2 extends AppCompatActivity {
                     if (password.matches("(?i).*[a-z].*")) {
                         if(password.matches("(?i).*[0-9].*")){
 
-                            /*
-                    Toast.makeText(Activity2.this,
-                            R.string.success_reg_msg,
-                            Toast.LENGTH_SHORT).show();
-                    try {
-                        new SendData().execute();
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                    */
+                            Toast.makeText(Activity2.this,
+                                    R.string.success_reg_msg,
+                                    Toast.LENGTH_SHORT).show();
+                            try {
+                                new SendData().execute();
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
 
                         }else{
                             Toast.makeText(Activity2.this,
@@ -204,10 +213,6 @@ public class Activity2 extends AppCompatActivity {
         startActivity(intent);
 
     }
-   /* public void openLeft() {
-        Intent intent = new Intent(this, Left.class);
-        startActivity(intent);
-    }*/
 
     class SendData extends AsyncTask<Void, Void, Void>{
         String resultString = null;

@@ -41,6 +41,7 @@
     <ImageButton
         android:id="@+id/imageButton12"
         style="@style/Circle"
+        android:scaleType="fitCenter"
         android:layout_width="139dp"
         android:layout_height="136dp"
         android:layout_marginStart="8dp"

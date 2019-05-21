@@ -30,10 +30,13 @@ public class ProgressAdapter extends RecyclerView.Adapter<ProgressAdapter.ViewHo
     public void onBindViewHolder(@NonNull ProgressAdapter.ViewHolder holder, int position) {
         ItemProgress currentItem = itemProgressArrayList.get(position);
 
+        String prog = "0%";
         holder.ugImageView.setImageResource(currentItem.getUpImageResource());
         holder.ugTextView.setText(currentItem.getUpName());
-        String prog = String.valueOf(100*currentItem.getProgressDone()/currentItem.getProgressAll());
-        prog = prog +"%";
+        if (currentItem.progressAll != 0) {
+            prog = String.valueOf(100 * currentItem.getProgressDone() / currentItem.getProgressAll());
+            prog = prog + "%";
+        }
         holder.ugProgressView.setText (prog); //Изменить
     }
 

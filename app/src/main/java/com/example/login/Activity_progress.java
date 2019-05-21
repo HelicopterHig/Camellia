@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.login.LocalDataBase.DatabaseHandler;
+import com.example.login.LocalDataBase.Note;
 import com.example.login.LocalDataBase.User_group;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class Activity_progress extends Base_Activity {
     private ArrayList<ItemProgress> itemProgressArrayList;
 
     public String email, name, second_name, name_user;
-    int group_id, icon;
+    int group_id, icon, count = 0, count_true = 0;
 
     ImageButton imageButton;
 
@@ -31,6 +32,10 @@ public class Activity_progress extends Base_Activity {
     DatabaseHandler db;
     CheckIcon checkIcon;
     List<User_group> user_groups;
+    List<Note> noteList;
+    List<Note> noteList2;
+
+    private int size_note = 0;
 
     public static String server_name = "message.dlinkddns.com:8008";
 
@@ -48,6 +53,8 @@ public class Activity_progress extends Base_Activity {
         db = new DatabaseHandler(this);
         checkIcon = new CheckIcon();
 
+        size_note = db.getNoteCount();
+
         createListUsersGroup();
         buildRecyclerViewUsersGroup();
 
@@ -59,12 +66,29 @@ public class Activity_progress extends Base_Activity {
         user_groups = db.getAllUser_groups();
 
         for (User_group ug : user_groups){
+            count = 0;
+            count_true = 0;
             group_id = ug.get_group_id();
             name = ug.get_userName();
             second_name = ug.get_userSurname();
             icon = checkIcon.checkIconUser(ug.get_icon_id());
             name = name + " " + second_name;
-            itemProgressArrayList.add(new ItemProgress(icon, name, 14, 8)); //Допилить прогресс
+
+            noteList = db.getAllNotes();
+            for (Note nt : noteList){
+                if (nt.get_userID() == ug.get_user_id()){
+                    count++;
+                }
+            }
+
+            noteList2 = db.getAllNotes();
+            for(Note nt2 : noteList2){
+                if (nt2.get_done() == 1){
+                    count_true++;
+                }
+            }
+
+            itemProgressArrayList.add(new ItemProgress(icon, name, count, count_true)); //Допилить прогресс
         }
 
     }

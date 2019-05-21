@@ -40,7 +40,7 @@ public class Activity_Note extends Base_Activity{
     public List<Note> enote;
     DatabaseHandler db;
     private ArrayList<ItemNote>  itemNoteArrayList;
-    boolean checkNote;
+    int checkNote;
     boolean[] checked; //Массив, указывающие на чекбоксы
     CheckBox checkBox;
     String dateNote, textNote;
@@ -344,8 +344,4 @@ public class Activity_Note extends Base_Activity{
             return null;
         }
     }
-
-
-
-
 }

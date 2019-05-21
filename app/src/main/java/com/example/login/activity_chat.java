@@ -75,7 +75,7 @@ public class activity_chat extends AppCompatActivity {
 
     int note_id, note_user_id, note_group_id, note_user_icon;
     String note_name, note_date, note_dis, note_user_name, note_user_sec, note_user_email;
-    boolean note_done;
+    int note_done;
 
     String name, second_name, name_u;
     int user_id, message_id;
@@ -501,7 +501,7 @@ public class activity_chat extends AppCompatActivity {
                         note_name = schedule.getString(TAG_NOTE_NAME);
                         note_date = schedule.getString(TAG_NOTE_DATE);
                         note_dis = schedule.getString(TAG_NOTE_DIS);
-                        note_done = Boolean.parseBoolean(schedule.getString(TAG_NOTE_DONE));
+                        note_done = Integer.parseInt(schedule.getString(TAG_NOTE_DONE));
                         note_user_id = Integer.parseInt(schedule.getString(TAG_NOTE_USER_ID));
                         note_group_id = Integer.parseInt(schedule.getString(TAG_NOTE_GROUP_ID));
 

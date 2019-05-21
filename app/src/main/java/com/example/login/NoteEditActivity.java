@@ -122,7 +122,7 @@ public class NoteEditActivity extends AppCompatActivity {
             }
 
             if  (temp == null) {
-                temp = new Note(note_id, notename, datenote, text, false, id, group_id, name, surname, email, icon); //Добавить параметры
+                temp = new Note(note_id, notename, datenote, text, 0, id, group_id, name, surname, email, icon); //Добавить параметры
                 db.addNote(temp);
                 System.out.println("Reading all notes..");
                 List<Note> note_local = db.getAllNotes();

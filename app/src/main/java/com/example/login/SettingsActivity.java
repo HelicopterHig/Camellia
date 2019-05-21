@@ -44,7 +44,7 @@ public class SettingsActivity extends AppCompatActivity {
     public static String server_name = "message.dlinkddns.com:8008";
 
     protected String name, second_name, password, email, birthday_date, access, refresh;
-    protected int icon_id, user_id;
+    protected int icon_id, icon_id_id, user_id;
 
     //для таблицы user_token
     protected String refresh_id, refresh_user_id, refreshTokensMap;
@@ -54,7 +54,7 @@ public class SettingsActivity extends AppCompatActivity {
     private static String TAG_REFRESH_USER_ID = "user_id";
     private static String TAG_REFRESH_REFRESHTOKENSMAP = "refreshTokensMap";
 
-    private boolean check = false;
+    private boolean check = true;
 
     EditText editText_name;
     EditText editText_second_name;
@@ -64,6 +64,8 @@ public class SettingsActivity extends AppCompatActivity {
     EditText editText_date;
 
     DatabaseHandler db;
+
+    CheckIcon checkIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +78,9 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-     //   getSupportActionBar().hide();
+        checkIcon = new CheckIcon();
+
+        //   getSupportActionBar().hide();
         slidr = Slidr.attach(this);
 
         myswitch=(Switch)findViewById(R.id.myswitch);
@@ -96,7 +100,7 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }
         });
-       // final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
+        // final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
 
         imageButton = (ImageButton) findViewById(R.id.imageButton13);
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -123,6 +127,7 @@ public class SettingsActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         icon_id =  0;
+                        imageButton.setImageResource(checkIcon.checkIconUser(icon_id));
                         dialog.dismiss();
                     }
                 });
@@ -130,6 +135,7 @@ public class SettingsActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         icon_id =  1;
+                        imageButton.setImageResource(checkIcon.checkIconUser(icon_id));
                         dialog.dismiss();
                     }
                 });
@@ -137,6 +143,7 @@ public class SettingsActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         icon_id =  2;
+                        imageButton.setImageResource(checkIcon.checkIconUser(icon_id));
                         dialog.dismiss();
                     }
                 });
@@ -144,6 +151,7 @@ public class SettingsActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         icon_id =  3;
+                        imageButton.setImageResource(checkIcon.checkIconUser(icon_id));
                         dialog.dismiss();
                     }
                 });
@@ -151,6 +159,7 @@ public class SettingsActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         icon_id =  5;
+                        imageButton.setImageResource(checkIcon.checkIconUser(icon_id));
                         dialog.dismiss();
                     }
                 });
@@ -158,6 +167,7 @@ public class SettingsActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         icon_id =  6;
+                        imageButton.setImageResource(checkIcon.checkIconUser(icon_id));
                         dialog.dismiss();
                     }
                 });
@@ -165,6 +175,7 @@ public class SettingsActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         icon_id =  7;
+                        imageButton.setImageResource(checkIcon.checkIconUser(icon_id));
                         dialog.dismiss();
                     }
                 });
@@ -172,6 +183,7 @@ public class SettingsActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         icon_id =  4;
+                        imageButton.setImageResource(checkIcon.checkIconUser(icon_id));
                         dialog.dismiss();
                     }
                 });
@@ -179,6 +191,7 @@ public class SettingsActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         icon_id =  8;
+                        imageButton.setImageResource(checkIcon.checkIconUser(icon_id));
                         dialog.dismiss();
                     }
                 });
@@ -212,6 +225,7 @@ public class SettingsActivity extends AppCompatActivity {
         editText_email.setText(email);
         editText_password.setText(password);
         editText_date.setText(birthday_date);
+        imageButton.setImageResource(checkIcon.checkIconUser(icon_id));
 
         button = (Button)findViewById(R.id.button2);
         button.setOnClickListener(new View.OnClickListener() {
@@ -237,11 +251,11 @@ public class SettingsActivity extends AppCompatActivity {
                 if (password.matches("(?i).*[a-z].*")) {
                     if(password.matches("(?i).*[0-9].*")){
 
-                        try {
+                        /*try {
                             new SendRefresh().execute();
                         }catch (Exception e){
                             e.printStackTrace();
-                        }
+                        }*/
 
                         if (check == true) {
                             try {
@@ -282,7 +296,7 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             try{
-                String myURL = "http://"+server_name+"/update.php?id=1&name="+name+"&second_name="+second_name+"&password="+password+"&email="+email+"&icon_id="+icon_id+"&birthday_date="+birthday_date;
+                String myURL = "http://"+server_name+"/update.php?id=" + user_id + "&name="+name+"&second_name="+second_name+"&password="+password+"&email="+email+"&icon_id="+icon_id/*+"&birthday_date="+birthday_date*/;
                 String parammetrs = "?id=1&name="+name+"&second_name="+second_name+"&password="+password+"&email="+email+"&user_note_id="+"&icon_id="+icon_id;
                 byte[] data = null;
                 InputStream is = null;
@@ -344,6 +358,14 @@ public class SettingsActivity extends AppCompatActivity {
 
 
             return null;
+        }
+
+        protected void onPostExecute(Void voids){
+            super.onPostExecute(voids);
+            db.deleteAllContacts();
+            db.deleteAllGroups();
+            openLogin();
+            finish();
         }
     }
 
