@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandler {
 
-    private static final int DATABASE_VERSION = 9;
+    private static final int DATABASE_VERSION = 10;
     private static final String DATABASE_NAME = "messenger_camellia";
 
 
@@ -74,6 +74,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
     private static final String KEY_UNOTE_DESCRIPTION = "description";
     private static final String KEY_UNOTE_DONE = "done";
     private static final String KEY_UNOTE_USER_ID = "userID";
+    private static final String KEY_UNOTE_TYPE = "type";
 
     //User_group
     private static final String TABLE_UG = "user_group";
@@ -112,7 +113,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
     private static final String CREATE_UNOTE_TABLE = "CREATE TABLE " + TABLE_UNOTE + " ("
             + KEY_UNOTE_ID + " INTEGER PRIMARY KEY, " + KEY_UNOTE_UNOTE_ID + " INTEGER, " + KEY_UNOTE_NAME + " STRING, "
             + KEY_UNOTE_DATE + " DATE, " + KEY_UNOTE_DESCRIPTION + " text, "
-            + KEY_UNOTE_DONE + " BINARY, " + KEY_UNOTE_USER_ID + " INTEGER)";
+            + KEY_UNOTE_TYPE + " text)";
 
     public static final String CREATE_UG_TABLE = "CREATE TABLE " + TABLE_UG + " (" + KEY_UG_GROUP_ID + " INTEGER, " +
             KEY_UG_USER_ID + " INTEGER, " + KEY_UG_USER_NAME + " TEXT, " + KEY_UG_USER_SURNAME + " TEXT, "
@@ -227,8 +228,9 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         values.put(KEY_UNOTE_NAME, unote.get_name());
         values.put(KEY_UNOTE_DATE, unote.get_date());
         values.put(KEY_UNOTE_DESCRIPTION, unote.get_description());
-        values.put(KEY_UNOTE_DONE, unote.get_done());
-        values.put(KEY_UNOTE_USER_ID, unote.get_userID());
+        //values.put(KEY_UNOTE_DONE, unote.get_done());
+        //values.put(KEY_UNOTE_USER_ID, unote.get_userID());
+        values.put(KEY_UNOTE_TYPE, unote.get_type());
 
         db.insert(TABLE_UNOTE, null, values);
         db.close();
@@ -334,7 +336,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_UNOTE, new String[] { KEY_UNOTE_ID, KEY_UNOTE_UNOTE_ID, KEY_UNOTE_NAME,
-                        KEY_UNOTE_DATE, KEY_UNOTE_DESCRIPTION, KEY_UNOTE_DONE, KEY_UNOTE_USER_ID}, KEY_UNOTE_ID + "=?",
+                        KEY_UNOTE_DATE, KEY_UNOTE_DESCRIPTION, KEY_UNOTE_USER_ID, KEY_UNOTE_TYPE}, KEY_UNOTE_ID + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
 
         if (cursor != null){
@@ -342,8 +344,7 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         }
 
         UNote unote = new UNote(Integer.parseInt(cursor.getString(0)), Integer.parseInt(cursor.getString(1)),
-                cursor.getString(2), cursor.getString(3), cursor.getString(4),
-                Integer.parseInt(cursor.getString(5)), Integer.parseInt(cursor.getString(6)));
+                cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5));
 
         return unote;
     }
@@ -495,8 +496,9 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
                 unote.set_name(cursor.getString(2));
                 unote.set_date(cursor.getString(3));
                 unote.set_description(cursor.getString(4));
-                unote.set_done(Integer.parseInt(cursor.getString(5)));
-                unote.set_userID(Integer.parseInt(cursor.getString(6)));
+                //unote.set_done(Integer.parseInt(cursor.getString(5)));
+                //unote.set_userID(Integer.parseInt(cursor.getString(6)));
+                unote.set_type(cursor.getString(5));
 
                 unoteList.add(unote);
             } while (cursor.moveToNext());
@@ -612,8 +614,9 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         values.put(KEY_UNOTE_NAME, unote.get_name());
         values.put(KEY_UNOTE_DATE, unote.get_date());
         values.put(KEY_UNOTE_DESCRIPTION, unote.get_description());
-        values.put(KEY_UNOTE_DONE, unote.get_done());
-        values.put(KEY_UNOTE_USER_ID, unote.get_userID());
+        //values.put(KEY_UNOTE_DONE, unote.get_done());
+        //values.put(KEY_UNOTE_USER_ID, unote.get_userID());
+        values.put(KEY_UNOTE_TYPE, unote.get_type());
 
         return db.update(TABLE_UNOTE, values, KEY_UNOTE_ID + " = ?",
                 new String[] { String.valueOf(unote.get_id()) });
@@ -764,9 +767,10 @@ public class DatabaseHandler extends SQLiteOpenHelper implements IDatabaseHandle
         String countQuery = "SELECT  * FROM " + TABLE_UNOTE;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
         cursor.close();
 
-        return cursor.getCount();
+        return count;
     }
 
     @Override

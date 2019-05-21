@@ -13,23 +13,31 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Locale;
 
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
+import com.example.login.LocalDataBase.DatabaseHandler;
+import com.example.login.LocalDataBase.UNote;
+import com.example.login.LocalDataBase.User;
+
 
 public class CalendarActivity extends AppCompatActivity {
     public GregorianCalendar cal_month, cal_month_copy;
     private HwAdapter hwAdapter;
     protected String  desctiprion, type, n_class, data;
+    protected int unote_id;
     private TextView tv_month;
     private Button button;
     protected String name;
     EditText edit1;
 
-    SharedPref sharedpref;
+    public SharedPref sharedpref;
+    public DatabaseHandler db;
+    public int unote_count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +61,18 @@ public class CalendarActivity extends AppCompatActivity {
         //setContentView(R.layout.activity_calendar);
         setTitle(R.string.app_name);
 
+        db = new DatabaseHandler(this);
+        List<UNote> dataUNote = db.getAllUNotes();
 
+        for (UNote unoteD : dataUNote){
+            unote_id = unoteD.get_unoteID();
+            name = unoteD.get_name();
+            data = unoteD.get_date();
+            n_class = unoteD.get_description();
+        }
 
         HomeCollection.date_collection_arr=new ArrayList<HomeCollection>();
-        HomeCollection.date_collection_arr.add( new HomeCollection("2019-07-08" ,"Diwali","Holiday","this is holiday"));
+        /*HomeCollection.date_collection_arr.add( new HomeCollection("2019-07-08" ,"Diwali","Holiday","this is holiday"));
         HomeCollection.date_collection_arr.add( new HomeCollection("2019-07-08" ,"Holi","Holiday","this is holiday"));
         HomeCollection.date_collection_arr.add( new HomeCollection("2019-07-08" ,"Statehood Day","Holiday","this is holiday"));
         HomeCollection.date_collection_arr.add( new HomeCollection("2019-08-08" ,"Republic Unian","Holiday","this is holiday"));
@@ -65,8 +81,11 @@ public class CalendarActivity extends AppCompatActivity {
         HomeCollection.date_collection_arr.add( new HomeCollection("2019-09-26" ,"weekly off","Holiday","this is holiday"));
         HomeCollection.date_collection_arr.add( new HomeCollection("2019-01-08" ,"Events","Holiday","this is holiday"));
         HomeCollection.date_collection_arr.add( new HomeCollection("2019-01-16" ,"Dasahara","Holiday","this is holiday"));
-        HomeCollection.date_collection_arr.add( new HomeCollection("2019-02-09" ,"Christmas","Holiday","this is holiday"));
+        HomeCollection.date_collection_arr.add( new HomeCollection("2019-02-09" ,"Christmas","Holiday","this is holiday"));*/
 
+        for(UNote un : dataUNote){
+            HomeCollection.date_collection_arr.add( new HomeCollection(un.get_date() ,un.get_name(),un.get_type(),un.get_description()));
+        }
 
 
         cal_month = (GregorianCalendar) GregorianCalendar.getInstance();
@@ -75,6 +94,7 @@ public class CalendarActivity extends AppCompatActivity {
 
         tv_month = (TextView) findViewById(R.id.tv_month);
         tv_month.setText(android.text.format.DateFormat.format("MMMM yyyy", cal_month));
+
 
 
         ImageButton previous = (ImageButton) findViewById(R.id.ib_prev);
@@ -151,10 +171,11 @@ public class CalendarActivity extends AppCompatActivity {
                         n_class = String.valueOf(editText_2.getText().toString());
 
 
-                        HomeCollection.date_collection_arr.add( new HomeCollection(data ,name, type,n_class));
-
+                        //HomeCollection.date_collection_arr.add( new HomeCollection(data ,name, type,n_class));
                         //HomeCollection.date_collection_arr.add( new HomeCollection("2019-07-08" ,"Holi","Holiday","this is holiday"));
 
+                        db.addUNote(new UNote(db.getUNoteCount()-1, name, data, n_class, type));
+                        HomeCollection.date_collection_arr.add( new HomeCollection(data ,name, type, n_class));
                         dialog.dismiss();
                     }
                 });

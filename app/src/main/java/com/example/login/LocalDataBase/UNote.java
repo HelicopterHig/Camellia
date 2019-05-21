@@ -7,36 +7,39 @@ public class UNote {
     String _name;
     String _date;
     String _description;
-    int _done;
-    int _userID;
+    //int _done;
+    //int _userID;
+    String _type;
 
     public UNote(){}
 
-    public UNote(int _id, int _unoteID, String _name, String _date, String _description, int _done, int _userID){
+    public UNote(int _id, int _unoteID, String _name, String _date, String _description, String _type){
         this._id = _id;
         this._unoteID = _unoteID;
         this._name = _name;
         this._date = _date;
         this._description = _description;
-        this._done = _done;
-        this._userID = _userID;
+        //this._done = _done;
+        //this._userID = _userID;
+        this._type = _type;
     }
 
-    public UNote(int _unoteID, String _name, String _date, String _description, int _done, int _userID){
+    public UNote(int _unoteID, String _name, String _date, String _description, String _type){
         this._unoteID = _unoteID;
         this._name = _name;
         this._date = _date;
         this._description = _description;
-        this._done = _done;
-        this._userID = _userID;
+        //this._done = _done;
+        //this._userID = _userID;
+        this._type = _type;
     }
 
-    public int get_userID() {
-        return _userID;
-    }
-    public void set_userID(int _userID) {
-        this._userID = _userID;
-    }
+    //public int get_userID() {
+    //    return _userID;
+    //}
+    //public void set_userID(int _userID) {
+    //    this._userID = _userID;
+    //}
 
     public int get_id() {
         return _id;
@@ -52,12 +55,12 @@ public class UNote {
         this._unoteID = _unoteID;
     }
 
-    public int get_done() {
-        return _done;
-    }
-    public void set_done(int _done) {
-        this._done = _done;
-    }
+    //public int get_done() {
+    //    return _done;
+    //}
+    //public void set_done(int _done) {
+    //    this._done = _done;
+    //}
 
     public String get_date() {
         return _date;
@@ -78,5 +81,12 @@ public class UNote {
     }
     public void set_name(String _name) {
         this._name = _name;
+    }
+
+    public String get_type() {
+        return _type;
+    }
+    public void set_type(String _type) {
+        this._type = _type;
     }
 }
