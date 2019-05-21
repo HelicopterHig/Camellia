@@ -83,8 +83,10 @@ public class Activity_progress extends Base_Activity {
 
             noteList2 = db.getAllNotes();
             for(Note nt2 : noteList2){
-                if (nt2.get_done() == 1){
-                    count_true++;
+                if (nt2.get_userID() == ug.get_user_id()) {
+                    if (nt2.get_done() == 1) {
+                        count_true++;
+                    }
                 }
             }
 
