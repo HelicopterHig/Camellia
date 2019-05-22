@@ -131,6 +131,9 @@
     <string name="item3">Item3</string>
 
     <string name="choose_avatar">Выберете ваш аватар</string>
+    <string name="Help">Помощь</string>
+    <string name="skip">Пропустить</string>
+
 
 </resources>
 

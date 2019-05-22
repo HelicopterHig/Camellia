@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.login">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -19,7 +20,8 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning">
 
         <activity android:name=".Base_Activity"  ></activity>
         <activity android:name=".Activity_Note"  ></activity>
@@ -54,10 +56,13 @@
             android:name=".CalendarActivity"
             android:theme="@style/AppTheme" />
         <activity android:name=".activity_chat" />
-        <activity android:name=".NoteEditActivity"></activity>
+        <activity android:name=".NoteEditActivity" />
 
-        <activity android:name=".Avatar.Avatar"></activity>
+        <!--activity android:name=".Avatar.Avatar" /-->
 
+        <activity android:name=".Help">
+
+        </activity>
 
 
     </application>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="5dp"
-    android:background= "?attr/cardbackground">
+    android:background= "?attr/colorPrimary">
 
     <TextView
         android:id="@+id/textView"

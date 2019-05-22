@@ -258,11 +258,13 @@ public class Left extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.esc) {
+       // if //(id == R.id.esc) {
             // Handle the camera action
-        } else if (id == R.id.pro) {
+       // } //else if (id == R.id.pro) {
 
-        } else if (id == R.id.cal) {
+       // }
+        //else
+            if (id == R.id.cal) {
             Intent intent = new Intent(this, CalendarActivity.class);
             startActivity(intent);
             return false;
@@ -290,6 +292,11 @@ public class Left extends AppCompatActivity
             db.deleteAllNotes();
             db.deleteAllUNotes();
             mItemArrayList.clear();
+            startActivity(intent);
+            return false;
+        }else if (id == R.id.help) {
+            Intent intent = new Intent(this, Help.class);
+
             startActivity(intent);
             return false;
         }else if (id == R.id.about) {

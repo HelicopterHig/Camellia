@@ -7,19 +7,19 @@
     <group
         android:checkableBehavior="single"
         android:enabled="true">
-        <item
+        <!--item
             android:id="@+id/esc"
             android:icon="@drawable/esc"
 
 
             android:title="@string/private_note"
-            />
-        <item
+            /-->
+        <!--item
             android:id="@+id/pro"
             android:icon="@drawable/profil"
 
 
-            android:title="@string/my_projects" />
+            android:title="@string/my_projects" /-->
         <item
             android:id="@+id/cal"
             android:icon="@drawable/calen"
@@ -47,6 +47,12 @@
 
 <item android:title="">
     <menu>
+        <item
+            android:id="@+id/help"
+            android:icon="@drawable/ic_help"
+
+
+            android:title="@string/Help" />
         <item
             android:id="@+id/about"
             android:icon="@drawable/sharp_copyright_24"

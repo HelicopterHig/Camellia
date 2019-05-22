@@ -7,10 +7,10 @@
         <item name="actionMenuTextColor">@color/colorPink</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
+    <!--style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-    </style>
+    </style-->
 
     <style name="button_style">
         <item name="android:background">@drawable/button_background</item>
@@ -155,6 +155,14 @@
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
 
     </style>
+
+    <!--style name="AppTheme.NoActionBar">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style-->
 
 
 </resources>
