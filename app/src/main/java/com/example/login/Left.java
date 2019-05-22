@@ -63,7 +63,7 @@ public class Left extends AppCompatActivity
 
     protected String user_id_id, name, second_name, email, password, birthday_date;
     protected String name_group, secreteKey;
-    int user_id, icon_id_user;
+    int user_id, icon_id_user, group_id_server;
 
     TextView textView_name;
     TextView textView_email;
@@ -130,6 +130,11 @@ public class Left extends AppCompatActivity
             icon_id_user = userD.getIcon();
         }
 
+        List<Groups> groupsList = db.getAllGroups();
+        for (Groups gr : groupsList){
+            group_id_server = gr.get_groupID();
+        }
+
         createList();
         buildRecyclerView();
 
@@ -184,9 +189,11 @@ public class Left extends AppCompatActivity
 
                         size = mItemArrayList.size();
 
+                        group_id_server = group_id_server + 1;
+
                         try{
                             new CreateGroup().execute();
-                            db.addGroup(new Groups(2, size, name_group, user_id, 1));
+                            db.addGroup(new Groups(2, group_id_server, name_group, user_id, 1));
                         }catch (Exception e){
                             e.printStackTrace();
                         }
