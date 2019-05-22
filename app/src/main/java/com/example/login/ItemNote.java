@@ -5,12 +5,14 @@ public class ItemNote {
     private String textNote;
     private int note_id;
     private int checkNote;
+    private String userName;
 
-    public ItemNote(String _dateNote, String _textNote, int _checkNote, int _note_id){
+    public ItemNote(String _dateNote, String _textNote, int _checkNote, int _note_id, String _userName){
         dateNote = _dateNote;
         textNote = _textNote;
         checkNote = _checkNote;
         note_id = _note_id;
+        userName = _userName;
     }
 
     public String getDateNote(){
@@ -26,5 +28,9 @@ public class ItemNote {
     }
     public int geNoteIde(){
         return note_id;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 }

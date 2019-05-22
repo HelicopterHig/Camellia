@@ -38,13 +38,11 @@
 
             <TextView
                 android:id="@+id/name_node_group_row"
-                android:layout_width="206dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="53dp"
-                android:layout_marginLeft="53dp"
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="@dimen/small_margin"
                 android:maxLines="7"
@@ -55,8 +53,8 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/holder_node_group_row"
-                android:layout_width="wrap_content"
+                android:id="@+id/userName_node_group_row"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="2"
                 android:text=" "

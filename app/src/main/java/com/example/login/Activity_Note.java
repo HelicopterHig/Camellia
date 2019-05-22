@@ -43,7 +43,7 @@ public class Activity_Note extends Base_Activity{
     int checkNote;
     boolean[] checked; //Массив, указывающие на чекбоксы
     CheckBox checkBox;
-    String dateNote, textNote;
+    String dateNote, textNote, userName;
     int note_id, note_id_id;
 
     public static String server_name = "message.dlinkddns.com:8008";
@@ -135,10 +135,11 @@ public class Activity_Note extends Base_Activity{
             textNote = ug.get_name();
             checkNote = ug.get_done();
             note_id = ug.get_id();
+            userName = ug.get_userName() + " " + ug.get_userSurname();
 
 
 
-            itemNoteArrayList.add(new ItemNote(dateNote, textNote, checkNote, note_id));
+            itemNoteArrayList.add(new ItemNote(dateNote, textNote, checkNote, note_id, userName));
 
         }
 
@@ -200,6 +201,14 @@ public class Activity_Note extends Base_Activity{
 
 
     private void showEmptyView() {
+//        if (false){
+//            checkBox.setEnabled(false);
+//        }
+//        else {
+//            checkBox.setEnabled(false);
+//        }
+
+
         if (itemNoteArrayList.size() == 0) {
             this.recyclerView.setVisibility(View.GONE);
             findViewById(R.id.empty_notes_view).setVisibility(View.VISIBLE);

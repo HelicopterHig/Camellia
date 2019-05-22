@@ -66,6 +66,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         holder.dateTextview.setText(currentItem.getDateNote());
         holder.textView.setText(currentItem.getTextNote());
         holder.checkBox.setChecked(check_note);
+        holder.userName.setText(currentItem.getUserName());
 
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,12 +120,15 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         public TextView dateTextview;
         public TextView textView;
         public CheckBox checkBox;
+        public TextView userName;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             dateTextview = itemView.findViewById(R.id.date_node_group_row);
             textView = itemView.findViewById(R.id.name_node_group_row);
             checkBox = itemView.findViewById(R.id.checkBox_node_group_row);
+            userName = itemView.findViewById(R.id.userName_node_group_row);
+
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
