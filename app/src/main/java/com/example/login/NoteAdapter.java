@@ -109,7 +109,17 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
                         System.out.println(log);
                     }
                 }else {
-                    holder.checkBox.setChecked(false);
+                    if (currentItem.getCheckNote() == 1){
+                        check_note = true;
+                    }else {
+                        check_note = false;
+                    }
+
+                    if (check_note == true) {
+                        holder.checkBox.setChecked(true);
+                    }else {
+                        holder.checkBox.setChecked(false);
+                    }
                 }
             }
         });
