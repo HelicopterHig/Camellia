@@ -51,14 +51,14 @@ public class CalendarActivity extends AppCompatActivity {
 
 
        // String languageToLoad  = "RUSSIAN"; // your language
-        Locale locale = new Locale("ru");
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, null);
+       // Locale locale = new Locale("en");
+       // Locale.setDefault(locale);
+      //  Configuration config = new Configuration();
+      //  config.locale = locale;
+      //  getBaseContext().getResources().updateConfiguration(config, null);
         //getBaseContext().getResources().updateConfiguration(config,
          //       getBaseContext().getResources().getDisplayMetrics());
-        //setContentView(R.layout.activity_calendar);
+        setContentView(R.layout.activity_calendar);
         setTitle(R.string.app_name);
 
         db = new DatabaseHandler(this);
